@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IBGenius - Free AI Tools for IB Students</title>
+<style>
+:root{
+  --bg:#F7F6F2;--sf:#fff;--s2:#F0EFE9;--bd:#E2E0D8;--bd2:#D0CEC4;
+  --ink:#1A1A14;--i2:#4A4A3E;--i3:#8A8A7A;--i4:#AEAE9E;
+  --blue:#2563EB;--bl:#EFF6FF;--bdim:rgba(37,99,235,.08);
+  --green:#059669;--gl:#ECFDF5;--amber:#D97706;--al:#FFFBEB;
+  --purple:#7C3AED;--pl:#F5F3FF;--red:#DC2626;--rl:#FEF2F2;
+  --teal:#0D9488;--tl:#F0FDFA;--pink:#DB2777;--pkl:#FDF2F8;
+  --sw:255px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:15px;line-height:1.6}
+input,select,textarea,button{font-family:inherit}
+.serif{font-family:Georgia,serif}
+/* NAV */
+.tnav{height:56px;background:var(--sf);border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 1.25rem;position:sticky;top:0;z-index:100}
+.logo{font-family:Georgia,serif;font-weight:800;font-size:20px;cursor:pointer;letter-spacing:-.02em}
+.logo em{font-style:italic;color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-links a{font-size:13px;font-weight:500;color:var(--i2);cursor:pointer}
+.nav-links a:hover{color:var(--ink)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.btn-login{font-size:13px;font-weight:600;color:var(--i2);cursor:pointer;padding:7px 12px;border-radius:7px;background:none;border:none}
+.btn-login:hover{background:var(--s2)}
+.btn-signup{background:var(--blue);color:#fff;font-size:13px;font-weight:700;padding:7px 15px;border-radius:7px;cursor:pointer;border:none}
+.btn-signup:hover{background:#1D4ED8}
+.tn-user{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;cursor:pointer;padding:5px 9px;border-radius:7px;border:none;background:none}
+.tn-user:hover{background:var(--s2)}
+.tn-av{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* SHELL */
+.shell{display:flex;height:calc(100vh - 56px)}
+/* SIDEBAR */
+.lsb{width:var(--sw);background:var(--sf);border-right:1px solid var(--bd);flex-shrink:0;overflow-y:auto;height:100%;padding:.5rem 0 2rem}
+.lsb-sec{padding:.6rem 1rem .2rem;font-size:10px;font-weight:700;color:var(--i4);text-transform:uppercase;letter-spacing:.1em;margin-top:.4rem}
+.li{display:flex;align-items:center;gap:8px;padding:7px 1rem 7px 1.1rem;cursor:pointer;color:var(--i2);font-size:13px;font-weight:500;transition:background .1s;position:relative}
+.li:hover{background:var(--s2);color:var(--ink)}
+.li.on{background:var(--bdim);color:var(--blue);font-weight:600}
+.li.on::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);border-radius:0 2px 2px 0}
+.li-icon{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+.li-name{flex:1}
+.li-tag{font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;flex-shrink:0}
+.lt-free{background:var(--gl);color:var(--green)}
+.lt-pro{background:var(--bl);color:var(--blue)}
+.lt-new{background:var(--pkl);color:var(--pink)}
+.li-ct{font-size:10px;color:var(--i4);flex-shrink:0}
+/* CONTENT */
+.content{flex:1;min-width:0;overflow-y:auto;height:100%}
+/* HOME */
+.hero{padding:3rem 2.5rem 2.5rem;background:var(--sf);border-bottom:1px solid var(--bd)}
+.hbadge{display:inline-flex;align-items:center;gap:7px;background:var(--gl);border:1px solid rgba(5,150,105,.2);color:var(--green);font-size:12px;padding:5px 13px;border-radius:100px;margin-bottom:1.25rem;font-weight:600}
+.bdot{width:6px;height:6px;background:var(--green);border-radius:50%}
+.hero h1{font-family:Georgia,serif;font-size:2.5rem;font-weight:700;line-height:1.1;letter-spacing:-.02em;margin-bottom:1rem;max-width:680px}
+.hero h1 em{font-style:italic;color:var(--blue)}
+.hero-sub{font-size:14px;color:var(--i2);max-width:600px;margin-bottom:1.75rem;line-height:1.8}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn-hero{background:var(--ink);color:#fff;padding:11px 24px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;border:none}
+.btn-hero:hover{background:#2A2A20}
+.btn-hero-out{border:1px solid var(--bd2);color:var(--i2);padding:11px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:none}
+.btn-hero-out:hover{background:var(--s2)}
+.hero-note{font-size:12px;color:var(--i4)}
+.home-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:1.5rem 2.5rem;border-bottom:1px solid var(--bd)}
+.hs{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:.9rem;text-align:center}
+.hs-n{font-family:Georgia,serif;font-size:1.8rem;font-weight:700;color:var(--blue);line-height:1}
+.hs-l{font-size:12px;color:var(--i3);margin-top:3px}
+.home-tools{padding:2rem 2.5rem}
+.sec-h{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;margin-bottom:1.25rem}
+.sec-h em{font-style:italic;color:var(--blue)}
+.tool-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-bottom:2.5rem}
+.tc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1.1rem;cursor:pointer;transition:transform .15s,box-shadow .15s;position:relative}
+.tc:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.06);border-color:var(--bd2)}
+.tc-badge{position:absolute;top:.65rem;right:.65rem;font-size:9px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase}
+.tc-icon{font-size:1.5rem;margin-bottom:.45rem}
+.tc-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.tc-desc{font-size:12px;color:var(--i3);line-height:1.5}
+.home-testi{padding:2rem 2.5rem;background:var(--s2);border-top:1px solid var(--bd)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:1rem}
+.tcard{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1.25rem}
+.tcard-s{color:var(--amber);font-size:12px;margin-bottom:.5rem}
+.tcard-t{font-size:13px;color:var(--i2);line-height:1.7;font-style:italic;margin-bottom:.75rem}
+.tav{width:30px;height:30px;border-radius:50%;background:var(--bdim);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--blue);flex-shrink:0}
+/* TOOL AREA */
+.tool-area{padding:2rem 2.5rem;max-width:1000px}
+.tool-hdr{margin-bottom:1.5rem}
+.tool-hdr h1{font-family:Georgia,serif;font-size:1.5rem;font-weight:700;margin-bottom:4px}
+.tool-hdr p{color:var(--i3);font-size:14px}
+.npill{font-size:9px;background:var(--pink);color:#fff;padding:2px 7px;border-radius:5px;font-weight:700;vertical-align:middle;margin-left:6px}
+.pbar{height:3px;background:var(--bd);border-radius:3px;overflow:hidden;margin-bottom:1.25rem;display:none}
+.pfill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),#818CF8);transition:width .3s}
+.tl{display:grid;grid-template-columns:290px 1fr;gap:1.25rem;align-items:start}
+.fp{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1.4rem}
+.fp-title{font-size:13px;font-weight:700;margin-bottom:.9rem}
+.fl{margin-bottom:.8rem}
+.fl label{display:block;font-size:11px;color:var(--i2);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.fl select,.fl textarea,.fl input{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:9px 11px;font-size:13px;color:var(--ink);outline:none;font-family:inherit;resize:vertical}
+.fl select:focus,.fl textarea:focus,.fl input:focus{border-color:var(--blue);background:var(--sf)}
+.fl textarea{min-height:90px;line-height:1.6}
+.btn{padding:9px 17px;border-radius:7px;font-size:13px;font-weight:700;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+.btn-ink{background:var(--ink);color:#fff}.btn-ink:hover{background:#2A2A20}
+.btn-ink:disabled{opacity:.4;cursor:not-allowed}
+.btn-blue{background:var(--blue);color:#fff}.btn-blue:hover{background:#1D4ED8}
+.btn-out{background:transparent;border:1px solid var(--bd2);color:var(--i2)}.btn-out:hover{background:var(--s2)}
+.btn-sm{padding:5px 12px;font-size:12px;border-radius:6px}
+.btn-full{width:100%;justify-content:center;margin-top:.35rem}
+.result-box{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1.4rem}
+.rb-label{font-size:12px;font-weight:700;color:var(--i2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem}
+.rb-text{font-size:14px;color:var(--ink);line-height:1.8;white-space:pre-wrap}
+.rb-actions{display:flex;gap:8px;margin-top:.9rem;flex-wrap:wrap}
+.empty-box{background:var(--sf);border:1px dashed var(--bd2);border-radius:12px;padding:3rem 2rem;text-align:center;color:var(--i4)}
+.eb-icon{font-size:2.5rem;margin-bottom:.7rem}
+/* IMG UPLOAD */
+.img-up{background:var(--s2);border:2px dashed var(--bd2);border-radius:8px;padding:1rem;text-align:center;cursor:pointer}
+.img-up:hover{border-color:var(--blue);background:var(--bdim)}
+.img-up.has{padding:.4rem;border-style:solid}
+.img-up img{max-width:100%;max-height:160px;border-radius:6px;display:block;margin:0 auto}
+/* METER */
+.meter{margin:1rem 0}
+.m-row{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:6px}
+.m-bg{height:10px;background:var(--s2);border-radius:5px;overflow:hidden;border:1px solid var(--bd)}
+.m-fill{height:100%;border-radius:5px;transition:width 1s}
+.mh{background:linear-gradient(90deg,var(--green),#34D399)}
+.mai{background:linear-gradient(90deg,var(--amber),var(--red))}
+.verdict{border-radius:8px;padding:.8rem 1rem;margin-top:.8rem;font-size:14px;font-weight:600}
+.v-h{background:var(--gl);border:1px solid rgba(5,150,105,.2);color:var(--green)}
+.v-a{background:var(--rl);border:1px solid rgba(220,38,38,.2);color:var(--red)}
+.v-m{background:var(--al);border:1px solid rgba(217,119,6,.2);color:var(--amber)}
+/* FLASHCARDS */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px}
+.flcard{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:1.1rem;cursor:pointer;min-height:120px;display:flex;flex-direction:column;justify-content:center;position:relative;user-select:none}
+.flcard:hover{border-color:var(--bd2)}
+.flcard.flipped{background:var(--bdim);border-color:rgba(37,99,235,.2)}
+.fc-q{font-size:13px;font-weight:600;line-height:1.5}
+.fc-a{font-size:13px;color:var(--blue);line-height:1.5;display:none}
+.flcard.flipped .fc-q{display:none}
+.flcard.flipped .fc-a{display:block}
+.fc-hint{position:absolute;bottom:.4rem;right:.6rem;font-size:10px;color:var(--i4)}
+/* COUNTDOWN */
+.ec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:9px}
+.ecard{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:1.1rem;text-align:center}
+.ec-subj{font-size:13px;font-weight:700;margin-bottom:.2rem}
+.ec-days{font-family:Georgia,serif;font-size:2.4rem;font-weight:700;line-height:1}
+.ec-label{font-size:11px;color:var(--i4);margin-top:2px}
+.ec-date{font-size:12px;color:var(--i3);margin-top:.4rem}
+.ec-del{margin-top:.4rem;background:none;border:none;color:var(--i4);font-size:11px;cursor:pointer;font-family:inherit}
+.ec-del:hover{color:var(--red)}
+/* HISTORY */
+.hist-list{display:flex;flex-direction:column;gap:7px}
+.hi{background:var(--sf);border:1px solid var(--bd);border-radius:9px;padding:.85rem 1rem;display:flex;align-items:flex-start;gap:10px}
+.hi:hover{border-color:var(--bd2)}
+.hi-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;flex-shrink:0;margin-top:2px;white-space:nowrap}
+.hi-body{flex:1;min-width:0}
+.hi-text{font-size:13px;color:var(--i2);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.5}
+.hi-meta{font-size:11px;color:var(--i4);margin-top:3px}
+.hi-copy{background:none;border:1px solid var(--bd);color:var(--i3);border-radius:5px;padding:3px 9px;font-size:11px;cursor:pointer;flex-shrink:0;font-family:inherit}
+.hi-copy:hover{border-color:var(--bd2);color:var(--ink)}
+/* BLOCK CARDS */
+.block-card{background:var(--sf);border:1px solid var(--bd);border-radius:13px;padding:2rem;text-align:center;max-width:440px;margin:0 auto}
+.bc-icon{font-size:2.25rem;margin-bottom:.75rem}
+.bc-big{font-family:Georgia,serif;font-size:1.9rem;font-weight:700;margin-bottom:.2rem}
+.bc-sub{font-size:12px;color:var(--i3);margin-bottom:.65rem}
+.bc-p{font-size:14px;color:var(--i2);margin-bottom:1.1rem;line-height:1.7}
+.bc-feats{text-align:left;background:var(--s2);border-radius:8px;padding:.9rem;margin-bottom:1.1rem}
+.bcf{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--i2);margin-bottom:.35rem}
+.bcf:last-child{margin-bottom:0}
+.bcf::before{content:'checkmark';font-size:0;width:14px;height:14px;background:var(--green);border-radius:50%;display:inline-flex;flex-shrink:0}
+/* SETTINGS */
+.sett-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1.4rem}
+.sc h3{font-size:15px;font-weight:700;margin-bottom:.2rem}
+.sc .sd{font-size:13px;color:var(--i3);margin-bottom:1rem}
+.plan-box{background:var(--bdim);border:1px solid rgba(37,99,235,.15);border-radius:8px;padding:.85rem 1rem;margin-bottom:.85rem}
+.pn{font-family:Georgia,serif;font-size:1.3rem;font-weight:700;color:var(--blue)}
+.ps{font-size:12px;color:var(--i3);margin-top:2px}
+.kw{position:relative}
+.kw input{padding-right:54px}
+.ktog{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--i3);cursor:pointer;font-size:12px;font-weight:600;font-family:inherit}
+#ktr{margin-top:8px;font-size:13px;display:none;padding:8px 12px;border-radius:7px;line-height:1.5}
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;max-width:980px;margin-top:1.5rem}
+.pcrd{background:var(--sf);border:1px solid var(--bd);border-radius:13px;padding:1.5rem;position:relative}
+.pcrd.feat{border:2px solid var(--ink);background:var(--ink);color:#fff;box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.feat-lbl{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:3px 14px;border-radius:100px;white-space:nowrap}
+.p-tier{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--i3);margin-bottom:.35rem}
+.pcrd.feat .p-tier{color:rgba(255,255,255,.55)}
+.p-price{font-family:Georgia,serif;font-size:2.5rem;font-weight:700;line-height:1;margin-bottom:.2rem}
+.p-price sub{font-size:.8rem;font-family:inherit;font-weight:400;color:var(--i3)}
+.pcrd.feat .p-price sub{color:rgba(255,255,255,.55)}
+.p-tag{font-size:13px;color:var(--i3);margin-bottom:1rem}
+.pcrd.feat .p-tag{color:rgba(255,255,255,.6)}
+.p-ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:1.25rem}
+.p-ul li{font-size:13px;color:var(--i2);display:flex;gap:7px;align-items:flex-start}
+.pcrd.feat .p-ul li{color:rgba(255,255,255,.82)}
+.p-ul li::before{content:'';width:14px;height:14px;background:var(--gl);border-radius:50%;flex-shrink:0;margin-top:2px;border:2px solid var(--green)}
+.pcrd.feat .p-ul li::before{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
+.p-btn{display:block;width:100%;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;text-align:center;font-family:inherit}
+.pb-dark{background:#fff;color:var(--ink)}.pb-dark:hover{background:var(--s2)}
+.pb-out{background:transparent;border:1px solid var(--bd2);color:var(--ink)}.pb-out:hover{background:var(--s2)}
+.pb-ink{background:var(--ink);color:#fff}.pb-ink:hover{background:#2A2A20}
+/* USE BAR */
+.use-bar{background:var(--al);border:1px solid rgba(217,119,6,.2);border-radius:8px;padding:.65rem 1rem;display:flex;align-items:center;gap:10px;margin-bottom:1.1rem}
+.ub-txt{font-size:13px;color:var(--amber);font-weight:600;flex:1}
+.ub-btn{background:var(--amber);color:#fff;border:none;border-radius:6px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+/* AUTH MODAL */
+#amodal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;align-items:center;justify-content:center;padding:1rem}
+#amodal.show{display:flex}
+.amc{background:var(--sf);border-radius:14px;padding:1.75rem;width:100%;max-width:380px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+.amc-x{position:absolute;top:.9rem;right:.9rem;background:none;border:none;color:var(--i3);font-size:20px;cursor:pointer;font-family:inherit;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.amc-x:hover{background:var(--s2)}
+.amc-logo{font-family:Georgia,serif;font-size:18px;font-weight:700;text-align:center;margin-bottom:.2rem}
+.amc-logo em{font-style:italic;color:var(--blue)}
+.amc-sub{font-size:13px;color:var(--i3);text-align:center;margin-bottom:1.25rem}
+.a-tabs{display:flex;background:var(--s2);border-radius:7px;padding:3px;margin-bottom:1rem;gap:2px}
+.atab{flex:1;padding:7px;text-align:center;font-size:13px;font-weight:600;cursor:pointer;border-radius:6px;color:var(--i3)}
+.atab.on{background:var(--sf);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.a-err{background:var(--rl);border:1px solid rgba(220,38,38,.2);color:var(--red);border-radius:7px;padding:7px 11px;font-size:13px;margin-bottom:.6rem;display:none}
+.afield{margin-bottom:.75rem}
+.afield label{display:block;font-size:12px;color:var(--i2);margin-bottom:4px;font-weight:600}
+.afield input,.afield select{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:9px 11px;font-size:14px;color:var(--ink);outline:none;font-family:inherit}
+.afield input:focus,.afield select:focus{border-color:var(--blue);background:var(--sf)}
+.a-submit{width:100%;background:var(--ink);color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:700;cursor:pointer;margin-top:.2rem;font-family:inherit}
+.a-submit:hover{background:#2A2A20}
+.a-note{font-size:12px;color:var(--i3);text-align:center;margin-top:.6rem}
+.a-note span{color:var(--blue);cursor:pointer;font-weight:600}
+/* TOAST */
+#toast{position:fixed;bottom:1.25rem;right:1.25rem;background:var(--ink);border-radius:8px;padding:10px 16px;font-size:13px;color:#fff;z-index:900;transform:translateY(14px);opacity:0;transition:all .3s;pointer-events:none;max-width:280px;font-weight:500}
+#toast.show{transform:translateY(0);opacity:1}
+#toast.ok{background:var(--green)}
+#toast.err{background:var(--red)}
+/* FOOTER */
+.home-footer{padding:2.5rem;background:var(--sf);border-top:1px solid var(--bd)}
+.hf-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+.hf-logo{font-family:Georgia,serif;font-size:18px;font-weight:700;margin-bottom:.4rem}
+.hf-logo em{font-style:italic;color:var(--blue)}
+.hf-tag{font-size:13px;color:var(--i3);max-width:240px;line-height:1.6}
+.hfc h4{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--i4);font-weight:700;margin-bottom:.75rem}
+.hfc a{display:block;font-size:13px;color:var(--i2);margin-bottom:.35rem;cursor:pointer}
+.hfc a:hover{color:var(--ink)}
+.hf-bottom{text-align:center;font-size:12px;color:var(--i4);padding-top:1.25rem;border-top:1px solid var(--bd);margin-top:1.5rem}
+/* COLOUR TAGS */
+.tg-blue{background:var(--bl);color:var(--blue)}
+.tg-green{background:var(--gl);color:var(--green)}
+.tg-purple{background:var(--pl);color:var(--purple)}
+.tg-amber{background:var(--al);color:var(--amber)}
+.tg-teal{background:var(--tl);color:var(--teal)}
+.tg-red{background:var(--rl);color:var(--red)}
+.tg-pink{background:var(--pkl);color:var(--pink)}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
+@media(max-width:720px){.lsb{display:none}.shell{display:block}.home-stats{grid-template-columns:1fr 1fr}.tl{grid-template-columns:1fr}.hf-inner{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<nav class="tnav">
+  <div class="logo" onclick="showHome()">IB<em>Genius</em></div>
+  <div class="nav-links">
+    <a onclick="showHome()">Home</a>
+    <a onclick="showPricing()">Pricing</a>
+    <a onclick="showSection('about')">About</a>
+  </div>
+  <div class="nav-right" id="nav-right"></div>
+</nav>
+
+<div class="shell">
+  <aside class="lsb" id="lsb"></aside>
+  <div class="content" id="content">
+    <div id="pg-home">
+      <div class="hero">
+        <div class="hbadge"><span class="bdot"></span> No login needed — 5 free uses per tool</div>
+        <h1>Every IB tool you need,<br><em>powered by AI</em></h1>
+        <p class="hero-sub">14 AI-powered tools built specifically for IB students. Study notes, past paper simulator, IA reviewer, exam predictor, question solver and more. Click any tool in the sidebar — free, no signup required.</p>
+        <div class="hero-ctas">
+          <button class="btn-hero" onclick="openTool('notes')">Try Study Notes free</button>
+          <button class="btn-hero-out" onclick="showPricing()">View pricing</button>
+          <span class="hero-note">No credit card needed to start.</span>
+        </div>
+      </div>
+      <div class="home-stats">
+        <div class="hs"><div class="hs-n">14</div><div class="hs-l">AI tools</div></div>
+        <div class="hs"><div class="hs-n">5</div><div class="hs-l">Free uses each</div></div>
+        <div class="hs"><div class="hs-n">16</div><div class="hs-l">IB subjects</div></div>
+        <div class="hs"><div class="hs-n">$9.99</div><div class="hs-l">Pro / month</div></div>
+      </div>
+      <div class="home-tools">
+        <h2 class="sec-h">14 tools to <em>ace the IB</em></h2>
+        <div class="tool-cards" id="home-tools"></div>
+      </div>
+      <div class="home-testi">
+        <h2 class="sec-h" style="font-size:1.3rem">Loved by IB students <em>everywhere</em></h2>
+        <div class="testi-grid">
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"The IA Reviewer saved my Bio IA. Went from a predicted 5 to a 7. Worth every penny."</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">SK</div><div><div style="font-size:13px;font-weight:600">Sarah K.</div><div style="font-size:11px;color:var(--i3)">DP2, Singapore</div></div></div></div>
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"The Exam Predictor is insane. Half the topics it predicted came up in my Econ HL paper."</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">RP</div><div><div style="font-size:13px;font-weight:600">Rohan P.</div><div style="font-size:11px;color:var(--i3)">DP2, Mumbai</div></div></div></div>
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"TOK essays terrified me. IBGenius helped me structure perfectly. Got an A!"</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">EM</div><div><div style="font-size:13px;font-weight:600">Emma M.</div><div style="font-size:11px;color:var(--i3)">DP2, London</div></div></div></div>
+        </div>
+      </div>
+      <div class="home-footer">
+        <div class="hf-inner">
+          <div><div class="hf-logo">IB<em>Genius</em></div><p class="hf-tag">The complete IB toolkit. Built for students who want to work smarter.</p></div>
+          <div class="hfc"><h4>Tools</h4><a onclick="openTool('notes')">Study Notes</a><a onclick="openTool('papers')">Past Papers</a><a onclick="openTool('ia')">IA Reviewer</a><a onclick="openTool('predictor')">Exam Predictor</a></div>
+          <div class="hfc"><h4>Site</h4><a onclick="showHome()">Home</a><a onclick="showPricing()">Pricing</a><a>About</a></div>
+          <div class="hfc"><h4>Legal</h4><a>Privacy</a><a>Terms</a><a>Academic Honesty</a></div>
+        </div>
+        <div class="hf-bottom">&#169; 2025 IBGenius. Not affiliated with the International Baccalaureate Organization (IBO).</div>
+      </div>
+    </div>
+    <div id="pg-tool" style="display:none">
+      <div class="tool-area" id="tool-content"></div>
+    </div>
+    <div id="pg-pricing" style="display:none;padding:2rem 2.5rem">
+      <h2 class="sec-h">Simple, honest <em>pricing</em></h2>
+      <p style="font-size:14px;color:var(--i2);margin-bottom:0">Try free, no card, no login. Upgrade for unlimited.</p>
+      <div class="price-grid" id="price-grid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="amodal">
+  <div class="amc">
+    <button class="amc-x" onclick="closeAuth()">&#215;</button>
+    <div class="amc-logo">IB<em>Genius</em></div>
+    <p class="amc-sub" id="auth-msg">Your complete IB toolkit</p>
+    <div class="a-tabs">
+      <div class="atab on" id="tab-login" onclick="switchTab('login')">Log in</div>
+      <div class="atab" id="tab-signup" onclick="switchTab('signup')">Sign up</div>
+    </div>
+    <div class="a-err" id="a-err"></div>
+    <div id="form-login">
+      <div class="afield"><label>Email</label><input type="email" id="l-em" placeholder="you@school.com" autocomplete="email"/></div>
+      <div class="afield"><label>Password</label><input type="password" id="l-pw" placeholder="Your password" autocomplete="current-password"/></div>
+      <button class="a-submit" onclick="doLogin()">Log in</button>
+      <p class="a-note">No account? <span onclick="switchTab('signup')">Sign up free</span></p>
+    </div>
+    <div id="form-signup" style="display:none">
+      <div class="afield"><label>Your name</label><input type="text" id="s-nm" placeholder="Alex Chen" autocomplete="name"/></div>
+      <div class="afield"><label>Email</label><input type="email" id="s-em" placeholder="you@school.com" autocomplete="email"/></div>
+      <div class="afield"><label>IB Year</label><select id="s-yr"><option>IB Year 1 (DP1)</option><option>IB Year 2 (DP2)</option><option>Preparing for IB</option></select></div>
+      <div class="afield"><label>Password</label><input type="password" id="s-pw" placeholder="8+ characters" autocomplete="new-password"/></div>
+      <button class="a-submit" onclick="doSignup()">Create free account</button>
+      <p class="a-note">Free plan, 10 uses per tool per month.</p>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ===== SAFE STORAGE (works even when localStorage is blocked) =====
+var MEM = {};
+function dbGet(k) {
+  try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; }
+  catch(e) { return MEM.hasOwnProperty(k) ? MEM[k] : null; }
+}
+function dbSet(k, v) {
+  try { localStorage.setItem(k, JSON.stringify(v)); }
+  catch(e) { MEM[k] = v; }
+}
+function dbDel(k) {
+  try { localStorage.removeItem(k); }
+  catch(e) { delete MEM[k]; }
+}
+
+// ===== TOOLS DATA =====
+var TOOLS = [
+  {key:'notes',    icon:'&#128218;', name:'Study Notes',     tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-green', desc:'Concise IB-syllabus notes for any topic and subject.'},
+  {key:'papers',   icon:'&#128221;', name:'Past Paper Sim',  tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-blue',  desc:'Original IB-style questions with full mark schemes.'},
+  {key:'flashcards',icon:'&#127183;',name:'Flashcards',      tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-purple',desc:'Auto-generate flashcard decks for any topic.'},
+  {key:'detector', icon:'&#128269;', name:'AI Detector',     tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-amber', desc:'Check if your text will be flagged as AI-written.'},
+  {key:'citation', icon:'&#128206;', name:'Citation',        tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-teal',  desc:'Perfect MLA, APA, Chicago and Harvard citations.'},
+  {key:'countdown',icon:'&#9200;',   name:'Exam Countdown',  tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-green', desc:'Track days remaining to every IB exam.'},
+  {key:'solver',   icon:'&#129518;', name:'Question Solver', tier:'pro',  tag:'NEW',  tc:'lt-new',  hc:'tg-pink',  desc:'Solve any IB question from text or screenshot.'},
+  {key:'predictor',icon:'&#128302;', name:'Exam Predictor',  tier:'pro',  tag:'NEW',  tc:'lt-new',  hc:'tg-pink',  desc:'AI predictions of likely topics for your exam.'},
+  {key:'ia',       icon:'&#128203;', name:'IA Reviewer',     tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-blue',  desc:'Detailed IB-criteria IA feedback and predicted grade.'},
+  {key:'ee',       icon:'&#128220;', name:'EE Reviewer',     tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-purple',desc:'Feedback across all 5 Extended Essay criteria.'},
+  {key:'tok',      icon:'&#129504;', name:'TOK Writer',      tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-teal',  desc:'Outlines, paragraphs, KQs for TOK essays.'},
+  {key:'cas',      icon:'&#127807;', name:'CAS Reflection',  tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-green', desc:'Write IB-standard CAS reflections in minutes.'},
+  {key:'humaniser',icon:'&#9997;',   name:'AI Humaniser',    tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-red',   desc:'Rewrite AI text to sound authentically human.'},
+  {key:'plagiarism',icon:'&#128737;',name:'Plagiarism',      tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-amber', desc:'Identify plagiarism risks before submission.'}
+];
+
+var SUBJECTS = ['Biology HL','Biology SL','Chemistry HL','Chemistry SL','Physics HL','Physics SL',
+  'Mathematics AA HL','Mathematics AA SL','Mathematics AI HL','Mathematics AI SL',
+  'Economics HL','Economics SL','Business Management HL','History HL','Psychology HL',
+  'Geography HL','Computer Science HL','English A Literature','Philosophy'];
+
+var GUEST_LIMIT = 5;
+var FREE_LIMIT = 10;
+var PRO_PREVIEW = 3;
+
+var cu = null;
+var curTool = null;
+var curImg = null;
+
+// ===== USAGE TRACKING =====
+function guestUsed(k) {
+  var u = dbGet('ibg_g') || {};
+  return u[k] || 0;
+}
+function incGuest(k) {
+  var u = dbGet('ibg_g') || {};
+  u[k] = (u[k] || 0) + 1;
+  dbSet('ibg_g', u);
+}
+function monthUsed(k) {
+  if (!cu) return 0;
+  var u = dbGet('ibg_users') || {};
+  var udata = u[cu.email] || {};
+  var hist = udata.history || [];
+  var now = new Date();
+  var count = 0;
+  for (var i = 0; i < hist.length; i++) {
+    if (hist[i].tool === k) {
+      var d = new Date(hist[i].date);
+      if (d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()) count++;
+    }
+  }
+  return count;
+}
+function canUse(k) {
+  var t = null;
+  for (var i = 0; i < TOOLS.length; i++) { if (TOOLS[i].key === k) { t = TOOLS[i]; break; } }
+  if (!t) return {ok: false, why: 'unknown'};
+  if (cu && cu.plan === 'pro') return {ok: true};
+  if (t.tier === 'pro') {
+    if (cu) return {ok: false, why: 'pro'};
+    var gu = guestUsed(k);
+    return gu < PRO_PREVIEW ? {ok: true, preview: true, left: PRO_PREVIEW - gu} : {ok: false, why: 'pro-done'};
+  }
+  if (cu) {
+    var mu = monthUsed(k);
+    return mu < FREE_LIMIT ? {ok: true, left: FREE_LIMIT - mu} : {ok: false, why: 'month'};
+  }
+  var g = guestUsed(k);
+  return g < GUEST_LIMIT ? {ok: true, guest: true, left: GUEST_LIMIT - g} : {ok: false, why: 'guest'};
+}
+
+// ===== SIDEBAR =====
+function renderSB() {
+  var el = document.getElementById('lsb');
+  if (!el) return;
+  var g = dbGet('ibg_g') || {};
+  var h = '<div class="lsb-sec">Free Tools</div>';
+  for (var i = 0; i < TOOLS.length; i++) {
+    var t = TOOLS[i];
+    if (t.tier !== 'free') continue;
+    var gu = g[t.key] || 0;
+    var ct = (!cu && gu > 0) ? '<span class="li-ct">' + (GUEST_LIMIT - gu) + ' left</span>' : '';
+    var on = curTool === t.key ? ' on' : '';
+    h += '<div class="li' + on + '" onclick="openTool(\'' + t.key + '\')">';
+    h += '<span class="li-icon">' + t.icon + '</span>';
+    h += '<span class="li-name">' + t.name + '</span>';
+    h += ct;
+    h += '<span class="li-tag ' + t.tc + '">' + t.tag + '</span></div>';
+  }
+  h += '<div class="lsb-sec">Pro Tools</div>';
+  for (var j = 0; j < TOOLS.length; j++) {
+    var pt = TOOLS[j];
+    if (pt.tier !== 'pro') continue;
+    var pgu = g[pt.key] || 0;
+    var pleft = PRO_PREVIEW - pgu;
+    var pct = (!cu && pgu > 0 && pleft > 0) ? '<span class="li-ct">' + pleft + ' left</span>' : '';
+    var pon = curTool === pt.key ? ' on' : '';
+    h += '<div class="li' + pon + '" onclick="openTool(\'' + pt.key + '\')">';
+    h += '<span class="li-icon">' + pt.icon + '</span>';
+    h += '<span class="li-name">' + pt.name + '</span>';
+    h += pct;
+    h += '<span class="li-tag ' + pt.tc + '">' + pt.tag + '</span></div>';
+  }
+  h += '<div class="lsb-sec">Account</div>';
+  if (cu) {
+    h += '<div class="li' + (curTool === 'history' ? ' on' : '') + '" onclick="openTool(\'history\')"><span class="li-icon">&#9203;</span><span class="li-name">History</span></div>';
+    h += '<div class="li' + (curTool === 'settings' ? ' on' : '') + '" onclick="openTool(\'settings\')"><span class="li-icon">&#9881;</span><span class="li-name">Settings</span></div>';
+  } else {
+    h += '<div class="li" onclick="openAuth(\'login\')"><span class="li-icon">&#8594;</span><span class="li-name">Log in</span></div>';
+    h += '<div class="li" onclick="openAuth(\'signup\')"><span class="li-icon">&#10022;</span><span class="li-name">Sign up free</span></div>';
+  }
+  el.innerHTML = h;
+}
+
+// ===== HOME TOOLS GRID =====
+function renderHomeTools() {
+  var el = document.getElementById('home-tools');
+  if (!el) return;
+  var h = '';
+  for (var i = 0; i < TOOLS.length; i++) {
+    var t = TOOLS[i];
+    h += '<div class="tc" onclick="openTool(\'' + t.key + '\')">';
+    h += '<span class="tc-badge ' + t.hc + '">' + t.tag + '</span>';
+    h += '<div class="tc-icon">' + t.icon + '</div>';
+    h += '<div class="tc-name">' + t.name + '</div>';
+    h += '<div class="tc-desc">' + t.desc + '</div>';
+    h += '</div>';
+  }
+  el.innerHTML = h;
+}
+
+// ===== NAV =====
+function updateNav() {
+  var el = document.getElementById('nav-right');
+  if (!el) return;
+  if (cu) {
+    var init = cu.name ? cu.name.charAt(0).toUpperCase() : 'U';
+    var nm = cu.name ? cu.name.split(' ')[0] : 'Account';
+    el.innerHTML = '<button class="tn-user" onclick="openTool(\'settings\')">' +
+      '<div class="tn-av">' + init + '</div><span>' + nm + '</span></button>';
+  } else {
+    el.innerHTML = '<button class="btn-login" onclick="openAuth(\'login\')">Log in</button>' +
+      '<button class="btn-signup" onclick="openAuth(\'signup\')">Start free</button>';
+  }
+}
+
+// ===== PAGES =====
+function showHome() {
+  var h = document.getElementById('pg-home');
+  var t = document.getElementById('pg-tool');
+  var p = document.getElementById('pg-pricing');
+  if (h) h.style.display = 'block';
+  if (t) t.style.display = 'none';
+  if (p) p.style.display = 'none';
+  curTool = null;
+  renderSB();
+}
+function showPricing() {
+  var h = document.getElementById('pg-home');
+  var t = document.getElementById('pg-tool');
+  var p = document.getElementById('pg-pricing');
+  if (h) h.style.display = 'none';
+  if (t) t.style.display = 'none';
+  if (p) p.style.display = 'block';
+  renderPricing();
+  curTool = null;
+  renderSB();
+}
+function showSection(s) { showHome(); }
+
+// ===== PRICING =====
+function renderPricing() {
+  var el = document.getElementById('price-grid');
+  if (!el) return;
+  el.innerHTML =
+    '<div class="pcrd"><div class="p-tier">Guest</div><div class="p-price">$0<sub>/always</sub></div>' +
+    '<div class="p-tag">No login needed</div><ul class="p-ul"><li>5 uses per free tool</li>' +
+    '<li>3 preview uses of Pro tools</li><li>No account required</li></ul>' +
+    '<button class="p-btn pb-out" onclick="openTool(\'notes\')">Try now - no signup</button></div>' +
+
+    '<div class="pcrd"><div class="p-tier">Free Account</div><div class="p-price">$0<sub>/forever</sub></div>' +
+    '<div class="p-tag">Signup in 30 seconds</div><ul class="p-ul"><li>10 uses per tool per month</li>' +
+    '<li>Save history across sessions</li><li>All 6 free tools</li></ul>' +
+    '<button class="p-btn pb-ink" onclick="openAuth(\'signup\')">Create free account</button></div>' +
+
+    '<div class="pcrd feat"><div class="feat-lbl">Most popular</div><div class="p-tier">Pro</div>' +
+    '<div class="p-price">$9.99<sub>/mo</sub></div><div class="p-tag">Everything, unlimited</div>' +
+    '<ul class="p-ul"><li>All 14 tools, unlimited</li><li>IA, EE, TOK Reviewer</li>' +
+    '<li>Question Solver + Exam Predictor</li><li>AI Humaniser + Plagiarism</li><li>7-day free trial</li></ul>' +
+    '<button class="p-btn pb-dark" onclick="openAuth(\'signup\')">Start 7-day free trial</button></div>' +
+
+    '<div class="pcrd"><div class="p-tier">Annual Pro</div><div class="p-price">$79<sub>/year</sub></div>' +
+    '<div class="p-tag">Save 34% - $6.58/mo</div><ul class="p-ul"><li>Everything in Pro</li>' +
+    '<li>Save $40 per year</li><li>Best for full IB diploma</li></ul>' +
+    '<button class="p-btn pb-out" onclick="openAuth(\'signup\')">Get annual plan</button></div>';
+}
+
+// ===== OPEN TOOL =====
+function openTool(key) {
+  curTool = key;
+  var h = document.getElementById('pg-home');
+  var tp = document.getElementById('pg-tool');
+  var p = document.getElementById('pg-pricing');
+  if (h) h.style.display = 'none';
+  if (tp) tp.style.display = 'block';
+  if (p) p.style.display = 'none';
+  renderSB();
+  if (key === 'history') { renderHistoryPage(); return; }
+  if (key === 'settings') { renderSettingsPage(); return; }
+  if (key === 'countdown') { renderCountdown(); return; }
+  var check = canUse(key);
+  if (!check.ok) { renderBlocked(key, check.why); return; }
+  var t = null;
+  for (var i = 0; i < TOOLS.length; i++) { if (TOOLS[i].key === key) { t = TOOLS[i]; break; } }
+  var banner = '';
+  if (t && t.tier === 'pro' && (!cu || cu.plan !== 'pro')) {
+    var pleft = !cu ? (PRO_PREVIEW - guestUsed(key)) : 0;
+    if (pleft > 0) banner = '<div class="use-bar"><span class="ub-txt">Preview: ' + pleft + ' free use' + (pleft !== 1 ? 's' : '') + ' left for this Pro tool</span><button class="ub-btn" onclick="openAuth(\'signup\')">Upgrade to Pro</button></div>';
+  } else if (!cu) {
+    var gleft = GUEST_LIMIT - guestUsed(key);
+    if (gleft <= 2) banner = '<div class="use-bar"><span class="ub-txt">' + gleft + ' free use' + (gleft !== 1 ? 's' : '') + ' left — sign up free for 10/month</span><button class="ub-btn" onclick="openAuth(\'signup\')">Sign up free</button></div>';
+  } else if (cu && cu.plan !== 'pro') {
+    var mleft = FREE_LIMIT - monthUsed(key);
+    if (mleft <= 3) banner = '<div class="use-bar"><span class="ub-txt">' + mleft + ' uses left this month</span><button class="ub-btn" onclick="doUpgrade()">Upgrade to Pro</button></div>';
+  }
+  renderToolUI(key, banner);
+}
+
+// ===== BLOCKED PAGES =====
+function renderBlocked(key, why) {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  var t = null;
+  for (var i = 0; i < TOOLS.length; i++) { if (TOOLS[i].key === key) { t = TOOLS[i]; break; } }
+  if (!t) return;
+  var html = '<div class="tool-hdr"><h1>' + t.icon + ' ' + t.name + '</h1><p>' + t.desc + '</p></div>';
+  if (why === 'guest') {
+    html += '<div class="block-card"><div class="bc-icon">&#9889;</div><div class="bc-big">5 / 5</div>' +
+      '<div class="bc-sub">Free guest uses used</div>' +
+      '<p class="bc-p">Sign up free to get <strong>10 uses per month</strong> for every free tool. Takes 30 seconds.</p>' +
+      '<button class="btn btn-ink btn-full" onclick="openAuth(\'signup\')" style="max-width:270px;margin:0 auto">Create free account</button>' +
+      '<p style="font-size:12px;color:var(--i4);margin-top:.6rem;text-align:center">Have an account? <span style="color:var(--blue);cursor:pointer" onclick="openAuth(\'login\')">Log in</span></p></div>';
+  } else if (why === 'month') {
+    html += '<div class="block-card"><div class="bc-icon">&#128197;</div><div class="bc-big">10 / 10</div>' +
+      '<div class="bc-sub">Monthly limit reached</div>' +
+      '<p class="bc-p">You\'ve used all 10 free uses for <strong>' + t.name + '</strong> this month. Upgrade for unlimited.</p>' +
+      '<button class="btn btn-blue btn-full" onclick="doUpgrade()" style="max-width:270px;margin:0 auto">Upgrade to Pro - $9.99/mo</button>' +
+      '<p style="font-size:12px;color:var(--i4);margin-top:.5rem;text-align:center">Resets on the 1st of each month.</p></div>';
+  } else {
+    html += '<div class="block-card"><div class="bc-icon">&#128274;</div><div class="bc-big">Pro Feature</div>' +
+      '<div class="bc-sub">Upgrade for unlimited access</div>' +
+      '<div class="bc-feats"><div class="bcf">All 14 tools, unlimited uses</div><div class="bcf">IA, EE, TOK Reviewer</div>' +
+      '<div class="bcf">Question Solver + Exam Predictor</div><div class="bcf">7-day free trial, cancel anytime</div></div>' +
+      '<button class="btn btn-ink btn-full" onclick="' + (cu ? 'doUpgrade()' : 'openAuth(\'signup\')') + '" style="max-width:270px;margin:0 auto">' +
+      (cu ? 'Upgrade to Pro - $9.99/mo' : 'Start 7-day free trial') + '</button>' +
+      (!cu ? '<p style="font-size:12px;color:var(--i4);margin-top:.6rem;text-align:center">Have an account? <span style="color:var(--blue);cursor:pointer" onclick="openAuth(\'login\')">Log in</span></p>' : '') + '</div>';
+  }
+  tc.innerHTML = html;
+}
+
+// ===== SUBJECT OPTIONS =====
+function subOpts() {
+  var h = '';
+  for (var i = 0; i < SUBJECTS.length; i++) h += '<option>' + SUBJECTS[i] + '</option>';
+  return h;
+}
+
+// ===== TOOL FORMS =====
+var FORMS = {
+  notes: function() {
+    return '<div class="fl"><label>Subject</label><select id="n-subj">' + subOpts() + '</select></div>' +
+      '<div class="fl"><label>Topic</label><input type="text" id="n-topic" placeholder="e.g. Cell respiration..."/></div>' +
+      '<div class="fl"><label>Style</label><select id="n-style"><option>Concise bullet points</option><option>Detailed explanation</option><option>Key definitions only</option><option>Exam tips and common mistakes</option></select></div>';
+  },
+  papers: function() {
+    return '<div class="fl"><label>Subject</label><select id="pp-subj">' + subOpts() + '</select></div>' +
+      '<div class="fl"><label>Topic</label><input type="text" id="pp-topic" placeholder="e.g. Photosynthesis..."/></div>' +
+      '<div class="fl"><label>Paper</label><select id="pp-type"><option>Paper 1</option><option>Paper 2</option><option>Paper 3 (HL)</option></select></div>' +
+      '<div class="fl"><label>Marks</label><select id="pp-marks"><option>2 marks</option><option>4 marks</option><option>6 marks</option><option>8 marks</option><option>10 marks</option><option>12 marks</option></select></div>';
+  },
+  flashcards: function() {
+    return '<div class="fl"><label>Subject</label><select id="fc-subj">' + subOpts() + '</select></div>' +
+      '<div class="fl"><label>Topic</label><input type="text" id="fc-topic" placeholder="e.g. Genetics, Acids..."/></div>' +
+      '<div class="fl"><label>Cards</label><select id="fc-num"><option>10 cards</option><option>15 cards</option><option>20 cards</option><option>30 cards</option></select></div>';
+  },
+  detector: function() {
+    return '<div class="fl"><label>Paste your text</label><textarea id="det-txt" style="min-height:180px" placeholder="Paste your essay, IA, EE..."></textarea></div>' +
+      '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--i3);margin-bottom:.7rem"><span id="det-wc">0 words</span><span>200+ words recommended</span></div>';
+  },
+  citation: function() {
+    return '<div class="fl"><label>Source type</label><select id="cit-type"><option>Website</option><option>Book</option><option>Journal article</option><option>YouTube</option><option>Newspaper</option></select></div>' +
+      '<div class="fl"><label>Format</label><select id="cit-fmt"><option>MLA 9th</option><option>APA 7th</option><option>Chicago</option><option>Harvard</option></select></div>' +
+      '<div class="fl"><label>Source details</label><textarea id="cit-det" placeholder="Paste URL, author, title, year..."></textarea></div>';
+  },
+  solver: function() {
+    return '<div class="fl"><label>Subject</label><select id="slv-subj">' + subOpts() + '</select></div>' +
+      '<div class="fl"><label>Upload screenshot (optional)</label>' +
+      '<div class="img-up" id="img-up" onclick="document.getElementById(\'img-in\').click()">' +
+      '<input type="file" id="img-in" accept="image/*" style="display:none" onchange="handleImg(this)"/>' +
+      '<div id="img-up-c"><div style="font-size:1.3rem;margin-bottom:.25rem">&#128247;</div>' +
+      '<div style="font-size:13px;color:var(--i3)">Click to upload screenshot</div>' +
+      '<div style="font-size:11px;color:var(--i4)">PNG, JPG up to 10MB</div></div></div></div>' +
+      '<div class="fl"><label>Or paste question</label><textarea id="slv-txt" style="min-height:90px" placeholder="Paste the question here..."></textarea></div>' +
+      '<div class="fl"><label>Depth</label><select id="slv-dep"><option>Step-by-step (full working)</option><option>Concise solution</option><option>Hints only</option><option>Mark scheme style</option></select></div>';
+  },
+  predictor: function() {
+    return '<div class="fl"><label>Subject</label><select id="pr-subj">' + subOpts() + '</select></div>' +
+      '<div class="fl"><label>Paper</label><select id="pr-paper"><option>Paper 1</option><option>Paper 2</option><option>Paper 3 (HL)</option></select></div>' +
+      '<div class="fl"><label>Session</label><select id="pr-sess"><option>May 2026</option><option>November 2026</option><option>May 2027</option></select></div>' +
+      '<div class="fl"><label>Depth</label><select id="pr-dep"><option>Quick - top 5 topics</option><option>Detailed - full breakdown</option><option>Strategic - revision priority</option></select></div>' +
+      '<p style="font-size:11px;color:var(--i4);margin-top:.4rem">AI estimates based on syllabus patterns - not guarantees.</p>';
+  },
+  ia: function() {
+    return '<div class="fl"><label>Subject</label><select id="ia-subj">' + subOpts() + '</select></div>' +
+      '<div class="fl"><label>IA Title / RQ</label><input type="text" id="ia-title" placeholder="e.g. How does pH affect enzyme activity?"/></div>' +
+      '<div class="fl"><label>Paste your IA</label><textarea id="ia-txt" style="min-height:150px" placeholder="Paste your IA draft here..."></textarea></div>' +
+      '<div class="fl"><label>Focus</label><select id="ia-foc"><option>Full review</option><option>Research question</option><option>Methodology</option><option>Analysis and evaluation</option><option>Conclusion</option></select></div>';
+  },
+  ee: function() {
+    return '<div class="fl"><label>Subject group</label><select id="ee-subj"><option>Group 1 - Language and Literature</option><option>Group 2 - Language Acquisition</option><option>Group 3 - Individuals and Societies</option><option>Group 4 - Sciences</option><option>Group 5 - Mathematics</option><option>Group 6 - The Arts</option></select></div>' +
+      '<div class="fl"><label>Research question</label><input type="text" id="ee-rq" placeholder="To what extent did X cause Y?"/></div>' +
+      '<div class="fl"><label>EE draft</label><textarea id="ee-txt" style="min-height:150px" placeholder="Paste your Extended Essay..."></textarea></div>' +
+      '<div class="fl"><label>Word count</label><input type="text" id="ee-wc" placeholder="e.g. 2,800 words"/></div>';
+  },
+  tok: function() {
+    return '<div class="fl"><label>Prescribed title</label><textarea id="tok-title" style="min-height:60px" placeholder="Paste your TOK prescribed title..."></textarea></div>' +
+      '<div class="fl"><label>AOKs</label><select id="tok-aok"><option>History and Natural Sciences</option><option>Mathematics and Human Sciences</option><option>Natural Sciences and Arts</option><option>Ethics and History</option></select></div>' +
+      '<div class="fl"><label>What you need</label><select id="tok-mode"><option>Full essay outline</option><option>Introduction paragraph</option><option>Main body paragraph</option><option>Conclusion</option><option>Real-life examples and KQs</option></select></div>' +
+      '<div class="fl"><label>Your draft (optional)</label><textarea id="tok-draft" style="min-height:60px" placeholder="Paste existing draft..."></textarea></div>';
+  },
+  cas: function() {
+    return '<div class="fl"><label>CAS strand</label><select id="cas-type"><option>Creativity</option><option>Activity</option><option>Service</option></select></div>' +
+      '<div class="fl"><label>Describe your activity</label><textarea id="cas-act" style="min-height:90px" placeholder="Describe what you did in detail..."></textarea></div>' +
+      '<div class="fl"><label>Learning Outcome</label><select id="cas-lo"><option>LO1: Strength and growth</option><option>LO2: New challenges</option><option>LO3: Planning and initiating</option><option>LO4: Collaborating</option><option>LO5: Perseverance</option><option>LO6: Global engagement</option><option>LO7: Ethics</option></select></div>' +
+      '<div class="fl"><label>Type</label><select id="cas-rtype"><option>Initial reflection</option><option>Mid-point reflection</option><option>Final reflection</option></select></div>';
+  },
+  humaniser: function() {
+    return '<div class="fl"><label>AI text to humanise</label><textarea id="hum-txt" style="min-height:160px" placeholder="Paste AI-generated text..."></textarea></div>' +
+      '<div class="fl"><label>Level</label><select id="hum-lvl"><option>IB student (natural voice)</option><option>Academic but accessible</option><option>Formal academic</option></select></div>' +
+      '<div class="fl"><label>Preserve meaning?</label><select id="hum-pres"><option>Yes - keep all facts</option><option>Loosely - allow rephrasing</option></select></div>';
+  },
+  plagiarism: function() {
+    return '<div class="fl"><label>Paste your text</label><textarea id="plag-txt" style="min-height:180px" placeholder="Paste your essay or IA..."></textarea></div>' +
+      '<div class="fl"><label>Document type</label><select id="plag-type"><option>IA</option><option>EE</option><option>TOK Essay</option><option>Regular essay</option></select></div>';
+  }
+};
+
+var BTN_LABELS = {
+  notes:'Generate notes', papers:'Generate question', flashcards:'Generate deck',
+  detector:'Analyse text', citation:'Generate citation', solver:'Solve question',
+  predictor:'Predict exam', ia:'Review my IA', ee:'Review my EE',
+  tok:'Generate TOK help', cas:'Write reflection', humaniser:'Humanise text', plagiarism:'Check plagiarism'
+};
+
+function renderToolUI(key, banner) {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  var t = null;
+  for (var i = 0; i < TOOLS.length; i++) { if (TOOLS[i].key === key) { t = TOOLS[i]; break; } }
+  if (!t) return;
+  var formFn = FORMS[key];
+  var formHTML = formFn ? formFn() : '<p>Coming soon</p>';
+  var newPill = t.tag === 'NEW' ? '<span class="npill">NEW</span>' : '';
+  var label = BTN_LABELS[key] || 'Generate';
+  tc.innerHTML = (banner || '') +
+    '<div class="tool-hdr"><h1>' + t.icon + ' ' + t.name + newPill + '</h1><p>' + t.desc + '</p></div>' +
+    '<div class="pbar" id="pbar"><div class="pfill" id="pfill"></div></div>' +
+    '<div class="tl"><div class="fp"><div class="fp-title">' + t.icon + ' ' + t.name + '</div>' + formHTML +
+    '<button class="btn btn-ink btn-full" id="run-btn" onclick="runTool(\'' + key + '\')">' + label + ' &#10022;</button></div>' +
+    '<div id="tool-out"><div class="empty-box"><div class="eb-icon">' + t.icon + '</div>' +
+    '<p style="font-weight:600">' + t.name + '</p>' +
+    '<p style="font-size:13px;margin-top:4px">Fill in the form and click generate.</p></div></div></div>';
+  if (key === 'detector') {
+    var dtel = document.getElementById('det-txt');
+    var wcEl = document.getElementById('det-wc');
+    if (dtel && wcEl) {
+      dtel.addEventListener('input', function() {
+        var words = dtel.value.trim().split(/\s+/).filter(function(w) { return w.length > 0; });
+        wcEl.textContent = words.length + ' words';
+      });
+    }
+  }
+}
+
+// ===== IMAGE UPLOAD =====
+function handleImg(input) {
+  if (!input.files || !input.files[0]) return;
+  var file = input.files[0];
+  if (file.size > 10 * 1024 * 1024) { showToast('Image too large (max 10MB).', 'err'); return; }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    curImg = e.target.result;
+    var u = document.getElementById('img-up');
+    var c = document.getElementById('img-up-c');
+    if (u) u.className = 'img-up has';
+    if (c) c.innerHTML = '<img src="' + curImg + '"/><p style="font-size:11px;color:var(--i3);margin-top:.4rem">Click to change</p>';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ===== GET FIELD VALUE =====
+function fv(id) {
+  var el = document.getElementById(id);
+  return el ? el.value : '';
+}
+
+// ===== BUILD PROMPTS =====
+function buildPrompt(key) {
+  var p = {
+    notes: 'You are an expert IB tutor. Create comprehensive IB-syllabus-aligned study notes.\nSubject: ' + fv('n-subj') + ' | Topic: "' + fv('n-topic') + '" | Style: ' + fv('n-style') + '\nCover all key syllabus points, definitions, formulas, HL/SL differences, common exam tips. Use clear headers.',
+    papers: 'You are an IB examiner creating an original practice question.\nSubject: ' + fv('pp-subj') + ' | Topic: "' + fv('pp-topic') + '" | Paper: ' + fv('pp-type') + ' | Marks: ' + fv('pp-marks') + '\nProvide: 1) QUESTION with IB command terms, 2) STIMULUS MATERIAL if needed, 3) Full MARK SCHEME, 4) EXAMINER NOTES.',
+    flashcards: 'You are an IB tutor creating flashcards.\nSubject: ' + fv('fc-subj') + ' | Topic: "' + fv('fc-topic') + '" | Number: ' + fv('fc-num') + '\nGenerate exactly ' + (fv('fc-num').split(' ')[0]) + ' flashcards.\nRespond ONLY with valid JSON array, no markdown: [{"q":"...","a":"..."},...]',
+    detector: 'Analyse this text for AI content. Text: "' + fv('det-txt') + '"\nProvide: 1) SCORE: X% Human / Y% AI, 2) VERDICT, 3) AI INDICATORS, 4) HUMAN INDICATORS, 5) FLAGGED SENTENCES, 6) RECOMMENDATIONS.',
+    citation: 'Generate a ' + fv('cit-fmt') + ' citation for this ' + fv('cit-type') + '. Details: "' + fv('cit-det') + '"\nProvide: 1) FULL CITATION, 2) IN-TEXT CITATION, 3) FOOTNOTE if applicable. Use *text* for italics.',
+    solver: 'You are an expert IB tutor. Subject: ' + fv('slv-subj') + ' | Depth: ' + fv('slv-dep') + '\nQuestion: "' + (fv('slv-txt') || 'See attached image') + '"\nProvide: 1) ANSWER, 2) STEP-BY-STEP SOLUTION, 3) KEY CONCEPTS, 4) COMMON MISTAKES, 5) EXAM TIP.',
+    predictor: 'Experienced IB examiner. Subject: ' + fv('pr-subj') + ' | Paper: ' + fv('pr-paper') + ' | Session: ' + fv('pr-sess') + ' | Depth: ' + fv('pr-dep') + '\nBased on IB syllabus structure and historical patterns:\n1) TOP 5 LIKELY TOPICS with reasoning, 2) QUESTION STYLE PREDICTIONS, 3) SYLLABUS CHANGES, 4) UNDER-TESTED TOPICS, 5) REVISION PRIORITY, 6) 3 SPECIFIC QUESTION PREDICTIONS.\nFrame as probability-based estimates.',
+    ia: 'IB examiner. Subject: ' + fv('ia-subj') + ' | Title: "' + fv('ia-title') + '" | Focus: ' + fv('ia-foc') + '\nIA text: "' + fv('ia-txt') + '"\nProvide: 1) OVERALL IMPRESSION, 2) STRENGTHS, 3) IMPROVEMENTS (with suggestions), 4) CRITERIA BREAKDOWN with predicted marks, 5) TOP 3 ACTIONS.',
+    ee: 'IB EE examiner. Subject: ' + fv('ee-subj') + ' | RQ: "' + fv('ee-rq') + '" | Words: ' + fv('ee-wc') + '\nText: "' + fv('ee-txt') + '"\nProvide: 1) RQ ASSESSMENT, 2) CRITERIA A-E with marks, 3) PREDICTED GRADE (A-E), 4) TOP 3 IMPROVEMENTS.',
+    tok: 'TOK teacher. Title: "' + fv('tok-title') + '" | AOKs: ' + fv('tok-aok') + ' | Need: ' + fv('tok-mode') + '\nDraft: "' + (fv('tok-draft') || 'None') + '"\nProvide the requested TOK support with specific real-life examples. Be intellectually rigorous.',
+    cas: 'IB CAS coordinator. Strand: ' + fv('cas-type') + ' | Activity: "' + fv('cas-act') + '" | LO: ' + fv('cas-lo') + ' | Type: ' + fv('cas-rtype') + '\nWrite a genuine 150-200 word CAS reflection. Sound like a real student, first person, specific details, meet IB standards.',
+    humaniser: 'Rewrite AI text to sound human. Level: ' + fv('hum-lvl') + ' | Preserve: ' + fv('hum-pres') + '\nText: "' + fv('hum-txt') + '"\nVary sentence length. Remove AI phrases (Furthermore, Moreover, Delve, Multifaceted). Add natural imperfection. Output ONLY the rewritten text.',
+    plagiarism: 'Check this ' + fv('plag-type') + ' for plagiarism risks.\nText: "' + fv('plag-txt') + '"\nProvide: 1) RISK LEVEL, 2) PROBLEMATIC PHRASES, 3) UNATTRIBUTED CLAIMS, 4) CITATION GAPS, 5) RECOMMENDATIONS.'
+  };
+  return p[key] || '';
+}
+
+// ===== RUN TOOL =====
+function runTool(key) {
+  var apikey = '';
+  if (cu && cu.settings && cu.settings.apiKey) apikey = cu.settings.apiKey;
+  if (!apikey) apikey = dbGet('ibg_ak') || '';
+  if (!apikey) {
+    if (!cu) openAuth('signup');
+    else openTool('settings');
+    return;
+  }
+  var check = canUse(key);
+  if (!check.ok) { openTool(key); return; }
+  var btn = document.getElementById('run-btn');
+  var bar = document.getElementById('pbar');
+  var fill = document.getElementById('pfill');
+  var out = document.getElementById('tool-out');
+  if (btn) { btn.disabled = true; btn.textContent = 'Generating...'; }
+  if (bar) bar.style.display = 'block';
+  var pct = 0;
+  var ti = setInterval(function() {
+    pct = Math.min(pct + 5, 88);
+    if (fill) fill.style.width = pct + '%';
+  }, 200);
+
+  var msgs = [{role: 'user', content: buildPrompt(key)}];
+  var model = 'llama-3.3-70b-versatile';
+  if (key === 'solver' && curImg) {
+    model = 'meta-llama/llama-4-scout-17b-16e-instruct';
+    msgs = [{role: 'user', content: [{type: 'text', text: buildPrompt(key)}, {type: 'image_url', image_url: {url: curImg}}]}];
+  }
+
+  fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apikey},
+    body: JSON.stringify({model: model, messages: msgs, max_tokens: 2500, temperature: 0.75})
+  }).then(function(res) {
+    return res.json();
+  }).then(function(data) {
+    clearInterval(ti);
+    if (fill) fill.style.width = '100%';
+    setTimeout(function() { if (bar) bar.style.display = 'none'; if (fill) fill.style.width = '0'; }, 400);
+    if (data.error) throw new Error(data.error.message);
+    var text = data.choices[0].message.content.trim();
+    if (!cu) incGuest(key);
+    else saveHist(key, text);
+    if (key === 'flashcards') renderFCOutput(text, out);
+    else if (key === 'detector') renderDetOutput(text, out);
+    else renderResOutput(text, out, key);
+    renderSB();
+    showToast('Done!', 'ok');
+  }).catch(function(err) {
+    clearInterval(ti);
+    if (bar) bar.style.display = 'none';
+    showToast('Error: ' + err.message, 'err');
+  }).finally(function() {
+    if (btn) { btn.disabled = false; btn.textContent = (BTN_LABELS[key] || 'Generate') + ' \u2736'; }
+  });
+}
+
+function renderResOutput(text, out, key) {
+  if (!out) return;
+  out.innerHTML = '<div class="result-box"><div class="rb-label">Result</div>' +
+    '<div class="rb-text" id="rb-text-main"></div>' +
+    '<div class="rb-actions"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy</button></div></div>';
+  var el = document.getElementById('rb-text-main');
+  if (el) el.textContent = text;
+  window._lastResult = text;
+}
+function copyRes() {
+  copyText(window._lastResult || '');
+}
+function renderDetOutput(text, out) {
+  if (!out) return;
+  var am = text.match(/(\d+)%\s*AI/i);
+  var hm = text.match(/(\d+)%\s*Human/i);
+  var ai = am ? parseInt(am[1], 10) : 50;
+  var hu = hm ? parseInt(hm[1], 10) : 50;
+  var vCls, vMsg;
+  if (ai >= 70) { vCls = 'v-a'; vMsg = 'Likely AI (' + ai + '% AI)'; }
+  else if (ai >= 40) { vCls = 'v-m'; vMsg = 'Mixed content (' + ai + '% AI)'; }
+  else { vCls = 'v-h'; vMsg = 'Mostly human (' + hu + '% human)'; }
+  out.innerHTML = '<div class="result-box"><div class="rb-label">AI Detection Report</div>' +
+    '<div class="meter"><div class="m-row"><span>Human: ' + hu + '%</span><span>AI: ' + ai + '%</span></div>' +
+    '<div class="m-bg"><div class="m-fill ' + (ai > 50 ? 'mai' : 'mh') + '" style="width:' + ai + '%"></div></div></div>' +
+    '<div class="verdict ' + vCls + '">' + vMsg + '</div>' +
+    '<div class="rb-text" id="det-text-out" style="margin-top:1rem"></div>' +
+    '<div class="rb-actions"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy</button>' +
+    '<button class="btn btn-out btn-sm" onclick="openTool(\'humaniser\')">Humanise this</button></div></div>';
+  var el = document.getElementById('det-text-out');
+  if (el) el.textContent = text;
+  window._lastResult = text;
+}
+function renderFCOutput(text, out) {
+  if (!out) return;
+  var clean = text.replace(/```json/g, '').replace(/```/g, '').trim();
+  var cards = [];
+  try { cards = JSON.parse(clean); } catch(e) { renderResOutput(text, out, 'flashcards'); return; }
+  var h = '<div style="margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between">' +
+    '<div class="rb-label">' + cards.length + ' Flashcards - click to flip</div>' +
+    '<button class="btn btn-out btn-sm" onclick="resetFC()">Reset</button></div>' +
+    '<div class="fc-grid">';
+  for (var i = 0; i < cards.length; i++) {
+    h += '<div class="flcard" onclick="this.classList.toggle(\'flipped\')">' +
+      '<div class="fc-q" id="fcq' + i + '"></div>' +
+      '<div class="fc-a" id="fca' + i + '"></div>' +
+      '<div class="fc-hint">tap to flip</div></div>';
+  }
+  h += '</div>';
+  out.innerHTML = h;
+  for (var j = 0; j < cards.length; j++) {
+    var qEl = document.getElementById('fcq' + j);
+    var aEl = document.getElementById('fca' + j);
+    if (qEl) qEl.textContent = cards[j].q || '';
+    if (aEl) aEl.textContent = cards[j].a || '';
+  }
+}
+function resetFC() {
+  var cards = document.querySelectorAll('.flcard');
+  for (var i = 0; i < cards.length; i++) cards[i].classList.remove('flipped');
+}
+
+// ===== COUNTDOWN =====
+function renderCountdown() {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  var exams = [];
+  if (cu) {
+    var u = dbGet('ibg_users') || {};
+    var udata = u[cu.email] || {};
+    exams = udata.exams || [];
+  } else {
+    exams = dbGet('ibg_ex') || [];
+  }
+  var now = new Date(); now.setHours(0,0,0,0);
+  var cardsHTML = '';
+  if (exams.length === 0) {
+    cardsHTML = '<div class="empty-box" style="grid-column:1/-1"><div class="eb-icon">&#9200;</div><p style="font-weight:600">No exams added yet</p></div>';
+  } else {
+    for (var i = 0; i < exams.length; i++) {
+      var e = exams[i];
+      var d = new Date(e.date); d.setHours(0,0,0,0);
+      var days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
+      var col = days <= 7 ? 'var(--red)' : days <= 30 ? 'var(--amber)' : 'var(--blue)';
+      var daysTxt = days > 0 ? days : (days === 0 ? 'TODAY' : 'DONE');
+      var labelTxt = days > 0 ? 'days remaining' : (days === 0 ? 'exam today' : 'passed');
+      var dateTxt = d.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
+      cardsHTML += '<div class="ecard"><div class="ec-subj">' + htmlEnc(e.subj) + '</div>' +
+        '<div class="ec-days" style="color:' + col + '">' + daysTxt + '</div>' +
+        '<div class="ec-label">' + labelTxt + '</div>' +
+        '<div class="ec-date">' + dateTxt + '</div>' +
+        '<button class="ec-del" onclick="delExam(' + i + ')">remove</button></div>';
+    }
+  }
+  tc.innerHTML = '<div class="tool-hdr"><h1>&#9200; Exam Countdown</h1><p>Track days to every IB exam.</p></div>' +
+    '<div style="display:grid;grid-template-columns:260px 1fr;gap:1.25rem;align-items:start">' +
+    '<div class="fp"><div class="fp-title">&#9200; Add exam</div>' +
+    '<div class="fl"><label>Subject and paper</label><input type="text" id="ex-subj" placeholder="e.g. Biology HL Paper 2"/></div>' +
+    '<div class="fl"><label>Date</label><input type="date" id="ex-date"/></div>' +
+    '<button class="btn btn-ink btn-full" onclick="addExam()">Add exam</button></div>' +
+    '<div class="ec-grid" id="ec-grid">' + cardsHTML + '</div></div>';
+}
+function addExam() {
+  var subj = fv('ex-subj').trim();
+  var date = fv('ex-date');
+  if (!subj || !date) { showToast('Enter subject and date.', 'err'); return; }
+  var exams = [];
+  if (cu) {
+    var u = dbGet('ibg_users') || {};
+    var udata = u[cu.email] || {};
+    exams = udata.exams || [];
+    exams.push({subj: subj, date: date});
+    udata.exams = exams;
+    u[cu.email] = udata;
+    dbSet('ibg_users', u);
+  } else {
+    exams = dbGet('ibg_ex') || [];
+    exams.push({subj: subj, date: date});
+    dbSet('ibg_ex', exams);
+  }
+  showToast('Added!', 'ok');
+  renderCountdown();
+}
+function delExam(idx) {
+  if (cu) {
+    var u = dbGet('ibg_users') || {};
+    var udata = u[cu.email] || {};
+    var exams = udata.exams || [];
+    exams.splice(idx, 1);
+    udata.exams = exams;
+    u[cu.email] = udata;
+    dbSet('ibg_users', u);
+  } else {
+    var ex = dbGet('ibg_ex') || [];
+    ex.splice(idx, 1);
+    dbSet('ibg_ex', ex);
+  }
+  renderCountdown();
+}
+
+// ===== HISTORY =====
+function renderHistoryPage() {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  if (!cu) {
+    tc.innerHTML = '<div class="tool-hdr"><h1>&#9203; History</h1></div>' +
+      '<div class="block-card"><div class="bc-icon">&#9203;</div>' +
+      '<p class="bc-p">Create a free account to save your generated content.</p>' +
+      '<button class="btn btn-ink btn-full" onclick="openAuth(\'signup\')" style="max-width:260px;margin:0 auto">Create free account</button></div>';
+    return;
+  }
+  var hist = getHist();
+  var listHTML = '';
+  if (hist.length === 0) {
+    listHTML = '<div class="empty-box"><div class="eb-icon">&#9203;</div><p style="font-weight:600">No history yet</p></div>';
+  } else {
+    for (var i = hist.length - 1; i >= 0; i--) {
+      var item = hist[i];
+      var t = null;
+      for (var j = 0; j < TOOLS.length; j++) { if (TOOLS[j].key === item.tool) { t = TOOLS[j]; break; } }
+      var tagCls = t ? t.hc : 'tg-blue';
+      var tagName = t ? t.name : item.tool;
+      var preview = item.text ? item.text.substring(0, 120) + (item.text.length > 120 ? '...' : '') : '';
+      listHTML += '<div class="hi"><span class="hi-tag ' + tagCls + '">' + tagName + '</span>' +
+        '<div class="hi-body"><div class="hi-text" id="ht' + i + '"></div>' +
+        '<div class="hi-meta">' + fmtDate(item.date) + '</div></div>' +
+        '<button class="hi-copy" onclick="copyHistItem(' + i + ')">Copy</button></div>';
+    }
+  }
+  tc.innerHTML = '<div class="tool-hdr"><h1>&#9203; History</h1><p>Your saved generations.</p></div>' +
+    '<div class="hist-list">' + listHTML + '</div>';
+  for (var k = hist.length - 1; k >= 0; k--) {
+    var el = document.getElementById('ht' + k);
+    if (el) el.textContent = hist[k].text ? hist[k].text.substring(0, 120) : '';
+  }
+}
+function copyHistItem(idx) {
+  var hist = getHist();
+  if (hist[idx]) copyText(hist[idx].text);
+}
+
+// ===== SETTINGS =====
+function renderSettingsPage() {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  if (!cu) {
+    tc.innerHTML = '<div class="tool-hdr"><h1>&#9881; Settings</h1></div>' +
+      '<div class="block-card"><p class="bc-p">Sign in to manage your settings.</p>' +
+      '<button class="btn btn-ink btn-full" onclick="openAuth(\'login\')" style="max-width:220px;margin:0 auto">Log in</button></div>';
+    return;
+  }
+  var s = cu.settings || {};
+  var yr = cu.year || '';
+  tc.innerHTML = '<div class="tool-hdr"><h1>&#9881; Settings</h1><p>Configure your account.</p></div>' +
+    '<div class="sett-grid">' +
+    '<div class="sc"><h3>AI Engine (Groq)</h3><p class="sd">Free at <a href="https://console.groq.com" target="_blank" style="color:var(--blue);font-weight:600">console.groq.com</a> - Sign up, then API Keys, then Create</p>' +
+    '<div style="margin-bottom:.75rem"><label style="display:block;font-size:11px;color:var(--i2);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Groq API Key</label>' +
+    '<div class="kw"><input type="password" id="ak-in" placeholder="gsk_..." value="' + htmlEnc(s.apiKey || '') + '"/>' +
+    '<button class="ktog" onclick="toggleKey()">show</button></div></div>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-ink" onclick="saveKey()">Save</button><button class="btn btn-out" onclick="testKey()">Test</button></div>' +
+    '<div id="ktr"></div></div>' +
+    '<div class="sc"><h3>Profile</h3><p class="sd">Your IB details.</p>' +
+    '<div class="fl"><label>Name</label><input type="text" id="acc-nm" value="' + htmlEnc(cu.name || '') + '"/></div>' +
+    '<div class="fl"><label>IB Year</label><select id="acc-yr">' +
+    '<option' + (yr === 'IB Year 1 (DP1)' ? ' selected' : '') + '>IB Year 1 (DP1)</option>' +
+    '<option' + (yr === 'IB Year 2 (DP2)' ? ' selected' : '') + '>IB Year 2 (DP2)</option>' +
+    '<option' + (yr === 'Preparing for IB' ? ' selected' : '') + '>Preparing for IB</option>' +
+    '</select></div><button class="btn btn-ink" onclick="saveProfile()">Save profile</button></div>' +
+    '<div class="sc"><h3>Plan</h3><p class="sd">Your subscription.</p>' +
+    '<div class="plan-box"><div class="pn">' + (cu.plan === 'pro' ? 'Pro' : 'Free') + '</div>' +
+    '<div class="ps">' + (cu.plan === 'pro' ? 'Unlimited access' : '10 uses per tool per month') + '</div></div>' +
+    (cu.plan !== 'pro' ? '<button class="btn btn-blue" onclick="doUpgrade()">Upgrade to Pro - $9.99/mo</button>' :
+      '<div style="font-size:13px;color:var(--green);font-weight:600">Pro - unlimited access</div>') + '</div>' +
+    '<div class="sc"><h3>Account</h3><p class="sd">Manage account.</p>' +
+    '<p style="font-size:13px;color:var(--i2);margin-bottom:.85rem">' + htmlEnc(cu.email) + '</p>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-out" onclick="doLogout()">Log out</button>' +
+    '<button class="btn" style="background:transparent;border:1px solid rgba(220,38,38,.3);color:var(--red)" onclick="confirmDelete()">Delete account</button></div></div></div>';
+}
+function saveKey() {
+  var k = fv('ak-in').trim();
+  if (!k) { showToast('Enter a key.', 'err'); return; }
+  dbSet('ibg_ak', k);
+  updSettings({apiKey: k});
+  showToast('Saved!', 'ok');
+}
+function toggleKey() {
+  var inp = document.getElementById('ak-in');
+  if (inp) inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+function testKey() {
+  var k = fv('ak-in').trim();
+  if (!k && cu && cu.settings) k = cu.settings.apiKey || '';
+  if (!k) k = dbGet('ibg_ak') || '';
+  var r = document.getElementById('ktr');
+  if (!r) return;
+  if (!k) { r.style.display = 'block'; r.style.background = '#FEF2F2'; r.style.color = 'var(--red)'; r.textContent = 'No key entered.'; return; }
+  r.style.display = 'block'; r.style.background = '#F8F8F4'; r.style.color = 'var(--i3)'; r.textContent = 'Testing...';
+  fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + k},
+    body: JSON.stringify({model: 'llama-3.3-70b-versatile', messages: [{role: 'user', content: 'Say "IBGenius works!"'}], max_tokens: 20})
+  }).then(function(res) { return res.json(); }).then(function(d) {
+    if (d.error) { r.style.background = '#FEF2F2'; r.style.color = 'var(--red)'; r.textContent = 'Error: ' + d.error.message; }
+    else { r.style.background = '#ECFDF5'; r.style.color = 'var(--green)'; r.textContent = 'Connected: ' + d.choices[0].message.content.trim(); }
+  }).catch(function(err) {
+    r.style.background = '#FEF2F2'; r.style.color = 'var(--red)'; r.textContent = 'Network error: ' + err.message;
+  });
+}
+function saveProfile() {
+  if (!cu) return;
+  var nm = fv('acc-nm').trim();
+  var yr = fv('acc-yr');
+  if (!nm) { showToast('Name required.', 'err'); return; }
+  var u = dbGet('ibg_users') || {};
+  if (u[cu.email]) { u[cu.email].name = nm; u[cu.email].year = yr; }
+  dbSet('ibg_users', u);
+  cu.name = nm; cu.year = yr;
+  updateNav();
+  showToast('Saved!', 'ok');
+}
+function updSettings(upd) {
+  if (!cu) return;
+  var u = dbGet('ibg_users') || {};
+  if (!u[cu.email]) return;
+  var s = u[cu.email].settings || {};
+  for (var k in upd) { if (upd.hasOwnProperty(k)) s[k] = upd[k]; }
+  u[cu.email].settings = s;
+  dbSet('ibg_users', u);
+  cu.settings = s;
+}
+function doUpgrade() {
+  showToast('Upgrading...', '');
+  setTimeout(function() {
+    var u = dbGet('ibg_users') || {};
+    if (u[cu.email]) { u[cu.email].plan = 'pro'; dbSet('ibg_users', u); cu.plan = 'pro'; }
+    showToast('Upgraded to Pro! Unlimited access.', 'ok');
+    renderSettingsPage();
+    renderSB();
+  }, 600);
+}
+function confirmDelete() {
+  if (confirm('Delete your account? This cannot be undone.')) {
+    var u = dbGet('ibg_users') || {};
+    delete u[cu.email];
+    dbSet('ibg_users', u);
+    doLogout();
+  }
+}
+
+// ===== AUTH =====
+function openAuth(tab, msg) {
+  var m = document.getElementById('amodal');
+  var am = document.getElementById('auth-msg');
+  if (m) m.className = 'show';
+  if (am) am.textContent = msg || 'Your complete IB toolkit';
+  switchTab(tab || 'login');
+}
+function closeAuth() {
+  var m = document.getElementById('amodal');
+  if (m) m.className = '';
+}
+function switchTab(t) {
+  var tl = document.getElementById('tab-login');
+  var ts = document.getElementById('tab-signup');
+  var fl = document.getElementById('form-login');
+  var fs = document.getElementById('form-signup');
+  var er = document.getElementById('a-err');
+  if (tl) tl.className = t === 'login' ? 'atab on' : 'atab';
+  if (ts) ts.className = t === 'signup' ? 'atab on' : 'atab';
+  if (fl) fl.style.display = t === 'login' ? 'block' : 'none';
+  if (fs) fs.style.display = t === 'signup' ? 'block' : 'none';
+  if (er) er.style.display = 'none';
+}
+function showAuthErr(m) {
+  var e = document.getElementById('a-err');
+  if (e) { e.textContent = m; e.style.display = 'block'; }
+}
+function doLogin() {
+  var em = fv('l-em').trim();
+  var pw = fv('l-pw');
+  if (!em || !pw) { showAuthErr('Please fill all fields.'); return; }
+  var u = dbGet('ibg_users') || {};
+  if (!u[em]) { showAuthErr('No account found. Sign up?'); return; }
+  var stored = u[em].pw || '';
+  var entered = encodePass(pw);
+  if (stored !== entered) { showAuthErr('Incorrect password.'); return; }
+  cu = {email: em};
+  var keys = Object.keys(u[em]);
+  for (var i = 0; i < keys.length; i++) cu[keys[i]] = u[em][keys[i]];
+  dbSet('ibg_sess', em);
+  closeAuth();
+  afterLogin();
+}
+function doSignup() {
+  var nm = fv('s-nm').trim();
+  var em = fv('s-em').trim();
+  var pw = fv('s-pw');
+  var yr = fv('s-yr');
+  if (!nm || !em || !pw) { showAuthErr('Please fill all fields.'); return; }
+  if (pw.length < 8) { showAuthErr('Password must be 8+ characters.'); return; }
+  if (em.indexOf('@') < 0) { showAuthErr('Please enter a valid email.'); return; }
+  var u = dbGet('ibg_users') || {};
+  if (u[em]) { showAuthErr('Account exists. Please log in.'); return; }
+  u[em] = {name: nm, pw: encodePass(pw), year: yr, plan: 'free', history: [], settings: {}, exams: []};
+  dbSet('ibg_users', u);
+  cu = {email: em};
+  var keys = Object.keys(u[em]);
+  for (var i = 0; i < keys.length; i++) cu[keys[i]] = u[em][keys[i]];
+  dbSet('ibg_sess', em);
+  closeAuth();
+  afterLogin();
+}
+function encodePass(s) {
+  var r = '';
+  for (var i = 0; i < s.length; i++) r += s.charCodeAt(i).toString(16);
+  return r;
+}
+function doLogout() {
+  dbDel('ibg_sess');
+  cu = null;
+  updateNav();
+  renderSB();
+  showHome();
+  showToast('Logged out.', '');
+}
+function afterLogin() {
+  updateNav();
+  renderSB();
+  var nm = cu.name ? cu.name.split(' ')[0] : '';
+  showToast('Welcome' + (nm ? ', ' + nm : '') + '!', 'ok');
+  if (curTool) openTool(curTool);
+}
+
+// ===== HELPERS =====
+function getHist() {
+  if (!cu) return [];
+  var u = dbGet('ibg_users') || {};
+  var udata = u[cu.email] || {};
+  return udata.history || [];
+}
+function saveHist(key, text) {
+  if (!cu) return;
+  var u = dbGet('ibg_users') || {};
+  var udata = u[cu.email] || {};
+  var hist = udata.history || [];
+  hist.push({tool: key, text: text, date: new Date().toISOString()});
+  udata.history = hist;
+  u[cu.email] = udata;
+  dbSet('ibg_users', u);
+}
+function htmlEnc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtDate(iso) {
+  try {
+    return new Date(iso).toLocaleDateString('en-GB', {day: 'numeric', month: 'short', year: 'numeric'});
+  } catch(e) { return iso; }
+}
+function copyText(text) {
+  if (!text) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      showToast('Copied!', 'ok');
+    }).catch(function() { fallbackCopy(text); });
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text) {
+  try {
+    var el = document.createElement('textarea');
+    el.value = text;
+    el.style.position = 'fixed';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    showToast('Copied!', 'ok');
+  } catch(e) {
+    showToast('Copy failed - select manually.', 'err');
+  }
+}
+var _tt = null;
+function showToast(msg, type) {
+  var el = document.getElementById('toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'show' + (type ? ' ' + type : '');
+  if (_tt) clearTimeout(_tt);
+  _tt = setTimeout(function() { if (el) el.className = ''; }, 3000);
+}
+
+// ===== INIT =====
+window.addEventListener('load', function() {
+  // Restore session
+  try {
+    var sess = dbGet('ibg_sess');
+    if (sess) {
+      var users = dbGet('ibg_users') || {};
+      if (users[sess]) {
+        cu = {email: sess};
+        var keys = Object.keys(users[sess]);
+        for (var i = 0; i < keys.length; i++) cu[keys[i]] = users[sess][keys[i]];
+      }
+    }
+  } catch(e) { cu = null; }
+
+  // Render each component independently
+  try { updateNav(); } catch(e) {}
+  try { renderSB(); } catch(e) {}
+  try { renderHomeTools(); } catch(e) {}
+  try { showHome(); } catch(e) {}
+});
+</script>
+</body>
+</html>
