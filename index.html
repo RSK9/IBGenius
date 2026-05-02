@@ -538,6 +538,391 @@ var SUBJECTS = ['Biology HL','Biology SL','Chemistry HL','Chemistry SL','Physics
   'Economics HL','Economics SL','Business Management HL','History HL','Psychology HL',
   'Geography HL','Computer Science HL','English A Literature','Philosophy'];
 
+// ===== IB SUBJECT KNOWLEDGE BASE (2025 syllabus) =====
+var SUBJECT_META = {
+  'Biology HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:75, calc:true, db:true,
+        sections:[
+          {name:'Section A', type:'Multiple Choice', marks:40, desc:'40 MCQ, 4 options each, no negative marking. Tests factual recall, data interpretation, experimental design. Topics span entire syllabus.'},
+          {name:'Section B', type:'Data Analysis', marks:35, desc:'4 compulsory data-based multi-part questions. Expect graphs, tables, micrographs, experimental data. Command terms: State, Identify, Calculate, Describe, Explain, Suggest.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'2 hr 30 min', marks:80, calc:true, db:true,
+        sections:[
+          {name:'Section A', type:'Data-based + Short Answer', marks:48, desc:'1 compulsory data-based question (real experimental data, often novel context) + compulsory short-answer structured questions. Tests depth of understanding.'},
+          {name:'Section B', type:'Extended Response', marks:32, desc:'Choose 2 of 3 extended-response sets, 16 marks each. Requires extended scientific discussion, evaluation, links between topics. Command terms: Analyse, Evaluate, Discuss, Outline, Compare.'}
+        ]
+      }
+    ],
+    ia: { marks:24, weight:'20%', criteria:['Research Design /6','Data Analysis /6','Conclusion /6','Evaluation /6'] },
+    commandTerms: { 'State':1,'Identify':1,'List':1,'Outline':2,'Describe':2,'Calculate':2,'Explain':3,'Suggest':3,'Analyse':4,'Compare':4,'Evaluate':6,'Discuss':6 },
+    hlOnlyTopics: ['Protein structure & enzyme kinetics depth','Transcription/translation HL extension','Osmoregulation HL','Metabolic pathways depth','Neurotransmitters depth','Hormones HL','Plant science HL'],
+    keyTopics:['Cell biology','Molecular biology','Genetics & evolution','Ecology','Human physiology','Animal physiology'],
+    dataFormats:['Line graph (enzyme rate vs substrate)','Bar chart (mean with error bars)','Scatter plot (correlation)','Table (experimental results with units)','Micrograph with scale bar','Food web diagram']
+  },
+  'Biology SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:55, calc:true, db:true,
+        sections:[
+          {name:'Section A', type:'Multiple Choice', marks:30, desc:'30 MCQ.'},
+          {name:'Section B', type:'Data Analysis', marks:25, desc:'4 data-based multi-part questions.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:50, calc:true, db:true,
+        sections:[
+          {name:'Section A', type:'Data-based + Short Answer', marks:34, desc:'1 data-based question + short answer questions.'},
+          {name:'Section B', type:'Extended Response', marks:16, desc:'Choose 1 of 2 extended response sets, 16 marks.'}
+        ]
+      }
+    ],
+    ia: { marks:24, weight:'20%', criteria:['Research Design /6','Data Analysis /6','Conclusion /6','Evaluation /6'] },
+    commandTerms: { 'State':1,'Identify':1,'Outline':2,'Describe':2,'Calculate':2,'Explain':3,'Suggest':3,'Analyse':4,'Evaluate':6,'Discuss':6 },
+    keyTopics:['Cell biology','Molecular biology','Genetics','Ecology','Human physiology'],
+    dataFormats:['Line graph','Bar chart','Table with units','Micrograph']
+  },
+  'Chemistry HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:75, calc:true, db:true,
+        sections:[
+          {name:'Section A', type:'Multiple Choice', marks:40, desc:'40 MCQ on any syllabus content. Tests conceptual understanding, equation balancing, data interpretation.'},
+          {name:'Section B', type:'Data Analysis', marks:35, desc:'Multi-part data-based questions. Expect spectra (IR, mass spec, NMR), titration curves, kinetics graphs, enthalpy diagrams, electrochemistry data.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'2 hr 30 min', marks:90, calc:true, db:true,
+        sections:[
+          {name:'All compulsory', type:'Short Answer + Extended Response', marks:90, desc:'Mix of short-answer structured questions and extended-response questions. No choice — all compulsory. Tests application, calculations, evaluation of data, balancing equations, mechanism steps.'}
+        ]
+      }
+    ],
+    ia: { marks:24, weight:'20%', criteria:['Research Design /6','Data Analysis /6','Conclusion /6','Evaluation /6'] },
+    commandTerms: { 'State':1,'Identify':1,'Calculate':2,'Deduce':2,'Describe':2,'Draw':2,'Explain':3,'Predict':3,'Analyse':4,'Evaluate':6,'Discuss':6 },
+    hlOnlyTopics:['Transition metals & d-block','Acids/bases HL (Ka/Kb depth)','Redox & electrochemistry HL','Organic: named mechanisms depth','Crystal field theory','Stereoisomerism depth'],
+    keyTopics:['Stoichiometry','Atomic structure','Periodicity','Chemical bonding','Energetics','Kinetics','Equilibrium','Acids & bases','Redox','Organic chemistry'],
+    dataFormats:['IR spectrum (wavenumber vs transmittance)','Mass spectrum (m/z vs intensity)','1H NMR spectrum','Titration curve','Arrhenius/rate graphs','Born-Haber cycle','Enthalpy level diagram']
+  },
+  'Chemistry SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:55, calc:true, db:true,
+        sections:[
+          {name:'Section A', type:'Multiple Choice', marks:30, desc:'30 MCQ.'},
+          {name:'Section B', type:'Data Analysis', marks:25, desc:'Data-based multi-part questions.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:50, calc:true, db:true,
+        sections:[
+          {name:'All compulsory', type:'Short Answer + Extended Response', marks:50, desc:'Short-answer and extended-response questions. All compulsory.'}
+        ]
+      }
+    ],
+    ia: { marks:24, weight:'20%', criteria:['Research Design /6','Data Analysis /6','Conclusion /6','Evaluation /6'] },
+    commandTerms: { 'State':1,'Calculate':2,'Describe':2,'Draw':2,'Explain':3,'Predict':3,'Analyse':4,'Evaluate':6 },
+    keyTopics:['Stoichiometry','Atomic structure','Bonding','Energetics','Kinetics','Equilibrium','Acids & bases','Redox','Organic basics'],
+    dataFormats:['IR spectrum','Titration curve','Rate graph','Enthalpy diagram']
+  },
+  'Physics HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:60, calc:true, db:true,
+        sections:[
+          {name:'Paper 1A', type:'Multiple Choice', marks:40, desc:'40 MCQ. Tests conceptual understanding and calculation. No calculator for 1A (for some sessions) — check paper. 4 options, no negative marking.'},
+          {name:'Paper 1B', type:'Data Analysis', marks:20, desc:'Multi-part data-based questions. Graphs of motion, electromagnetic fields, wave properties, nuclear data. Both SL and HL get same 20 marks here.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'2 hr 30 min', marks:90, calc:true, db:true,
+        sections:[
+          {name:'All compulsory', type:'Extended Response', marks:90, desc:'Structured and extended-response questions. Calculations, derivations, graph analysis, evaluation of experimental methods. Covers entire HL syllabus.'}
+        ]
+      }
+    ],
+    ia: { marks:24, weight:'20%', criteria:['Research Design /6','Data Analysis /6','Conclusion /6','Evaluation /6'] },
+    commandTerms: { 'State':1,'Identify':1,'Calculate':2,'Sketch':2,'Draw':2,'Describe':2,'Explain':3,'Derive':4,'Analyse':4,'Evaluate':6,'Discuss':6 },
+    hlOnlyTopics:['Wave phenomena (diffraction, interference HL)','Fields HL (gravitational, electric, magnetic)','Electromagnetic induction','Quantum & nuclear HL','Relativity (HL)','Astrophysics HL'],
+    keyTopics:['Kinematics & dynamics','Energy & momentum','Thermal physics','Waves & optics','Electricity & magnetism','Circular motion & gravitation','Atomic, nuclear & particle physics'],
+    dataFormats:['Velocity-time graph','Force-extension graph','Wave diagrams','Circuit diagrams','Decay curve','Photoelectric effect graph','Emission/absorption spectrum']
+  },
+  'Physics SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:45, calc:true, db:true,
+        sections:[
+          {name:'Paper 1A', type:'Multiple Choice', marks:25, desc:'25 MCQ.'},
+          {name:'Paper 1B', type:'Data Analysis', marks:20, desc:'Data-based questions.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:50, calc:true, db:true,
+        sections:[
+          {name:'All compulsory', type:'Extended Response', marks:50, desc:'Structured and extended-response questions.'}
+        ]
+      }
+    ],
+    ia: { marks:24, weight:'20%', criteria:['Research Design /6','Data Analysis /6','Conclusion /6','Evaluation /6'] },
+    commandTerms: { 'State':1,'Calculate':2,'Sketch':2,'Describe':2,'Explain':3,'Analyse':4,'Evaluate':6 },
+    keyTopics:['Kinematics & dynamics','Energy','Thermal physics','Waves','Electricity','Atomic & nuclear physics'],
+    dataFormats:['Velocity-time graph','Wave diagram','Circuit diagram','Decay curve']
+  },
+  'Mathematics AA HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:110, calc:false, db:true,
+        sections:[{name:'All', type:'Short + Long Response', marks:110, desc:'Non-calculator. Section A: 8-10 short questions (2-5 marks each). Section B: 3-4 extended questions (12-21 marks each). Tests algebraic manipulation, proof, exact values, complex numbers, series.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'2 hr', marks:110, calc:true, db:true,
+        sections:[{name:'All', type:'Short + Long Response', marks:110, desc:'GDC required. Section A: short questions. Section B: extended questions. Tests calculus, statistics, probability, applied contexts. Expect graphical analysis.'}]
+      },
+      { id:'P3', name:'Paper 3', time:'1 hr', marks:55, calc:true, db:true,
+        sections:[{name:'All', type:'Extended Problem-Solving', marks:55, desc:'2 long problem-solving questions (each ~27 marks). Leads students through unfamiliar mathematical contexts step-by-step. Requires synthesis of multiple topics. HL ONLY.'}]
+      }
+    ],
+    ia: { name:'Mathematical Exploration', marks:20, weight:'20%', criteria:['Presentation','Mathematical Communication','Personal Engagement','Reflection','Use of Mathematics'] },
+    commandTerms: { 'Write down':1,'State':1,'Find':3,'Show that':3,'Prove':4,'Hence':3,'Hence or otherwise':4,'Verify':2,'Determine':3,'Sketch':3,'Describe':2 },
+    hlOnlyTopics:['Proof by induction','Complex numbers (de Moivre)','Further calculus (Maclaurin series, L\'Hôpital)','Further statistics (hypothesis testing depth)','Further probability (conditional, Bayes)','Vectors 3D'],
+    keyTopics:['Algebra & functions','Sequences & series','Geometry & trigonometry','Complex numbers (HL)','Calculus (differentiation + integration)','Statistics & probability'],
+    noCalcSkills:['Exact trig values','Log/exponential algebra','Differentiation from first principles','Integration by substitution/parts','Proof techniques']
+  },
+  'Mathematics AA SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:80, calc:false, db:true,
+        sections:[{name:'All', type:'Short + Long Response', marks:80, desc:'Non-calculator. Section A: short questions. Section B: extended questions. Tests algebraic reasoning, functions, trigonometry, calculus.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:80, calc:true, db:true,
+        sections:[{name:'All', type:'Short + Long Response', marks:80, desc:'GDC required. Applied contexts, statistics, probability, kinematics. Both sections present.'}]
+      }
+    ],
+    ia: { name:'Mathematical Exploration', marks:20, weight:'20%' },
+    commandTerms: { 'Write down':1,'State':1,'Find':3,'Show that':3,'Hence':3,'Determine':3,'Sketch':3 },
+    keyTopics:['Algebra','Functions','Geometry & trigonometry','Calculus','Statistics & probability'],
+    noCalcSkills:['Exact trig values','Log rules','Basic differentiation & integration','Proof basics']
+  },
+  'Mathematics AI HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:110, calc:true, db:true,
+        sections:[{name:'All', type:'Short + Long Response', marks:110, desc:'GDC allowed throughout. Section A: short response. Section B: extended response. Tests statistics, modelling, matrices, graph theory, calculus in applied contexts.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'2 hr 30 min', marks:110, calc:true, db:true,
+        sections:[{name:'All', type:'Extended Context Problems', marks:110, desc:'GDC required. Complex multi-part problems in real-world contexts. Statistics (regression, hypothesis tests), differential equations, optimization.'}]
+      },
+      { id:'P3', name:'Paper 3', time:'1 hr', marks:55, calc:true, db:true,
+        sections:[{name:'All', type:'Extended Modelling', marks:55, desc:'2 extended modelling problems. Leads student through unfamiliar real-world scenario. HL ONLY. Requires technology.'}]
+      }
+    ],
+    ia: { name:'Mathematical Exploration', marks:20, weight:'20%' },
+    commandTerms: { 'Write down':1,'State':1,'Find':3,'Show that':3,'Interpret':3,'Justify':4,'Model':3 },
+    hlOnlyTopics:['Graph theory & algorithms','Matrices & transformations HL','Further statistics (Poisson, t-test, chi-squared)','Differential equations HL','Voronoi diagrams'],
+    keyTopics:['Statistics & probability','Modelling','Matrices','Graph theory','Calculus (applied)','Number & algebra']
+  },
+  'Mathematics AI SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:80, calc:true, db:true,
+        sections:[{name:'All', type:'Short + Long Response', marks:80, desc:'GDC allowed. Tests statistics, probability, financial maths, functions in applied contexts.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:80, calc:true, db:true,
+        sections:[{name:'All', type:'Extended Context', marks:80, desc:'GDC required. Multi-part applied problems, regression, hypothesis testing, modelling.'}]
+      }
+    ],
+    ia: { name:'Mathematical Exploration', marks:20, weight:'20%' },
+    keyTopics:['Statistics & probability','Modelling','Financial maths','Geometry','Calculus basics (applied)']
+  },
+  'Economics HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min + 5 min reading', marks:50, calc:false, db:false,
+        sections:[
+          {name:'Section A', type:'Microeconomics Essay', marks:25, desc:'Choose 1 of 2 questions. Part (a): Explain/Define/Using diagram (~10 marks). Part (b): Evaluate/Discuss/To what extent (15 marks) — must include diagram, real-world example, balanced argument.'},
+          {name:'Section B', type:'Macroeconomics Essay', marks:25, desc:'Choose 1 of 2 questions. Same structure as Section A. Topics: GDP, inflation, unemployment, monetary/fiscal policy, exchange rates.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min + 5 min reading', marks:40, calc:false, db:false,
+        sections:[
+          {name:'All', type:'Data Response', marks:40, desc:'2 compulsory data-response questions based on stimulus material (news articles, graphs, statistics). Short-answer + evaluation. Tests ability to apply theory to real-world evidence.'}
+        ]
+      },
+      { id:'P3', name:'Paper 3 (HL only)', time:'1 hr + 5 min reading', marks:50, calc:false, db:false,
+        sections:[
+          {name:'All', type:'Policy Analysis + Quantitative', marks:50, desc:'Choose 2 of 3 questions. Tests HL extension content: quantitative analysis (price elasticity calculations, multiplier, Lorenz curve), international economics, development economics, policy evaluation.'}
+        ]
+      }
+    ],
+    ia: { name:'Commentary', count:3, marks:'3 x 14 = 42 marks internally moderated', weight:'20%' },
+    commandTerms: { 'Define':2,'Outline':4,'Explain':6,'Examine':8,'Discuss':10,'Evaluate':10,'To what extent':10,'Using a diagram, explain':8 },
+    keyTopics:['Microeconomics (supply/demand, elasticity, market failure)','Macroeconomics (GDP, inflation, unemployment, policy)','International economics (trade, exchange rates)','Development economics (HL extension)'],
+    diagramsMustKnow:['Supply & demand with shifts','Consumer/producer surplus','PED/PES on diagram','Market failure (externalities, public goods)','AS-AD model','Phillips curve','Lorenz curve','Trade diagrams']
+  },
+  'Economics SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min + 5 min reading', marks:50, calc:false, db:false,
+        sections:[
+          {name:'Section A', type:'Microeconomics Essay', marks:25, desc:'Choose 1 of 2. Part (a) explain + diagram, part (b) evaluate.'},
+          {name:'Section B', type:'Macroeconomics Essay', marks:25, desc:'Choose 1 of 2. Same structure.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min + 5 min reading', marks:40, calc:false, db:false,
+        sections:[{name:'All', type:'Data Response', marks:40, desc:'2 data-response questions on stimulus material.'}]
+      }
+    ],
+    ia: { name:'Commentary', count:3, weight:'20%' },
+    commandTerms: { 'Define':2,'Explain':6,'Examine':8,'Discuss':10,'Evaluate':10 },
+    keyTopics:['Microeconomics','Macroeconomics','International economics'],
+    diagramsMustKnow:['Supply & demand','Externalities','AS-AD','Phillips curve']
+  },
+  'History HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr', marks:30, calc:false, db:false,
+        sections:[{name:'All', type:'Source-Based Analysis', marks:30, desc:'5 historical sources provided (text, image, data). Q1: Comprehend/summarise source (~3 marks). Q2: Assess value/limitations using OPCVL framework (~4 marks). Q3: Compare/contrast 2 sources (~6 marks). Q4: Mini-essay using all sources + own knowledge (~9 marks). Prescribed subjects from IB list.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:30, calc:false, db:false,
+        sections:[{name:'All', type:'Essay', marks:30, desc:'Write 2 essays from 2 different IB World History topics. Choose from: Causes & effects of wars, Authoritarian states, Independence movements, Rights & protest, The Cold War, etc. Each essay ~15 marks. Must include specific historical evidence and analysis.'}]
+      },
+      { id:'P3', name:'Paper 3 (HL only)', time:'2 hr 30 min', marks:45, calc:false, db:false,
+        sections:[{name:'All', type:'Extended Essay', marks:45, desc:'3 essays from ONE HL prescribed subject (e.g. History of Europe 1780-2000, History of Asia & Oceania). 15 marks each. More depth and historiography expected. Must reference historians and their interpretations.'}]
+      }
+    ],
+    ia: { name:'Historical Investigation', words:'2200 words', marks:25, weight:'20%', criteria:['Identification & Evaluation of Sources /6','Investigation /15','Reflection /4'] },
+    commandTerms: { 'Identify':1,'Outline':2,'Describe':3,'Explain':3,'Examine':6,'Analyse':8,'Evaluate':8,'Discuss':8,'To what extent':8,'Compare and contrast':8 },
+    keyTopics:['Prescribed subjects (Paper 1)','World History topics (Paper 2)','HL topics/regions (Paper 3)','Historiography for HL'],
+    essaySkills:['Clear thesis in introduction','Specific historical evidence (dates, names, events)','Historiographical reference for HL','Balanced analysis (both sides)','Conclusion linking to question']
+  },
+  'History SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr', marks:30, calc:false, db:false,
+        sections:[{name:'All', type:'Source-Based', marks:30, desc:'5 sources. Comprehension, OPCVL, comparison, mini-essay.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 30 min', marks:30, calc:false, db:false,
+        sections:[{name:'All', type:'Essay', marks:30, desc:'2 essays from different World History topics.'}]
+      }
+    ],
+    ia: { name:'Historical Investigation', words:'2200 words', marks:25, weight:'20%' },
+    commandTerms: { 'Outline':2,'Explain':3,'Examine':6,'Evaluate':8,'Discuss':8,'To what extent':8 },
+    keyTopics:['Prescribed subjects (Paper 1)','World History topics (Paper 2)']
+  },
+  'Psychology HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:46, calc:false, db:false,
+        sections:[
+          {name:'Section A', type:'Short Answer (SAQs)', marks:24, desc:'Answer 3 SAQs. Each 8 marks. Choose from questions on: Biological approach, Cognitive approach, Sociocultural approach. Requires describing study + application.'},
+          {name:'Section B', type:'Extended Response (ERQ)', marks:22, desc:'Choose 1 of 3 ERQs (one per approach). 22 marks. Must evaluate research (theory + 2+ studies, consider ethics, cultural factors, gender). Requires critical thinking.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr', marks:22, calc:false, db:false,
+        sections:[{name:'All', type:'Options', marks:22, desc:'Answer questions from ONE option: Abnormal Psychology, Health Psychology, Human Relationships, or Sport & Exercise Psychology. SAQ + ERQ structure within the option.'}]
+      },
+      { id:'P3', name:'Paper 3 (HL only)', time:'1 hr', marks:30, calc:false, db:false,
+        sections:[{name:'All', type:'Qualitative Research Methods', marks:30, desc:'Answer 3 questions on given unseen qualitative research study. Tests understanding of qualitative methodology: triangulation, credibility, reflexivity, ethics, sampling methods.'}]
+      }
+    ],
+    ia: { name:'Experimental Study', marks:22, weight:'25%', criteria:['Introduction','Exploration','Analysis','Evaluation','Communication'] },
+    commandTerms: { 'Identify':1,'Outline':2,'Describe':4,'Explain':4,'Discuss':8,'Evaluate':8,'Contrast':4,'To what extent':8 },
+    keyTopics:['Biological approach (neuroscience, genetics)','Cognitive approach (schemas, memory models)','Sociocultural approach (social identity, culture)','Abnormal psychology','Research methodology'],
+    studyKnowledge:'Must know 2-3 studies per approach. For SAQs: describe study (aim, participants, procedure, findings), then apply to question. For ERQs: evaluate multiple studies critically.'
+  },
+  'Psychology SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr', marks:46, calc:false, db:false,
+        sections:[
+          {name:'Section A', type:'SAQs', marks:24, desc:'3 SAQs, 8 marks each. One per approach.'},
+          {name:'Section B', type:'ERQ', marks:22, desc:'1 ERQ, 22 marks, choose from 3 approaches.'}
+        ]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr', marks:22, calc:false, db:false,
+        sections:[{name:'All', type:'Options', marks:22, desc:'Questions from one chosen option.'}]
+      }
+    ],
+    ia: { marks:22, weight:'25%' },
+    keyTopics:['Three approaches','Research methodology','One option topic']
+  },
+  'Business Management HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 45 min', marks:35, calc:false, db:false,
+        sections:[{name:'All', type:'Pre-released Case Study', marks:35, desc:'Based on pre-released unseen case study organisation. Short-answer structured questions + one extended response essay. Tests application of BM tools to a real scenario. Pre-released case study issued before exam — study it thoroughly.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 45 min', marks:40, calc:true, db:false,
+        sections:[{name:'All', type:'Short Answer + Extended Response', marks:40, desc:'Section A: two compulsory structured questions. Section B: choose 1 of 2 extended response questions. Tests: quantitative tools (break-even, ratio analysis, cashflow), HR, marketing, operations, finance. HL extension: strategy, innovation, organizational change.'}]
+      }
+    ],
+    ia: { name:'HL Commentary or Research Project', marks:25, weight:'25%' },
+    commandTerms: { 'Define':2,'Outline':4,'Explain':6,'Analyse':6,'Discuss':10,'Evaluate':10,'Recommend':10 },
+    keyTopics:['Business organisation & environment','Human resource management','Finance & accounts','Marketing','Operations management','Strategy (HL extension)'],
+    quantTools:['Break-even analysis','Ratio analysis (liquidity, profitability)','Cashflow forecasting','Investment appraisal (NPV, payback)','Market share calculations']
+  },
+  'Business Management SL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 15 min', marks:25, calc:false, db:false,
+        sections:[{name:'All', type:'Pre-released Case Study', marks:25, desc:'Case study based. Structured questions.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 15 min', marks:30, calc:true, db:false,
+        sections:[{name:'All', type:'Short Answer + Extended Response', marks:30, desc:'Section A: structured. Section B: 1 of 2 extended response.'}]
+      }
+    ],
+    ia: { marks:25, weight:'25%' },
+    keyTopics:['Business environment','HRM basics','Finance basics','Marketing','Operations basics']
+  },
+  'Computer Science HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr 10 min', marks:100, calc:false, db:false,
+        sections:[{name:'All', type:'Short + Extended Response', marks:100, desc:'Section A: compulsory structured questions on core topics. Section B: one HL extension topic (choose 1 of 4 options: databases, modelling, web science, OOP theory). Tests theoretical understanding of algorithms, data structures, networks, programming concepts.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 20 min', marks:65, calc:false, db:false,
+        sections:[{name:'All', type:'Programming & Algorithms', marks:65, desc:'Pseudocode/programming analysis. Students trace algorithms, identify errors, write pseudocode. No actual coding IDE — all written. Tests: searching, sorting, recursion, arrays, OOP in pseudocode.'}]
+      }
+    ],
+    ia: { name:'Solution', marks:30, weight:'30%' },
+    commandTerms: { 'State':1,'Outline':2,'Describe':3,'Explain':4,'Construct':4,'Trace':4,'Analyse':6,'Evaluate':8 },
+    keyTopics:['System fundamentals','Computer organisation','Networks','Computational thinking (algorithms, pseudocode)','OOP','Databases (HL)','Modelling (HL)']
+  },
+  'English A Literature HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'2 hr 15 min', marks:20, calc:false, db:false,
+        sections:[{name:'All', type:'Guided Literary Analysis', marks:20, desc:'TWO unseen extracts (poem + prose). Write a guided literary analysis of ONE, responding to guiding question. 20 marks. Tests close reading, literary terminology, structured argument. Assessed on: Understanding & Interpretation, Analysis & Evaluation, Focus & Organisation, Language.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 45 min', marks:30, calc:false, db:false,
+        sections:[{name:'All', type:'Comparative Essay', marks:30, desc:'Comparative essay question from 4 choices. Must compare 2 works studied in class. 30 marks. Assessed on: Knowledge & Understanding (10), Analysis & Evaluation (10), Focus & Organisation (5), Language (5).'}]
+      }
+    ],
+    ia: { name:'Individual Oral', time:'15 min', marks:30, weight:'30%' },
+    commandTerms: { 'Discuss':12,'Compare':12,'Analyse':12,'Examine':12,'Explore':12,'Consider':12 },
+    literaryTerms:['Imagery','Metaphor & simile','Tone & mood','Narrative perspective','Structural choices','Characterisation','Symbolism','Irony','Voice','Diction'],
+    keyTopics:['Poetry analysis','Prose analysis','Drama analysis','Comparative literature','Context & authorial intent']
+  },
+  'Geography HL': {
+    papers: [
+      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:35, calc:false, db:false,
+        sections:[{name:'All', type:'Core Theme Questions', marks:35, desc:'Compulsory questions on core syllabus themes: Drainage Basins, Oceans & Coastal Margins, Extreme Environments, Geophysical Hazards, Leisure Sport & Tourism, Food & Health. Short answer + structured response.'}]
+      },
+      { id:'P2', name:'Paper 2', time:'1 hr 15 min', marks:40, calc:false, db:false,
+        sections:[{name:'All', type:'Geographic Themes Extended Response', marks:40, desc:'Extended response from optional themes. 2 extended questions. Must include case studies, located examples, data reference.'}]
+      },
+      { id:'P3', name:'Paper 3 (HL only)', time:'1 hr', marks:25, calc:false, db:false,
+        sections:[{name:'All', type:'HL Extension Essay', marks:25, desc:'One extended question on HL extension topic. Requires evaluation, synthesis, case studies.'}]
+      }
+    ],
+    ia: { name:'Fieldwork Report', marks:20, weight:'20%' },
+    commandTerms: { 'State':1,'Describe':3,'Explain':4,'Examine':6,'Analyse':6,'Evaluate':8,'Discuss':8,'To what extent':8 }
+  }
+};
+
+// Helper: get subject meta (try exact match, then fuzzy)
+function getSubjMeta(subjName) {
+  if (SUBJECT_META[subjName]) return SUBJECT_META[subjName];
+  // Fuzzy: strip HL/SL and try both
+  var base = subjName.replace(/ (HL|SL)$/, '');
+  var hl = base + ' HL'; var sl = base + ' SL';
+  return SUBJECT_META[hl] || SUBJECT_META[sl] || null;
+}
+
+// Helper: format paper info for prompt injection
+function formatPaperContext(meta, paperId) {
+  if (!meta || !meta.papers) return '';
+  var paper = null;
+  for (var i = 0; i < meta.papers.length; i++) {
+    if (meta.papers[i].id === paperId) { paper = meta.papers[i]; break; }
+  }
+  if (!paper) paper = meta.papers[0];
+  var ctx = 'REAL PAPER CONTEXT:\n';
+  ctx += paper.name + ' | ' + paper.time + ' | ' + paper.marks + ' marks | Calculator: ' + (paper.calc ? 'YES' : 'NO') + '\n';
+  if (paper.sections) {
+    paper.sections.forEach(function(s) {
+      ctx += '  - ' + s.name + ' (' + s.type + ', ' + s.marks + ' marks): ' + s.desc + '\n';
+    });
+  }
+  return ctx;
+}
+
 // Tier limits
 var GUEST_LIMIT = 3;        // uses before forced to sign up (tracked by browser)
 var FREE_LIMIT = 10;        // legacy - kept for compatibility
@@ -1012,70 +1397,91 @@ function buildPrompt(key) {
   if (key === 'notes') {
     var subj = fv('n-subj');
     var isMathNote = /Mathematics/.test(subj);
-    p = 'You are a senior IB examiner and teacher for ' + subj + ' who has marked hundreds of exam scripts.\n' +
-      'Create comprehensive, exam-focused study notes on the given topic.\n\n' +
+    var isSciNote = /Biology|Chemistry|Physics/.test(subj);
+    var meta = getSubjMeta(subj);
+    var paperCtx = meta ? '\nPAPER CONTEXT FOR THIS SUBJECT:\n' + meta.papers.map(function(p){ return p.name + ': ' + p.time + ', ' + p.marks + ' marks, calc:' + p.calc; }).join(' | ') : '';
+    var ctTerms = meta && meta.commandTerms ? '\nCOMMAND TERMS & MARKS: ' + Object.keys(meta.commandTerms).map(function(k){ return k + '=' + meta.commandTerms[k] + 'mk'; }).join(', ') : '';
+    p = 'You are a senior IB examiner for ' + subj + ' with 10+ years marking experience.\n' +
+      'Write COMPREHENSIVE, EXAM-FOCUSED revision notes. These notes must let a student score 7 on any question from this topic.\n\n' +
       'Subject: ' + subj + '\n' +
       'Topic: ' + fv('n-topic') + '\n' +
-      'Style: ' + fv('n-style') + '\n\n' +
-      'Structure your notes EXACTLY as follows:\n\n' +
-      '## Overview\n' +
-      'One paragraph placing this topic in the syllabus. State which Assessment Objectives it links to.\n\n' +
-      '## Core Content\n' +
-      'All key content with IB syllabus language. Mark **[HL ONLY]** where relevant.\n' +
-      (isMathNote ? '- Show all formulae clearly on their own lines\n- Include worked examples for each technique\n' : '') +
-      '- Use **bold** for every key term on first use\n' +
-      '- Include diagrams as text descriptions where relevant: [DIAGRAM: description]\n\n' +
-      '## Command Term Guide\n' +
-      'For this topic, show what each IB command term requires:\n' +
-      '**State:** one word/value, no explanation\n' +
-      '**Describe:** what happens step by step\n' +
-      '**Explain:** mechanism + reason (because/therefore language)\n' +
-      '**Evaluate/Discuss:** strengths AND limitations with evidence\n\n' +
-      '## Exam Traps\n' +
-      'List 4-6 specific mistakes examiners penalise most in this topic. Be precise.\n\n' +
-      '## Key Terms\n' +
-      'Precise IB-standard definitions for every bold term above. One sentence each.\n\n' +
-      '## Past Paper Connections\n' +
-      'Describe 3 types of exam questions commonly asked on this topic, with the command term used.';
+      'Style: ' + fv('n-style') + '\n' +
+      paperCtx + ctTerms + '\n\n' +
+      '## SYLLABUS POSITION\n' +
+      'Where this topic sits in the ' + subj + ' syllabus. Which papers test it. IB Assessment Objectives it links to.\n\n' +
+      '## CORE CONTENT\n' +
+      'Every testable concept, written in IB syllabus language. Mark **[HL ONLY]** where applicable.\n' +
+      (isMathNote ? '- Every formula on its own line, clearly labelled\n- One worked example per technique, showing full method\n- State whether calculator is needed\n' : '') +
+      (isSciNote ? '- Include all relevant equations/formulae with units\n- Describe any key diagrams: [DIAGRAM: label key parts A, B, C]\n- Include data patterns examiners expect students to recognise\n' : '') +
+      'Use **bold** for key terms on first use.\n\n' +
+      '## WHAT EACH COMMAND TERM REQUIRES\n' +
+      'For THIS topic specifically, give a one-line model answer structure for:\n' +
+      '- **State** (1 mk): \n- **Describe** (2-3 mk): \n- **Explain** (3-4 mk): \n- **Evaluate/Discuss** (6+ mk): \n\n' +
+      '## EXAMINER TRAPS (most common mark losses)\n' +
+      'List EXACTLY 5 specific errors examiners see most. Quote actual wrong student phrases and corrected versions.\n\n' +
+      '## KEY DEFINITIONS\n' +
+      'Every bold term above defined precisely in IB marking-guide language. One sentence each.\n\n' +
+      '## EXAM QUESTION PATTERNS\n' +
+      'For each paper type in ' + subj + ', give ONE example question on this topic with the command term, mark allocation, and a model one-line answer structure. Be specific to this topic — no generic examples.';
   }
 
   else if (key === 'papers') {
     var subj = fv('pp-subj');
-    var isSci = /Biology|Chemistry|Physics|Psychology|Geography|Computer/.test(subj);
+    var meta = getSubjMeta(subj);
+    var isSci = /Biology|Chemistry|Physics/.test(subj);
     var isMath = /Mathematics/.test(subj);
-    var isHum = /Economics|Business|History|English|Philosophy/.test(subj);
+    var isHum = /Economics|Business|History|Psychology|Geography|English|Philosophy/.test(subj);
     var qstyle = fv('pp-qstyle');
+    var pptype = fv('pp-type');
+    var marks = fv('pp-marks');
+
+    // Pull real paper context from meta
+    var paperIdMap = {'Paper 1 (MCQ / short answer)':'P1','Paper 2 (data analysis / structured)':'P2','Paper 3 (HL extension)':'P3'};
+    var paperCtx = meta ? formatPaperContext(meta, paperIdMap[pptype] || 'P2') : '';
+
     var extraInstructions = '';
-    if (isSci && qstyle === 'Data analysis (table + graph)') {
-      extraInstructions = 'IMPORTANT: Include a realistic data table using markdown table format with proper units in column headers (e.g. Time / min, Absorbance / au). Then describe a graph as: [GRAPH: x="label (unit)", y="label (unit)", trend="description of expected trend"]. Then write the question parts referencing this data.';
-    } else if (isMath) {
-      extraInstructions = 'IMPORTANT: Write all mathematical expressions clearly. Use ^ for powers (x^2), / for fractions (dy/dx), and sqrt() for roots. Show formulae on their own lines prefixed with >>>. For geometry or calculus, describe any diagram as [DIAGRAM: description of figure].';
+    if (isSci && (qstyle === 'Data analysis (table + graph)')) {
+      extraInstructions = 'CRITICAL: Include a realistic, specific data table using markdown pipe format. Column headers MUST include units (e.g. Time / s, Absorbance / au, Rate / mol dm⁻³ s⁻¹). Then add: [GRAPH: x="Time / s", y="Rate / mol dm⁻³ s⁻¹", trend="describe the expected pattern"]. Make the data look like genuine experimental results with realistic variation, not perfect numbers.';
     } else if (isSci && qstyle === 'Diagram-based') {
-      extraInstructions = 'IMPORTANT: Describe a labelled biological/chemical diagram as [DIAGRAM: description of what should be shown, key labels A, B, C...]. Then write the question referencing diagram labels.';
+      extraInstructions = 'CRITICAL: Describe a labelled scientific diagram as [DIAGRAM: describe what the diagram shows and list labels A, B, C...]. Question parts must reference the diagram labels. The diagram must be relevant to the specific topic.';
+    } else if (isMath && qstyle === 'Calculation / math problem') {
+      extraInstructions = 'CRITICAL: Present all mathematical expressions clearly. Use ^ for powers, sqrt() for roots, dy/dx for derivatives. Prefix any standalone formula/equation with >>> on its own line. For geometry: describe figure as [DIAGRAM: description of shape with labeled points]. Show all given information clearly before the question.';
+    } else if (isHum && (qstyle === 'Extended response' || qstyle === 'Short answer')) {
+      extraInstructions = 'CRITICAL: For Economics, include a diagram description that the student must draw. For History, specify which prescribed subject or World History topic. For Psychology, specify which approach and list 2 key studies the question could reference.';
     }
-    p = 'You are a senior IB examiner with 10+ years of marking ' + subj + ' scripts.\n' +
-      'Generate ONE original exam-quality question that would appear in a real IB paper.\n\n' +
+
+    var commandTermGuide = meta && meta.commandTerms ?
+      'COMMAND TERM REFERENCE for ' + marks + ': ' + Object.keys(meta.commandTerms).filter(function(k){ return meta.commandTerms[k] <= parseInt(marks); }).join(', ') + '.\n' : '';
+
+    p = 'You are a SENIOR IB EXAMINER for ' + subj + ' who has written and marked real IB papers.\n' +
+      'Generate ONE original, exam-quality question indistinguishable from a real IB paper.\n\n' +
+      '=== PAPER SPECIFICATION ===\n' +
       'Subject: ' + subj + '\n' +
       'Topic: ' + fv('pp-topic') + '\n' +
-      'Paper: ' + fv('pp-type') + '\n' +
+      'Paper type: ' + pptype + '\n' +
       'Question style: ' + qstyle + '\n' +
-      'Total marks: ' + fv('pp-marks') + '\n\n' +
-      (extraInstructions ? extraInstructions + '\n\n' : '') +
-      'Output format — use EXACTLY these section markers:\n\n' +
+      'Total marks: ' + marks + '\n' +
+      paperCtx + '\n' +
+      commandTermGuide + '\n' +
+      (extraInstructions ? '=== CONTENT REQUIREMENTS ===\n' + extraInstructions + '\n\n' : '') +
+      '=== OUTPUT FORMAT (use EXACTLY these markers) ===\n\n' +
       '===QUESTION===\n' +
-      '[Stimulus material (table/graph/diagram/text extract if applicable)]\n' +
-      '[Question stem with correct IB command term for mark value]\n' +
-      '[Sub-parts if applicable: (a) [X marks] ... (b) [Y marks] ...]\n\n' +
+      '[If data analysis: insert table first, then graph marker, then question text]\n' +
+      '[If diagram-based: insert [DIAGRAM:...] first, then question referencing labels]\n' +
+      '[If calculation: state given information clearly, then question]\n' +
+      '[For multi-part: label (a) [X marks], (b) [Y marks], etc — must total ' + marks + ' marks]\n' +
+      '[Use PRECISE IB command term matching the mark value]\n' +
+      '[Context/stimulus must feel REAL — use specific species names, real compounds, real economic scenarios, real historical periods]\n\n' +
       '===MARKSCHEME===\n' +
-      '[Each marking point on its own line starting with a bullet •]\n' +
-      '[Award marks notation: award [1] per point, max [total]]\n' +
-      '[Show alternatives as: accept / OR]\n' +
-      '[Required phrases or values in bold **like this**]\n\n' +
+      '[IB-style mark scheme. Each point starts with •]\n' +
+      '[Show: • award [1] for... OR accept... / OR ...]\n' +
+      '[Required words/values in **bold**]\n' +
+      '[Show sub-part mark allocation: (a) ... (b) ... matching the question]\n' +
+      '[Include: note: do not accept... / penalise... where relevant]\n\n' +
       '===EXAMINER_NOTES===\n' +
-      '[What separates band 7 from band 5 on this question]\n' +
+      '[2-3 sentences: what separates a 7 response from a 5 response on THIS specific question]\n' +
       '[2-3 most common student errors to penalise]\n' +
-      '[Any subject-specific marking rules]\n\n' +
-      'Write at exactly the right difficulty for ' + fv('pp-type') + '. Use precise IB command terms. Be specific — no vague questions.';
+      '[Any subject-specific marking rules for this topic]\n';
   }
 
   else if (key === 'flashcards') {

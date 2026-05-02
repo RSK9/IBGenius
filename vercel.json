@@ -1,3 +1,8 @@
 {
-  "version": 2
+  "version": 2,
+  "routes": [
+    { "src": "/api/webhook", "dest": "/api/webhook.js" },
+    { "src": "/api/check-plan", "dest": "/api/check-plan.js" },
+    { "src": "/api/generate", "dest": "/api/generate.js" }
+  ]
 }
