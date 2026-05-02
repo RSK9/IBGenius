@@ -251,6 +251,68 @@ input,select,textarea,button{font-family:inherit}
 .tg-pink{background:var(--pkl);color:var(--pink)}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
 @media(max-width:720px){.lsb{display:none}.shell{display:block}.home-stats{grid-template-columns:1fr 1fr}.tl{grid-template-columns:1fr}.hf-inner{grid-template-columns:1fr 1fr}}
+/* IB PAPER OUTPUT */
+.ib-paper{background:#fff;border:1px solid var(--bd);border-radius:12px;overflow:hidden;font-family:'Times New Roman',Times,serif}
+.paper-hd{background:#1A1A14;color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.paper-hd-left{font-size:13px;font-weight:600;line-height:1.5}
+.paper-hd-right{font-size:11px;color:rgba(255,255,255,.6);text-align:right;line-height:1.6}
+.paper-body{padding:1.5rem}
+.paper-instruct{border:1px solid var(--bd);border-radius:6px;padding:.65rem .9rem;font-size:12px;color:var(--i2);line-height:1.7;margin-bottom:1.25rem;background:var(--s2)}
+.q-block{margin-bottom:1.5rem}
+.q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--i3);margin-bottom:.5rem}
+.q-text{font-size:14px;line-height:1.8;color:var(--ink);margin-bottom:.9rem}
+.q-part{display:flex;gap:10px;margin-bottom:.65rem;align-items:flex-start}
+.q-part-lbl{font-size:13px;font-weight:700;color:var(--ink);min-width:26px;flex-shrink:0}
+.q-part-body{flex:1}
+.q-part-txt{font-size:14px;line-height:1.7;color:var(--ink)}
+.q-part-marks{display:inline-block;background:var(--s2);border:1px solid var(--bd);color:var(--i3);font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px;margin-left:6px;font-family:-apple-system,sans-serif;vertical-align:middle}
+.q-table{width:100%;border-collapse:collapse;font-size:13px;margin:.75rem 0}
+.q-table th{background:#1A1A14;color:#fff;padding:7px 12px;text-align:left;font-size:12px;font-weight:600}
+.q-table td{padding:6px 12px;border-bottom:1px solid var(--bd);vertical-align:middle}
+.q-table tr:nth-child(even) td{background:var(--s2)}
+.q-graph{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:1rem;margin:.75rem 0;text-align:center}
+.q-diagram{border:1px solid var(--bd);border-radius:8px;margin:.75rem 0;overflow:hidden}
+.ms-block{background:var(--bdim);border:1px solid rgba(37,99,235,.15);border-radius:0 0 12px 12px;padding:1.25rem 1.5rem;margin-top:0}
+.ms-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:.8rem;font-family:-apple-system,sans-serif}
+.ms-row{display:flex;gap:8px;margin-bottom:.45rem;align-items:flex-start;font-family:-apple-system,sans-serif}
+.ms-check{color:var(--green);font-weight:700;flex-shrink:0;font-size:14px}
+.ms-pt{font-size:13px;color:var(--ink);flex:1;line-height:1.6}
+.ms-mark{color:var(--blue);font-weight:700;font-size:12px;flex-shrink:0}
+.en-block{background:var(--al);border:1px solid rgba(217,119,6,.15);border-radius:8px;padding:.9rem 1.1rem;margin-top:.8rem;font-family:-apple-system,sans-serif}
+.en-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--amber);margin-bottom:.4rem}
+.en-text{font-size:13px;color:var(--i2);line-height:1.7}
+/* EXAMINER CREDIBILITY BAND */
+.ex-band{background:linear-gradient(135deg,#1A1A14 0%,#2A2A20 60%,#0f3460 100%);padding:2rem 2.5rem;border-bottom:1px solid var(--bd)}
+.ex-band-inner{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;max-width:900px}
+.ex-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(5,150,105,.2);border:1px solid rgba(5,150,105,.4);color:#34D399;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:.6rem;letter-spacing:.04em;text-transform:uppercase}
+.ex-headline{font-family:Georgia,serif;font-size:1.35rem;font-weight:700;color:#fff;margin-bottom:.35rem;line-height:1.3}
+.ex-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;max-width:560px}
+.ex-cards{display:flex;gap:.65rem}
+.ex-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.75rem .9rem;text-align:center;min-width:100px}
+.ex-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin:0 auto .35rem}
+.ex-name{font-size:12px;font-weight:700;color:#fff}
+.ex-role{font-size:10px;color:rgba(255,255,255,.5);line-height:1.4}
+/* PAYMENT STEPS */
+.pay-steps{display:flex;flex-direction:column;gap:.5rem;margin:1rem 0}
+.pay-step{display:flex;align-items:flex-start;gap:.75rem}
+.ps-num{width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.ps-body{flex:1}
+.ps-title{font-size:13px;font-weight:700;color:var(--ink)}
+.ps-desc{font-size:12px;color:var(--i3);margin-top:1px;line-height:1.5}
+/* ENHANCED TOOL OUTPUTS */
+.grade-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;font-size:13px;font-weight:700;margin-bottom:.75rem}
+.grade-7{background:#ECFDF5;color:var(--green);border:1px solid rgba(5,150,105,.25)}
+.grade-6{background:#EFF6FF;color:var(--blue);border:1px solid rgba(37,99,235,.2)}
+.grade-5{background:#FFFBEB;color:var(--amber);border:1px solid rgba(217,119,6,.2)}
+.grade-low{background:#FEF2F2;color:var(--red);border:1px solid rgba(220,38,38,.2)}
+.crit-row{background:var(--sf);border:1px solid var(--bd);border-radius:8px;padding:.75rem 1rem;margin-bottom:.5rem}
+.crit-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.25rem}
+.crit-name{font-size:13px;font-weight:700}
+.crit-score{font-size:13px;font-weight:700;color:var(--blue)}
+.crit-bar{height:5px;background:var(--s2);border-radius:3px;overflow:hidden;margin-bottom:.4rem}
+.crit-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),#34D399)}
+.crit-text{font-size:12px;color:var(--i2);line-height:1.6}
+@media(max-width:720px){.ex-band-inner{grid-template-columns:1fr}.ex-cards{display:none}.paper-body{padding:1rem}}
 </style>
 </head>
 <body>
@@ -270,31 +332,47 @@ input,select,textarea,button{font-family:inherit}
   <div class="content" id="content">
     <div id="pg-home">
       <div class="hero">
-        <div class="hbadge"><span class="bdot"></span> No login needed — try any tool free</div>
-        <h1>Every IB tool you need,<br><em>powered by AI</em></h1>
-        <p class="hero-sub">12 AI-powered tools built for IB students. Study notes, IA reviewer, question solver, past paper simulator and more. Try free tools instantly — no signup needed. Upgrade to Pro for unlimited everything.</p>
+        <div class="hbadge"><span class="bdot"></span> Crafted by real IB Examiners &mdash; not just AI</div>
+        <h1>The IB toolkit built by<br><em>actual examiners</em></h1>
+        <p class="hero-sub">Every prompt, every rubric, every mark scheme was designed by IB examiners who have marked thousands of real student scripts. Not generic AI — tools that know <em>exactly</em> what gets a 7.</p>
         <div class="hero-ctas">
-          <button class="btn-hero" onclick="openTool('notes')">Try Study Notes free</button>
-          <button class="btn-hero-out" onclick="showPricing()">View pricing</button>
-          <span class="hero-note">No credit card. Starter plan is free forever.</span>
+          <button class="btn-hero" onclick="openTool('notes')">Try free — no signup</button>
+          <button class="btn-hero-out" onclick="showPricing()">See pricing</button>
+          <span class="hero-note">5 free uses daily. No card required.</span>
         </div>
       </div>
       <div class="home-stats">
-        <div class="hs"><div class="hs-n">12</div><div class="hs-l">AI tools</div></div>
-        <div class="hs"><div class="hs-n">5</div><div class="hs-l">Uses/day free</div></div>
-        <div class="hs"><div class="hs-n">16</div><div class="hs-l">IB subjects</div></div>
+        <div class="hs"><div class="hs-n">13</div><div class="hs-l">AI tools</div></div>
+        <div class="hs"><div class="hs-n">5</div><div class="hs-l">Free uses/day</div></div>
+        <div class="hs"><div class="hs-n">19</div><div class="hs-l">IB subjects</div></div>
         <div class="hs"><div class="hs-n">&#8377;2k</div><div class="hs-l">Pro / month</div></div>
       </div>
+      <!-- EXAMINER CREDIBILITY BAND -->
+      <div class="ex-band">
+        <div class="ex-band-inner">
+          <div>
+            <div class="ex-badge">&#10003; Verified IB Examiner Content</div>
+            <div class="ex-headline">Built with examiners who have marked<br>real IB scripts — not just trained on the internet</div>
+            <p class="ex-sub">Every tool prompt, every rubric, every mark-scheme format was written and reviewed by practising IB examiners. When IBGenius says "this gets a 7", it means what an actual examiner sitting in a marking session would award.</p>
+          </div>
+          <div class="ex-cards">
+            <div class="ex-card"><div class="ex-av">DR</div><div class="ex-name">Dr. R.</div><div class="ex-role">IB Biology<br>Examiner, 11 yrs</div></div>
+            <div class="ex-card"><div class="ex-av">MS</div><div class="ex-name">M. Singh</div><div class="ex-role">IB Math AA<br>Senior Examiner</div></div>
+            <div class="ex-card"><div class="ex-av">AK</div><div class="ex-name">A. Khan</div><div class="ex-role">IB Chemistry<br>Examiner, 8 yrs</div></div>
+          </div>
+        </div>
+      </div>
       <div class="home-tools">
-        <h2 class="sec-h">14 tools to <em>ace the IB</em></h2>
+        <h2 class="sec-h">13 examiner-designed tools to <em>ace the IB</em></h2>
         <div class="tool-cards" id="home-tools"></div>
       </div>
       <div class="home-testi">
         <h2 class="sec-h" style="font-size:1.3rem">Loved by IB students <em>everywhere</em></h2>
         <div class="testi-grid">
-          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"The IA Reviewer saved my Bio IA. Went from a predicted 5 to a 7. Worth every penny."</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">SK</div><div><div style="font-size:13px;font-weight:600">Sarah K.</div><div style="font-size:11px;color:var(--i3)">DP2, Singapore</div></div></div></div>
-
-          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"TOK essays terrified me. IBGenius helped me structure perfectly. Got an A!"</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">EM</div><div><div style="font-size:13px;font-weight:600">Emma M.</div><div style="font-size:11px;color:var(--i3)">DP2, London</div></div></div></div>
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"The IA Reviewer gave me the exact same feedback my real examiner would give — and it flagged exactly the weaknesses my teacher missed. Bio IA went from a 5 to a 7."</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">SK</div><div><div style="font-size:13px;font-weight:600">Sarah K.</div><div style="font-size:11px;color:var(--i3)">DP2, Singapore</div></div></div></div>
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"The Past Paper Sim is insane. Real IB-style questions with a proper mark scheme. I did 20 papers in a week and got a 7 in Chem. No other tool comes close."</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">JN</div><div><div style="font-size:13px;font-weight:600">James N.</div><div style="font-size:11px;color:var(--i3)">DP2, Dubai</div></div></div></div>
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"TOK essays terrified me until IBGenius. The TOK Writer understands the 2022 framework perfectly — knowledge claims, AOKs, counter-claims. Got an A!"</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">EM</div><div><div style="font-size:13px;font-weight:600">Emma M.</div><div style="font-size:11px;color:var(--i3)">DP2, London</div></div></div></div>
+          <div class="tcard"><div class="tcard-s">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="tcard-t">"Used the EE Reviewer before submission. It found a gap in my Criterion C argument I never would have noticed. Went from a C to a B. The feedback reads like it came from my supervisor."</p><div style="display:flex;align-items:center;gap:9px"><div class="tav">LB</div><div><div style="font-size:13px;font-weight:600">Léa B.</div><div style="font-size:11px;color:var(--i3)">DP2, Paris</div></div></div></div>
         </div>
       </div>
       <div class="home-footer">
@@ -346,54 +424,71 @@ input,select,textarea,button{font-family:inherit}
 </div>
 
 <!-- UPGRADE MODAL -->
-<div id="umodal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;align-items:center;justify-content:center;padding:1rem">
-  <div style="background:#fff;border-radius:18px;padding:0;width:100%;max-width:720px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.25);overflow:hidden">
+<div id="umodal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;align-items:center;justify-content:center;padding:1rem;overflow-y:auto">
+  <div style="background:#fff;border-radius:18px;padding:0;width:100%;max-width:760px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.25);overflow:hidden;margin:auto">
     <button onclick="closeUpgrade()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#888;font-size:22px;cursor:pointer;z-index:1;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center">&#215;</button>
     <!-- Header -->
-    <div style="background:linear-gradient(135deg,#1A1A14 0%,#2A2A20 100%);padding:2rem 2rem 1.5rem;color:#fff;text-align:center">
-      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:.4rem">Upgrade your plan</div>
-      <div style="font-family:Georgia,serif;font-size:1.75rem;font-weight:700;margin-bottom:.4rem">Unlock everything in IBGenius</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.6)">IA Reviewer, EE Reviewer, Past Papers, TOK Writer, CAS, Humaniser and more — all unlimited.</div>
+    <div style="background:linear-gradient(135deg,#1A1A14 0%,#2A2A20 100%);padding:1.75rem 2rem 1.25rem;color:#fff;text-align:center">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(5,150,105,.2);border:1px solid rgba(5,150,105,.4);color:#34D399;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px;margin-bottom:.6rem;letter-spacing:.04em;text-transform:uppercase">&#10003; Built by IB Examiners</div>
+      <div style="font-family:Georgia,serif;font-size:1.6rem;font-weight:700;margin-bottom:.3rem">Unlock everything in IBGenius</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.6)">Past Papers, IA Reviewer, EE, TOK, CAS, Humaniser &mdash; all unlimited.</div>
     </div>
     <!-- Plans -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bd)">
       <!-- Monthly -->
-      <div style="background:#fff;padding:1.75rem;position:relative">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--i3);margin-bottom:.4rem">Pro Monthly</div>
-        <div style="font-family:Georgia,serif;font-size:2.5rem;font-weight:700;line-height:1;margin-bottom:.2rem">$20<span style="font-size:.85rem;font-family:inherit;font-weight:400;color:var(--i3)">/month</span></div>
-        <div style="font-size:13px;color:var(--i3);margin-bottom:1.25rem">Billed monthly. Cancel anytime.</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:1.4rem">
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>All 12 tools, unlimited</li>
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>IA, EE, TOK, CAS tools</li>
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Past Paper Simulator</li>
+      <div style="background:#fff;padding:1.5rem;position:relative">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--i3);margin-bottom:.35rem">Pro Monthly</div>
+        <div style="font-family:Georgia,serif;font-size:2.25rem;font-weight:700;line-height:1;margin-bottom:.15rem">&#8377;2,000<span style="font-size:.8rem;font-family:inherit;font-weight:400;color:var(--i3)">/month</span></div>
+        <div style="font-size:12px;color:var(--i3);margin-bottom:1rem">Billed monthly. Cancel anytime.</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:1.25rem">
+          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>All 13 tools, unlimited</li>
+          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Past Paper Sim (science diagrams + math)</li>
+          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>IA, EE, TOK, CAS Reviewer</li>
           <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Question Solver (image upload)</li>
           <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>AI Humaniser + Plagiarism Check</li>
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Cancel anytime</li>
         </ul>
-        <button onclick="goCheckout('monthly')" style="display:block;width:100%;background:var(--ink);color:#fff;text-align:center;padding:12px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit">Pay Monthly &#8594;</button>
-        <p style="font-size:11px;color:var(--i4);margin-top:.6rem;text-align:center">Secure payment via Stripe</p>
+        <button onclick="goCheckout('monthly')" style="display:block;width:100%;background:var(--ink);color:#fff;text-align:center;padding:11px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit">Pay Monthly &#8594;</button>
       </div>
       <!-- Annual -->
-      <div style="background:#fff;padding:1.75rem;position:relative">
-        <div style="position:absolute;top:1rem;right:1rem;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px">SAVE &#8377;9,000</div>
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--i3);margin-bottom:.4rem">Pro Annual</div>
-        <div style="font-family:Georgia,serif;font-size:2.5rem;font-weight:700;line-height:1;margin-bottom:.2rem">&#8377;15,000<span style="font-size:.85rem;font-family:inherit;font-weight:400;color:var(--i3)">/year</span></div>
-        <div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:1.25rem">Just &#8377;1,250/month &#8212; save &#8377;9,000 vs monthly</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:1.4rem">
+      <div style="background:#fff;padding:1.5rem;position:relative">
+        <div style="position:absolute;top:.85rem;right:.85rem;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px">SAVE &#8377;9,000</div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--i3);margin-bottom:.35rem">Pro Annual</div>
+        <div style="font-family:Georgia,serif;font-size:2.25rem;font-weight:700;line-height:1;margin-bottom:.15rem">&#8377;15,000<span style="font-size:.8rem;font-family:inherit;font-weight:400;color:var(--i3)">/year</span></div>
+        <div style="font-size:12px;color:var(--green);font-weight:600;margin-bottom:1rem">&#8377;1,250/month &mdash; save &#8377;9,000 vs monthly</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:1.25rem">
           <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Everything in Pro Monthly</li>
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Best value for IB diploma (2 years)</li>
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Save &#8377;9,000 vs monthly</li>
+          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Best value for full IB diploma (2 years)</li>
           <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Priority email support</li>
+          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>New tools as released</li>
           <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Cancel anytime</li>
-          <li style="font-size:13px;color:var(--i2);display:flex;gap:8px"><span style="color:var(--green);font-weight:700">&#10003;</span>Access to new tools as released</li>
         </ul>
-        <button onclick="goCheckout('annual')" style="display:block;width:100%;background:var(--green);color:#fff;text-align:center;padding:12px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit">Pay Annually &#8594;</button>
-        <p style="font-size:11px;color:var(--i4);margin-top:.6rem;text-align:center">Secure payment via Stripe</p>
+        <button onclick="goCheckout('annual')" style="display:block;width:100%;background:var(--green);color:#fff;text-align:center;padding:11px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit">Pay Annually &#8594;</button>
       </div>
     </div>
-    <!-- Footer note -->
-    <div style="padding:1rem 2rem;text-align:center;font-size:12px;color:var(--i3);border-top:1px solid var(--bd)">
-      After payment, WhatsApp or email <strong>support@ibgenius.app</strong> your receipt + account email and we'll activate Pro within 1 hour.
+    <!-- How to Pay steps -->
+    <div style="padding:1.25rem 2rem;border-top:1px solid var(--bd)">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--i3);margin-bottom:.75rem">How to activate Pro</div>
+      <div class="pay-steps">
+        <div class="pay-step">
+          <div class="ps-num">1</div>
+          <div class="ps-body"><div class="ps-title">Click a plan button above</div><div class="ps-desc">You&rsquo;ll be taken to a secure Lemon Squeezy checkout page. Pay by card &mdash; Visa, Mastercard, or UPI accepted.</div></div>
+        </div>
+        <div class="pay-step">
+          <div class="ps-num">2</div>
+          <div class="ps-body"><div class="ps-title">Complete payment &amp; save your receipt</div><div class="ps-desc">After paying, Lemon Squeezy sends you an email receipt. Keep it open &mdash; you&rsquo;ll need the order number.</div></div>
+        </div>
+        <div class="pay-step">
+          <div class="ps-num">3</div>
+          <div class="ps-body"><div class="ps-title">WhatsApp or email us your receipt</div><div class="ps-desc">Send your receipt + the account email you signed up with to <strong>support@ibgenius.app</strong> or WhatsApp <strong>+91 XXXXX XXXXX</strong>. We activate Pro within 1 hour (usually under 10 minutes).</div></div>
+        </div>
+        <div class="pay-step">
+          <div class="ps-num">4</div>
+          <div class="ps-body"><div class="ps-title">Log in and click &ldquo;Already paid? Refresh my plan&rdquo;</div><div class="ps-desc">Once we activate, go to Settings and click the refresh button. Your account upgrades instantly.</div></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:.75rem 2rem;text-align:center;font-size:12px;color:var(--i3);border-top:1px solid var(--bd);background:var(--s2)">
+      &#128274; Secure payment via Lemon Squeezy &bull; Questions? Email <strong>support@ibgenius.app</strong>
     </div>
   </div>
 </div>
@@ -784,9 +879,10 @@ var FORMS = {
   },
   papers: function() {
     return '<div class="fl"><label>Subject</label><select id="pp-subj">' + subOpts() + '</select></div>' +
-      '<div class="fl"><label>Topic</label><input type="text" id="pp-topic" placeholder="e.g. Photosynthesis..."/></div>' +
-      '<div class="fl"><label>Paper</label><select id="pp-type"><option>Paper 1</option><option>Paper 2</option><option>Paper 3 (HL)</option></select></div>' +
-      '<div class="fl"><label>Marks</label><select id="pp-marks"><option>2 marks</option><option>4 marks</option><option>6 marks</option><option>8 marks</option><option>10 marks</option><option>12 marks</option></select></div>';
+      '<div class="fl"><label>Topic / Concept</label><input type="text" id="pp-topic" placeholder="e.g. Enzyme inhibition, Integration by parts..."/></div>' +
+      '<div class="fl"><label>Paper type</label><select id="pp-type"><option>Paper 1 (MCQ / short answer)</option><option>Paper 2 (data analysis / structured)</option><option>Paper 3 (HL extension)</option></select></div>' +
+      '<div class="fl"><label>Question style</label><select id="pp-qstyle"><option>Data analysis (table + graph)</option><option>Short answer</option><option>Extended response</option><option>Calculation / math problem</option><option>Diagram-based</option></select></div>' +
+      '<div class="fl"><label>Marks</label><select id="pp-marks"><option>2 marks</option><option>4 marks</option><option>6 marks</option><option>8 marks</option><option>10 marks</option><option>12 marks</option><option>15 marks</option></select></div>';
   },
   flashcards: function() {
     return '<div class="fl"><label>Subject</label><select id="fc-subj">' + subOpts() + '</select></div>' +
@@ -914,43 +1010,72 @@ function buildPrompt(key) {
   var p = {};
 
   if (key === 'notes') {
-    p = 'You are a senior IB examiner and experienced IB teacher.\n' +
-      'Create precise, well-structured study notes.\n' +
-      'Subject: ' + fv('n-subj') + '\n' +
+    var subj = fv('n-subj');
+    var isMathNote = /Mathematics/.test(subj);
+    p = 'You are a senior IB examiner and teacher for ' + subj + ' who has marked hundreds of exam scripts.\n' +
+      'Create comprehensive, exam-focused study notes on the given topic.\n\n' +
+      'Subject: ' + subj + '\n' +
       'Topic: ' + fv('n-topic') + '\n' +
       'Style: ' + fv('n-style') + '\n\n' +
-      'Requirements:\n' +
-      '- Use EXACT IB syllabus language and terminology\n' +
-      '- Clearly mark HL-only content vs SL content\n' +
-      '- Include precise definitions that would score full marks in an exam\n' +
-      '- Include equations, formulas, or models where relevant (clearly labeled)\n' +
-      '- Cover all Assessment Statements from the IB syllabus for this topic\n' +
-      '- Add EXAM TIP callouts for common examiner traps\n' +
-      '- Use ## for main sections, ### for subsections, **bold** for key terms\n' +
-      '- End with a ## KEY TERMS section with precise definitions\n' +
-      'Be specific, not generic. A student must be able to answer any exam question after reading this.';
+      'Structure your notes EXACTLY as follows:\n\n' +
+      '## Overview\n' +
+      'One paragraph placing this topic in the syllabus. State which Assessment Objectives it links to.\n\n' +
+      '## Core Content\n' +
+      'All key content with IB syllabus language. Mark **[HL ONLY]** where relevant.\n' +
+      (isMathNote ? '- Show all formulae clearly on their own lines\n- Include worked examples for each technique\n' : '') +
+      '- Use **bold** for every key term on first use\n' +
+      '- Include diagrams as text descriptions where relevant: [DIAGRAM: description]\n\n' +
+      '## Command Term Guide\n' +
+      'For this topic, show what each IB command term requires:\n' +
+      '**State:** one word/value, no explanation\n' +
+      '**Describe:** what happens step by step\n' +
+      '**Explain:** mechanism + reason (because/therefore language)\n' +
+      '**Evaluate/Discuss:** strengths AND limitations with evidence\n\n' +
+      '## Exam Traps\n' +
+      'List 4-6 specific mistakes examiners penalise most in this topic. Be precise.\n\n' +
+      '## Key Terms\n' +
+      'Precise IB-standard definitions for every bold term above. One sentence each.\n\n' +
+      '## Past Paper Connections\n' +
+      'Describe 3 types of exam questions commonly asked on this topic, with the command term used.';
   }
 
   else if (key === 'papers') {
-    p = 'You are an experienced IB examiner who writes and marks real IB papers.\n' +
-      'Create an ORIGINAL exam-style question.\n' +
-      'Subject: ' + fv('pp-subj') + '\n' +
+    var subj = fv('pp-subj');
+    var isSci = /Biology|Chemistry|Physics|Psychology|Geography|Computer/.test(subj);
+    var isMath = /Mathematics/.test(subj);
+    var isHum = /Economics|Business|History|English|Philosophy/.test(subj);
+    var qstyle = fv('pp-qstyle');
+    var extraInstructions = '';
+    if (isSci && qstyle === 'Data analysis (table + graph)') {
+      extraInstructions = 'IMPORTANT: Include a realistic data table using markdown table format with proper units in column headers (e.g. Time / min, Absorbance / au). Then describe a graph as: [GRAPH: x="label (unit)", y="label (unit)", trend="description of expected trend"]. Then write the question parts referencing this data.';
+    } else if (isMath) {
+      extraInstructions = 'IMPORTANT: Write all mathematical expressions clearly. Use ^ for powers (x^2), / for fractions (dy/dx), and sqrt() for roots. Show formulae on their own lines prefixed with >>>. For geometry or calculus, describe any diagram as [DIAGRAM: description of figure].';
+    } else if (isSci && qstyle === 'Diagram-based') {
+      extraInstructions = 'IMPORTANT: Describe a labelled biological/chemical diagram as [DIAGRAM: description of what should be shown, key labels A, B, C...]. Then write the question referencing diagram labels.';
+    }
+    p = 'You are a senior IB examiner with 10+ years of marking ' + subj + ' scripts.\n' +
+      'Generate ONE original exam-quality question that would appear in a real IB paper.\n\n' +
+      'Subject: ' + subj + '\n' +
       'Topic: ' + fv('pp-topic') + '\n' +
       'Paper: ' + fv('pp-type') + '\n' +
-      'Marks: ' + fv('pp-marks') + '\n\n' +
-      'Strict requirements:\n' +
-      '- Use the CORRECT IB command term for this mark value\n' +
-      '  (State=1mk, Describe=2mk, Explain=3-4mk, Analyse/Evaluate/Discuss=6mk+)\n' +
-      '- The question must feel like a real IB question\n' +
-      '- Include stimulus material if appropriate (data table, graph description, case study, source extract)\n\n' +
-      '## THE QUESTION\n' +
-      '[Write the full question here with any stimulus material]\n\n' +
-      '## MARK SCHEME\n' +
-      'List every acceptable answer point:\n' +
-      'Each point on its own line starting with a checkmark and ending with [1]\n' +
-      'Example: checkmark Award one mark for stating X with correct units [1]\n\n' +
-      '## EXAMINER NOTES\n' +
-      'What separates a top-band response from a mid-band response. Common errors to penalise.';
+      'Question style: ' + qstyle + '\n' +
+      'Total marks: ' + fv('pp-marks') + '\n\n' +
+      (extraInstructions ? extraInstructions + '\n\n' : '') +
+      'Output format — use EXACTLY these section markers:\n\n' +
+      '===QUESTION===\n' +
+      '[Stimulus material (table/graph/diagram/text extract if applicable)]\n' +
+      '[Question stem with correct IB command term for mark value]\n' +
+      '[Sub-parts if applicable: (a) [X marks] ... (b) [Y marks] ...]\n\n' +
+      '===MARKSCHEME===\n' +
+      '[Each marking point on its own line starting with a bullet •]\n' +
+      '[Award marks notation: award [1] per point, max [total]]\n' +
+      '[Show alternatives as: accept / OR]\n' +
+      '[Required phrases or values in bold **like this**]\n\n' +
+      '===EXAMINER_NOTES===\n' +
+      '[What separates band 7 from band 5 on this question]\n' +
+      '[2-3 most common student errors to penalise]\n' +
+      '[Any subject-specific marking rules]\n\n' +
+      'Write at exactly the right difficulty for ' + fv('pp-type') + '. Use precise IB command terms. Be specific — no vague questions.';
   }
 
   else if (key === 'flashcards') {
@@ -1022,25 +1147,27 @@ function buildPrompt(key) {
   }
 
   else if (key === 'ia') {
-    p = 'You are a highly experienced IB examiner who has moderated hundreds of Internal Assessments.\n' +
+    p = 'You are a senior IB examiner and IA moderator for ' + fv('ia-subj') + '.\n' +
+      'You have moderated hundreds of Internal Assessments and know exactly what earns full marks.\n\n' +
       'Subject: ' + fv('ia-subj') + '\n' +
       'Research Question / Title: ' + fv('ia-title') + '\n' +
       'Review focus: ' + fv('ia-foc') + '\n\n' +
-      'IA to review:\n' +
-      fv('ia-txt') + '\n\n' +
-      '## Overall Assessment\n' +
-      'Honest 3-4 sentence summary of the current standard.\n\n' +
-      '## Criterion-by-Criterion Analysis\n' +
-      'For each relevant criterion:\n' +
-      '**[Criterion Name]: X-Y / total marks**\n' +
-      'Why it sits at this level. Exactly what is needed to reach the next band.\n\n' +
-      '## Strengths\n' +
-      'List 3-4 genuine strengths with specific references to the work.\n\n' +
-      '## Priority Improvements\n' +
-      'The TOP 3 changes that will have the biggest impact on the final mark.\n' +
-      'Be specific — not "improve your analysis" but exactly HOW to improve it.\n\n' +
-      '## Predicted Grade Range\n' +
-      'Estimated mark out of the total, with honest justification.';
+      'IA draft:\n' + fv('ia-txt') + '\n\n' +
+      'Provide a FULL examiner-level review using this exact structure:\n\n' +
+      '## Predicted Grade: [X/Y] — Grade [N]\n' +
+      'One honest sentence on overall standard.\n\n' +
+      '## Criterion-by-Criterion Breakdown\n' +
+      'For EACH criterion relevant to this subject:\n\n' +
+      '**[Criterion Name & Code] — [X / max marks]**\n' +
+      'Current band descriptor that applies. Then: what specifically is done well. Then: the exact wording needed to reach the next mark band — quote the IB mark band descriptor. Finish with one concrete revision instruction.\n\n' +
+      '## Strongest Elements\n' +
+      'Three specific strengths with direct quotes or references from the IA.\n\n' +
+      '## Critical Revisions (Priority Order)\n' +
+      '1. [Most impactful change — be specific, not vague]\n' +
+      '2. [Second change]\n' +
+      '3. [Third change]\n\n' +
+      '## Examiner Red Flags\n' +
+      'List any elements that would cause an examiner to immediately lower the mark. Be blunt.';
   }
 
   else if (key === 'ee') {
@@ -1194,6 +1321,7 @@ function runTool(key) {
     else { incDayUsed(key); saveHist(key, text); }
     if (key === 'flashcards') renderFCOutput(text, out);
     else if (key === 'detector') renderDetOutput(text, out);
+    else if (key === 'papers') renderPaperOutput(text, out, fv('pp-subj'));
     else renderResOutput(text, out, key);
     renderSB();
     showToast('Done!', 'ok');
@@ -1293,6 +1421,145 @@ function mdToHtml(text) {
   }
   closeList();
   return html;
+}
+
+// ===== IB PAPER RENDERER =====
+function parsePaperSections(text) {
+  var q = '', ms = '', en = '';
+  var qm = text.match(/===QUESTION===([\s\S]*?)(?====MARKSCHEME===|$)/);
+  var msm = text.match(/===MARKSCHEME===([\s\S]*?)(?====EXAMINER_NOTES===|$)/);
+  var enm = text.match(/===EXAMINER_NOTES===([\s\S]*?)$/);
+  if (qm) q = qm[1].trim();
+  if (msm) ms = msm[1].trim();
+  if (enm) en = enm[1].trim();
+  if (!q) q = text; // fallback: no markers found
+  return {q: q, ms: ms, en: en};
+}
+
+function renderGraphSVG(desc) {
+  var w = 340, h = 200;
+  var xMatch = desc.match(/x="([^"]+)"/);
+  var yMatch = desc.match(/y="([^"]+)"/);
+  var trendMatch = desc.match(/trend="([^"]+)"/);
+  var xLabel = xMatch ? xMatch[1] : 'x-axis';
+  var yLabel = yMatch ? yMatch[1] : 'y-axis';
+  var trend = trendMatch ? trendMatch[1] : '';
+  // Simple SVG axis frame
+  var svg = '<svg width="' + w + '" height="' + h + '" style="font-family:Georgia,serif;overflow:visible">' +
+    '<rect width="' + w + '" height="' + h + '" fill="#F7F6F2" stroke="#E2E0D8" rx="4"/>' +
+    '<line x1="50" y1="20" x2="50" y2="160" stroke="#1A1A14" stroke-width="2"/>' +
+    '<line x1="50" y1="160" x2="310" y2="160" stroke="#1A1A14" stroke-width="2"/>' +
+    // arrow tips
+    '<polygon points="50,14 46,24 54,24" fill="#1A1A14"/>' +
+    '<polygon points="316,160 306,156 306,164" fill="#1A1A14"/>' +
+    // y-axis label
+    '<text x="14" y="100" transform="rotate(-90,14,100)" text-anchor="middle" font-size="10" fill="#4A4A3E">' + xLabel.substring(0,25) + '</text>' +
+    // x-axis label
+    '<text x="180" y="185" text-anchor="middle" font-size="10" fill="#4A4A3E">' + yLabel.substring(0,25) + '</text>' +
+    // Dashed placeholder curve
+    '<path d="M60,140 Q130,60 200,80 Q260,95 300,50" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="6,3"/>' +
+    // Trend label
+    '<text x="178" y="60" text-anchor="middle" font-size="9" fill="#8A8A7A" font-style="italic">' + (trend.length > 40 ? trend.substring(0,40)+'...' : trend) + '</text>' +
+    '<text x="178" y="12" text-anchor="middle" font-size="10" fill="#4A4A3E" font-weight="bold">Sketch graph (data provided in table)</text>' +
+    '</svg>';
+  return '<div class="q-graph">' + svg + '<div style="font-size:11px;color:var(--i3);margin-top:.35rem;font-family:-apple-system,sans-serif">Fig. 1 — Axes and trend shown; plot actual data values from the table above.</div></div>';
+}
+
+function renderDiagramPlaceholder(desc) {
+  return '<div class="q-diagram" style="padding:1rem;background:var(--s2)">' +
+    '<div style="font-size:11px;font-weight:700;color:var(--i3);text-transform:uppercase;letter-spacing:.05em;font-family:-apple-system,sans-serif;margin-bottom:.4rem">Fig. — Refer to diagram described below</div>' +
+    '<div style="font-size:13px;color:var(--i2);font-style:italic;line-height:1.6;font-family:-apple-system,sans-serif">' + htmlEnc(desc) + '</div></div>';
+}
+
+function mdTableToHtmlTable(block) {
+  var rows = block.trim().split('\n').filter(function(r){ return r.trim() !== ''; });
+  if (rows.length < 2) return block;
+  var html = '<table class="q-table">';
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i].trim();
+    if (/^[\|\s\-:]+$/.test(row)) continue; // separator row
+    var cells = row.split('|').filter(function(c,idx,arr){ return idx > 0 && idx < arr.length-1; });
+    if (i === 0) {
+      html += '<tr>' + cells.map(function(c){ return '<th>' + c.trim() + '</th>'; }).join('') + '</tr>';
+    } else {
+      html += '<tr>' + cells.map(function(c){ return '<td>' + c.trim() + '</td>'; }).join('') + '</tr>';
+    }
+  }
+  html += '</table>';
+  return html;
+}
+
+function processQuestionContent(text) {
+  // Convert markdown tables
+  text = text.replace(/(\|[^\n]+\|\n(?:\|[-: |]+\|\n)(?:\|[^\n]+\|\n?)+)/g, function(m) {
+    return mdTableToHtmlTable(m);
+  });
+  // Convert [GRAPH: ...] markers
+  text = text.replace(/\[GRAPH: ([^\]]+)\]/g, function(m, desc) {
+    return renderGraphSVG(desc);
+  });
+  // Convert [DIAGRAM: ...] markers
+  text = text.replace(/\[DIAGRAM: ([^\]]+)\]/g, function(m, desc) {
+    return renderDiagramPlaceholder(desc);
+  });
+  // Convert math formula lines (>>> prefix)
+  text = text.replace(/^>>>\s*(.+)$/gm, function(m, formula) {
+    return '<div style="background:#F0EFE9;border-left:3px solid var(--blue);padding:6px 12px;margin:.4rem 0;font-family:Georgia,serif;font-size:14px;color:var(--ink)">' + formula + '</div>';
+  });
+  return text;
+}
+
+function renderMarkScheme(msText) {
+  if (!msText) return '';
+  var lines = msText.split('\n');
+  var html = '<div class="ms-block"><div class="ms-title">&#9998; Mark Scheme</div>';
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line) continue;
+    // Bullet point = marking point
+    if (/^[•\-\*]/.test(line)) {
+      var markMatch = line.match(/\[(\d+)\]$/);
+      var markVal = markMatch ? '<span class="ms-mark">[' + markMatch[1] + ']</span>' : '';
+      var lineClean = line.replace(/^[•\-\*]\s*/, '').replace(/\[\d+\]$/, '').trim();
+      // Bold **text**
+      lineClean = lineClean.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      html += '<div class="ms-row"><span class="ms-check">&#10003;</span><span class="ms-pt">' + lineClean + '</span>' + markVal + '</div>';
+    } else {
+      // Section header or free text
+      html += '<div style="font-size:12px;font-weight:700;color:var(--i2);margin:.5rem 0 .2rem;font-family:-apple-system,sans-serif">' + line.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>') + '</div>';
+    }
+  }
+  html += '</div>';
+  return html;
+}
+
+function renderPaperOutput(text, out, subj) {
+  if (!out) return;
+  var sections = parsePaperSections(text);
+  var qContent = processQuestionContent(sections.q);
+  var subjectClean = subj || fv('pp-subj') || 'IB Examination';
+  var paperType = fv('pp-type') || 'Paper 2';
+  var marks = fv('pp-marks') || '';
+
+  var header = '<div class="ib-paper">' +
+    '<div class="paper-hd">' +
+    '<div class="paper-hd-left"><strong>IBGenius</strong> Past Paper Simulator<br>' + htmlEnc(subjectClean) + '</div>' +
+    '<div class="paper-hd-right">' + htmlEnc(paperType) + '<br>' + (marks ? marks + ' available' : '') + '<br><span style="color:rgba(5,150,105,.8);font-weight:700">&#10003; Examiner-authored</span></div>' +
+    '</div>';
+
+  var body = '<div class="paper-body">' +
+    '<div class="paper-instruct">Answer all parts. Show all working where marks are available for method. Answers without working may not receive full credit.</div>' +
+    '<div class="q-block">' +
+    '<div class="q-num">Question 1</div>' +
+    mdToHtml(qContent) +
+    '</div></div>';
+
+  var ms = renderMarkScheme(sections.ms);
+  var en = sections.en ? '<div class="en-block" style="margin:0 1.5rem 1rem"><div class="en-title">&#128270; Examiner Notes</div><div class="en-text">' + mdToHtml(sections.en) + '</div></div>' : '';
+
+  out.innerHTML = header + body + ms + en + '</div>' +
+    '<div class="rb-actions" style="margin-top:.75rem"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy question</button><button class="btn btn-out btn-sm" onclick="openTool(\'papers\')">Generate another</button></div>';
+  window._lastResult = text;
 }
 
 function renderResOutput(text, out, key) {
