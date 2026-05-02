@@ -738,18 +738,24 @@ function renderBlocked(key, why) {
   for (var i = 0; i < TOOLS.length; i++) { if (TOOLS[i].key === key) { t = TOOLS[i]; break; } }
   if (!t) return;
   var html = '<div class="tool-hdr"><h1>' + t.icon + ' ' + t.name + '</h1><p>' + t.desc + '</p></div>';
-  if (why === 'guest') {
+  if (why === 'signup') {
     html += '<div class="block-card"><div class="bc-icon">&#9889;</div><div class="bc-big">5 / 5</div>' +
       '<div class="bc-sub">Free guest uses used</div>' +
-      '<p class="bc-p">Sign up free to get <strong>10 uses per month</strong> for every free tool. Takes 30 seconds.</p>' +
+      '<p class="bc-p">Sign up free to get <strong>5 uses per day</strong> for every free tool. Takes 30 seconds.</p>' +
       '<button class="btn btn-ink btn-full" onclick="openAuth(\'signup\')" style="max-width:270px;margin:0 auto">Create free account</button>' +
       '<p style="font-size:12px;color:var(--i4);margin-top:.6rem;text-align:center">Have an account? <span style="color:var(--blue);cursor:pointer" onclick="openAuth(\'login\')">Log in</span></p></div>';
-  } else if (why === 'month') {
-    html += '<div class="block-card"><div class="bc-icon">&#128197;</div><div class="bc-big">10 / 10</div>' +
-      '<div class="bc-sub">Monthly limit reached</div>' +
-      '<p class="bc-p">You\'ve used all 10 free uses for <strong>' + t.name + '</strong> this month. Upgrade for unlimited.</p>' +
-      '<button class="btn btn-blue btn-full" onclick="doUpgrade()" style="max-width:270px;margin:0 auto">Upgrade to Pro &#8594;</button>' +
-      '<p style="font-size:12px;color:var(--i4);margin-top:.5rem;text-align:center">Resets on the 1st of each month.</p></div>';
+  } else if (why === 'day-limit') {
+    html += '<div class="block-card"><div class="bc-icon">&#128197;</div><div class="bc-big">5 / 5</div>' +
+      '<div class="bc-sub">Daily limit reached</div>' +
+      '<p class="bc-p">You\'ve used all 5 daily uses for <strong>' + t.name + '</strong> today. Resets at midnight, or upgrade for unlimited.</p>' +
+      '<button class="btn btn-blue btn-full" onclick="showUpgradeModal()" style="max-width:270px;margin:0 auto">Upgrade to Pro &#8594;</button>' +
+      '<p style="font-size:12px;color:var(--i4);margin-top:.5rem;text-align:center">Resets daily at midnight.</p></div>';
+  } else if (why === 'preview-limit') {
+    html += '<div class="block-card"><div class="bc-icon">&#128197;</div><div class="bc-big">1 / 1</div>' +
+      '<div class="bc-sub">Daily preview use reached</div>' +
+      '<p class="bc-p">You\'ve used your 1 free daily preview for <strong>' + t.name + '</strong>. Upgrade to Pro for unlimited access.</p>' +
+      '<button class="btn btn-blue btn-full" onclick="showUpgradeModal()" style="max-width:270px;margin:0 auto">Upgrade to Pro &#8594;</button>' +
+      '<p style="font-size:12px;color:var(--i4);margin-top:.5rem;text-align:center">Resets daily at midnight.</p></div>';
   } else {
     html += '<div class="block-card"><div class="bc-icon">&#128274;</div><div class="bc-big">Pro Feature</div>' +
       '<div class="bc-sub">Upgrade for unlimited access</div>' +
@@ -1500,7 +1506,7 @@ function renderSettingsPage() {
     '<div class="ps">' + (cu.plan === 'pro' ? 'Unlimited access to all 12 tools' : '5 uses/day free tools &bull; 1/day preview tools') + '</div></div>' +
     (cu.plan !== 'pro' ?
       '<button class="btn btn-blue" style="width:100%;margin-bottom:.5rem" onclick="showUpgradeModal()">Upgrade to Pro &#8594;</button>' +
-      '<button class="btn btn-out" style="width:100%;font-size:12px" onclick="checkPlanFromServer(cu.email);showToast('Checking your plan...','')">Already paid? Refresh my plan</button>' :
+      '<button class="btn btn-out" style="width:100%;font-size:12px" onclick="checkPlanFromServer(cu.email);showToast(\'Checking your plan...\',\'\')">Already paid? Refresh my plan</button>' :
       '<div style="font-size:13px;color:var(--green);font-weight:600;margin-bottom:.5rem">&#10003; Pro active &mdash; unlimited access</div>' +
       '<button class="btn btn-out" style="width:100%;font-size:12px" onclick="checkPlanFromServer(cu.email)">Refresh plan status</button>') + '</div>' +
     '<div class="sc"><h3>Account</h3><p class="sd">Manage account.</p>' +
