@@ -251,6 +251,34 @@ input,select,textarea,button{font-family:inherit}
 .tg-pink{background:var(--pkl);color:var(--pink)}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
 @media(max-width:720px){.lsb{display:none}.shell{display:block}.home-stats{grid-template-columns:1fr 1fr}.tl{grid-template-columns:1fr}.hf-inner{grid-template-columns:1fr 1fr}}
+/* IA CO-PILOT */
+.cp-stages{display:flex;gap:0;margin-bottom:1.25rem;background:var(--s2);border:1px solid var(--bd);border-radius:10px;overflow:hidden}
+.cp-stage{flex:1;padding:.55rem .4rem;text-align:center;font-size:11px;font-weight:600;color:var(--i4);cursor:pointer;transition:all .15s;line-height:1.3}
+.cp-stage.done{color:var(--green);background:var(--gl)}
+.cp-stage.active{background:var(--ink);color:#fff;font-weight:700}
+.cp-stage-num{display:block;font-size:16px;font-weight:700;margin-bottom:1px}
+.cp-output{background:var(--bdim);border:1px solid rgba(37,99,235,.15);border-radius:10px;padding:1rem;margin-bottom:.9rem}
+.cp-output-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--blue);margin-bottom:.5rem}
+.rq-option{display:flex;align-items:flex-start;gap:9px;padding:.7rem .9rem;border:1px solid var(--bd);border-radius:8px;margin-bottom:.45rem;cursor:pointer;transition:all .15s}
+.rq-option:hover{border-color:var(--blue);background:var(--bdim)}
+.rq-option.selected{border-color:var(--blue);background:var(--bdim)}
+.rq-radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--bd2);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center}
+.rq-option.selected .rq-radio{border-color:var(--blue);background:var(--blue)}
+.rq-option.selected .rq-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.rq-text{font-size:13px;color:var(--ink);line-height:1.6}
+/* NIGHT BEFORE */
+.nb-section{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:1rem;margin-bottom:.65rem}
+.nb-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.nb-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--ink);margin-bottom:.4rem;line-height:1.6}
+.nb-n{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px}
+/* GRADE BOUNDARY */
+.gb-meter{margin:.6rem 0}
+.gb-bands{display:flex;height:14px;border-radius:7px;overflow:hidden;margin-bottom:.4rem}
+.gb-band{display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
+.gb-band-7{background:#059669}.gb-band-6{background:#2563EB}.gb-band-5{background:#D97706}.gb-band-4{background:#DC2626}.gb-band-3{background:#9CA3AF}
+.gb-marker{position:relative;height:8px}
+.gb-needle{position:absolute;width:2px;background:var(--ink);height:16px;top:-4px;border-radius:1px}
+.gb-needle::after{content:'▼';position:absolute;top:-10px;left:-5px;font-size:10px;color:var(--ink)}
 /* IB PAPER OUTPUT */
 .ib-paper{background:#fff;border:1px solid var(--bd);border-radius:12px;overflow:hidden;font-family:'Times New Roman',Times,serif}
 .paper-hd{background:#1A1A14;color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
@@ -423,15 +451,15 @@ input,select,textarea,button{font-family:inherit}
             </tr>
           </thead>
           <tbody>
-            <tr><td>Covers all IB subjects</td><td><span class="vs-y">&#10003;</span> Yes</td><td><span class="vs-n">Maths only</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — all 19</td></tr>
-            <tr><td>Writes your IA / EE for review</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — AI reviewer</td></tr>
-            <tr><td>Marks your exam answers</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — like an examiner</td></tr>
-            <tr><td>TOK / CAS / EE support</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — all three</td></tr>
-            <tr><td>Personalised to your 6 subjects</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — IB Profile</td></tr>
-            <tr><td>Generates exam questions</td><td><span class="vs-p">Static bank</span></td><td><span class="vs-p">Static bank</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Unlimited, dynamic</td></tr>
-            <tr><td>Syllabus tracker</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — per topic</td></tr>
-            <tr><td>Free tier (genuinely useful)</td><td><span class="vs-n">Very limited</span></td><td><span class="vs-n">Very limited</span></td><td class="ibg"><span class="vs-y">&#10003;</span> 5 uses/day free</td></tr>
-            <tr><td>Price</td><td>£29.99/year</td><td>$35/year</td><td class="ibg"><span class="vs-p">&#8377;2,000/mo or &#8377;15k/year</span></td></tr>
+            <tr><td>Covers all IB subjects</td><td><span class="vs-y">&#10003;</span> Yes — all subjects</td><td><span class="vs-p">Math, Sciences &amp; some Humanities</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — all 19 subjects</td></tr>
+            <tr><td>Human-authored study notes</td><td><span class="vs-y">&#10003;</span> Extensive, high quality</td><td><span class="vs-y">&#10003;</span> Key concepts only</td><td class="ibg"><span class="vs-y">&#10003;</span> AI-generated, examiner-aligned</td></tr>
+            <tr><td>Past paper question bank</td><td><span class="vs-y">&#10003;</span> Large static bank</td><td><span class="vs-y">&#10003;</span> Large static bank + solutions</td><td class="ibg"><span class="vs-y">&#10003;</span> Unlimited AI-generated, dynamic</td></tr>
+            <tr><td>Writes / reviews your IA or EE</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — IA Co-pilot + EE Reviewer</td></tr>
+            <tr><td>Marks your exam answers</td><td><span class="vs-n">Model answers only</span></td><td><span class="vs-p">Newton AI — maths only</span></td><td class="ibg"><span class="vs-y">&#10003;</span> All subjects, examiner marking</td></tr>
+            <tr><td>TOK / CAS / EE support</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — dedicated tools</td></tr>
+            <tr><td>Personalised to your 6 subjects</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — IB Profile system</td></tr>
+            <tr><td>Night-before exam prep</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — topic + cram sheet</td></tr>
+            <tr><td>Grade boundary translator</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — exact steps to move up</td></tr>
           </tbody>
         </table>
       </div>
@@ -594,7 +622,7 @@ var TOOLS = [
   {key:'countdown',icon:'&#9200;',   name:'Exam Countdown',  tier:'free',    tag:'FREE',    tc:'lt-free', hc:'tg-green',  desc:'Track days remaining to every IB exam.'},
   // Starter preview tools (1 use/day with free account)
   {key:'solver',   icon:'&#129518;', name:'Question Solver', tier:'preview', tag:'1/DAY',   tc:'lt-new',  hc:'tg-pink',   desc:'Solve any IB question from text or screenshot.'},
-  {key:'ia',       icon:'&#128203;', name:'IA Reviewer',     tier:'preview', tag:'1/DAY',   tc:'lt-new',  hc:'tg-blue',   desc:'Detailed IB-criteria IA feedback and predicted grade.'},
+  {key:'ia',       icon:'&#128203;', name:'IA Co-pilot',     tier:'preview', tag:'1/DAY',   tc:'lt-new',  hc:'tg-blue',   desc:'Full IA journey — from rough idea to finished draft. Refine your RQ, plan methodology, review each section, and get examiner-level feedback.'},
   // Pro only tools
   {key:'papers',   icon:'&#128221;', name:'Past Paper Sim',  tier:'pro',     tag:'PRO',     tc:'lt-pro',  hc:'tg-blue',   desc:'Unlimited original IB-style exam questions with mark schemes.'},
 
@@ -606,7 +634,9 @@ var TOOLS = [
   {key:'plagiarism',icon:'&#128737;',name:'Plagiarism',      tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-amber', desc:'Identify plagiarism risks before submission.'},
   {key:'marker',   icon:'&#9999;',   name:'Mark My Answer',  tier:'preview',tag:'1/DAY',tc:'lt-new', hc:'tg-pink',  desc:'Type your exam answer — AI marks it like an IB examiner with a real score.'},
   {key:'tracker',  icon:'&#128202;', name:'Syllabus Tracker',tier:'free',  tag:'FREE', tc:'lt-free', hc:'tg-green', desc:'Tick off syllabus topics as you revise. Progress bar per subject.'},
-  {key:'profile',  icon:'&#128100;', name:'My IB Profile',   tier:'free',  tag:'FREE', tc:'lt-free', hc:'tg-blue',  desc:'Set your 6 subjects and exam session. All tools personalise to you.'}
+  {key:'profile',  icon:'&#128100;', name:'My IB Profile',   tier:'free',  tag:'FREE', tc:'lt-free', hc:'tg-blue',  desc:'Set your 6 subjects and exam session. All tools personalise to you.'},
+  {key:'night-before',icon:'&#127769;',name:'Night Before',  tier:'preview',tag:'1/DAY',tc:'lt-new', hc:'tg-red',   desc:'Exam tomorrow? Get the 5 hottest topics, command terms, and a 10-minute cram sheet — specific to your paper.'},
+  {key:'grade-boundary',icon:'&#127919;',name:'Grade Booster',tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-blue',  desc:'Enter your current grade — get the exact steps to move up one boundary, specific to your subject and criteria.'}
 ];
 
 var SUBJECTS = ['Biology HL','Biology SL','Chemistry HL','Chemistry SL','Physics HL','Physics SL',
@@ -999,6 +1029,133 @@ function formatPaperContext(meta, paperId) {
   return ctx;
 }
 
+// ===== GRADE BOUNDARIES (approximate % of external marks, varies ±5% by session) =====
+var GRADE_BOUNDARIES = {
+  'Biology HL':    {g7:74,g6:63,g5:52,g4:41,g3:30, note:'New 2025 syllabus: P1=75mk, P2=80mk. IA=24mk (20% separate).',
+    descriptors:{7:'Comprehensive understanding. Interprets novel data confidently. Evaluation is specific and evidence-based.',6:'Sound understanding with minor gaps. Analysis competent but may miss subtle trends or implications.',5:'Adequate knowledge but application is inconsistent. Tends to describe without mechanistic explanation.',4:'Partial knowledge. Answers are generic, descriptive rather than analytical.'},
+    movingUp:{'4to5':'Every "explain" needs a mechanism. Not just WHAT happens — WHY it happens at a molecular/cellular level.','5to6':'Your data analysis is the gap. Go beyond trend description: identify anomalies, suggest causes, state limitations.','6to7':'Evaluation depth. Use this template: "The data supports X to a LIMITED extent because... However, this is complicated by Y...".'}},
+  'Biology SL':    {g7:72,g6:61,g5:50,g4:39,g3:28, note:'P1=55mk, P2=50mk.',
+    descriptors:{7:'Shows consistent understanding of biological concepts with clear, mechanistic answers.',6:'Good understanding with some gaps in HL-depth explanation.',5:'Adequate knowledge; often descriptive rather than explanatory.',4:'Partial knowledge; significant gaps in application.'},
+    movingUp:{'4to5':'Add the word "because" to every factual statement — force yourself to explain the mechanism.','5to6':'Practise data analysis questions: identify the trend, explain the biological reason, state a limitation.','6to7':'Evaluative language: "To what extent...", "This is limited by...", "An alternative explanation is...".'}},
+  'Chemistry HL':  {g7:76,g6:65,g5:54,g4:43,g3:32, note:'P1=75mk, P2=90mk.',
+    descriptors:{7:'Applies concepts confidently to novel situations. Calculations are accurate. Mechanisms are complete and correctly drawn.',6:'Sound conceptual understanding. Occasional errors in complex calculations or incomplete mechanisms.',5:'Understands core concepts but makes errors under application. Mechanisms often missing steps.',4:'Knows definitions but cannot reliably apply them. Calculation errors are frequent.'},
+    movingUp:{'4to5':'Practise every calculation type to automaticity — moles, pH, Kc, rate. Errors here cost you the most marks.','5to6':'Write out mechanisms in full every time. Arrows from lone pair to bond; curly arrows are a 1-mark trap.','6to7':'Evaluate experiments: sources of error → effect on results → how to improve. This is where Grade 7 students separate from Grade 6.'}},
+  'Chemistry SL':  {g7:74,g6:63,g5:52,g4:41,g3:30, note:'P1=55mk, P2=50mk.',
+    descriptors:{7:'Reliable application of concepts across all core topics.',6:'Good understanding with occasional application errors.',5:'Understands principles but inconsistent in calculations.',4:'Limited application beyond definitions.'},
+    movingUp:{'4to5':'Mole calculations and pH calculations — drill these until they are automatic.','5to6':'Every answer to an "explain" question needs: the concept, the mechanism, and a specific consequence.','6to7':'Evaluate: discuss both strengths AND limitations for any experimental question.'}},
+  'Physics HL':    {g7:70,g6:59,g5:47,g4:37,g3:27, note:'P1=60mk (1A+1B), P2=90mk. Physics boundaries are typically the lowest of the sciences.',
+    descriptors:{7:'Derives equations confidently. Handles multi-step problems without scaffolding. Evaluates experiments critically.',6:'Applies equations correctly but may struggle with derivations or multi-step unfamiliar problems.',5:'Can use equations but misapplies them to unfamiliar contexts. Significant marks lost on P2 extended responses.',4:'Knows equations but cannot identify which to apply. Limited ability to explain physics concepts in words.'},
+    movingUp:{'4to5':'For every equation, know: what each symbol means, what the units are, and when to apply it. Do not memorise without understanding.','5to6':'Sketch graphs and diagrams for EVERY question that allows it — examiners award marks for correct diagrams even when the written explanation is wrong.','6to7':'Extended response questions: structure every answer as (1) State the principle, (2) Apply it to this context, (3) Evaluate or compare. Never miss step 3.'}},
+  'Physics SL':    {g7:68,g6:57,g5:45,g4:35,g3:25, note:'P1=45mk, P2=50mk.',
+    descriptors:{7:'Consistent application of physics principles across all core topics.',6:'Good understanding with occasional errors in multi-step problems.',5:'Can apply equations in familiar contexts but struggles with novel applications.',4:'Limited to recall of definitions and direct substitution.'},
+    movingUp:{'4to5':'Units! Marks are systematically lost for missing or wrong units. Include them on every line.','5to6':'Show every step of your working — method marks are awarded even when the final answer is wrong.','6to7':'For "explain" questions, always link the physics principle to the specific scenario in the question.'}},
+  'Mathematics AA HL': {g7:80,g6:68,g5:55,g4:42,g3:30, note:'P1=110mk (no calc), P2=110mk (calc), P3=55mk (calc). Highest boundaries of any IB subject.',
+    descriptors:{7:'Demonstrates rigorous mathematical reasoning. Proofs are complete and precisely written. Paper 3 problems are approached systematically with clear structure.',6:'Strong technique but occasional algebraic errors or incomplete reasoning in proofs.',5:'Good technique in familiar question types; struggles with novel problem types or Paper 3.',4:'Can follow standard procedures but limited in adapting technique to unfamiliar contexts.'},
+    movingUp:{'4to5':'For every topic: know the standard method AND a worked example by heart. The exam tests whether you can spot which method applies.','5to6':'Show every step of algebra. Marks are awarded for working even when the answer is wrong. Never skip steps.','6to7':'Paper 3 is what separates 6 from 7. Practice 3-4 full Paper 3 past papers — the style is learnable.'}},
+  'Mathematics AA SL': {g7:78,g6:66,g5:53,g4:40,g3:28, note:'P1=80mk (no calc), P2=80mk (calc).',
+    descriptors:{7:'Confident algebraic manipulation and application of calculus in context.',6:'Good technique; occasional errors in complex integrations or optimization.',5:'Understands methods but makes procedural errors under exam conditions.',4:'Can follow procedures but struggles to choose the correct method independently.'},
+    movingUp:{'4to5':'Paper 1 no-calculator: practise exact value calculations (sin 30°, log₂8) until automatic.','5to6':'Show all working. In optimization problems, always verify it is a maximum/minimum with a second-derivative test.','6to7':'Integrate by substitution and by parts until both are completely reliable — these are high-mark P1 questions every year.'}},
+  'Mathematics AI HL': {g7:78,g6:65,g5:52,g4:39,g3:27, note:'P1=110mk, P2=110mk, P3=55mk. GDC allowed on all papers.',
+    descriptors:{7:'Applies technology effectively. Statistical tests are chosen correctly and interpreted in context.','6':'Good statistical understanding; occasional errors in interpreting results or stating hypotheses.','5':'Can perform tests but results are stated without context interpretation.','4':'Limited to descriptive statistics; inferential statistics inconsistently applied.'},
+    movingUp:{'4to5':'For every statistical test: know the null hypothesis, what a low p-value means, and how to state the conclusion.','5to6':'Context is everything in AI. Every numerical answer needs a sentence interpreting it in the scenario given.','6to7':'Paper 3 problems use unfamiliar models. Practise identifying which technique applies from limited information — this is a learnable skill.'}},
+  'Mathematics AI SL': {g7:75,g6:62,g5:50,g4:37,g3:25, note:'P1=80mk, P2=80mk.',
+    descriptors:{7:'Confident statistical reasoning and modelling in context.',6:'Good technique with minor interpretation gaps.',5:'Understands procedures but loses marks on contextual interpretation.',4:'Handles routine calculations but limited in novel application.'},
+    movingUp:{'4to5':'Financial maths and statistics — these are guaranteed marks if you know the methods.','5to6':'Always interpret answers in context: not just "r = 0.87" but "there is a strong positive correlation between X and Y meaning...".','6to7':'Regression and prediction: know the limitations of extrapolation and always comment on them.'}},
+  'Economics HL':  {g7:76,g6:64,g5:52,g4:40,g3:29, note:'P1=50mk, P2=40mk, P3=50mk.',
+    descriptors:{7:'Essays include well-drawn diagrams with all labels, real-world examples with specific country/data, and genuine evaluation of both sides with a justified conclusion.',6:'Good analysis with diagrams but evaluation may be one-sided or lack specific evidence.',5:'Theory is present and diagrams are attempted but may have errors; evaluation is general.','4':'Definitions and basic theory present but diagrams are missing or incorrect; no real-world examples.'},
+    movingUp:{'4to5':'Draw diagrams for EVERY question — even if not explicitly asked. An annotated supply/demand or AS-AD diagram earns 3-4 marks alone.','5to6':'Real-world examples must be SPECIFIC: not "a country experienced inflation" but "Turkey in 2022 experienced 85% inflation due to...".','6to7':'Evaluation means genuine balance: "On one hand... On the other hand... On balance, I argue that X because Y." Never conclude without justifying.'}},
+  'Economics SL':  {g7:75,g6:63,g5:51,g4:39,g3:28, note:'P1=50mk, P2=40mk.',
+    descriptors:{7:'Accurate diagrams, specific examples, balanced evaluation.',6:'Good theory with minor diagram errors or one-sided evaluation.',5:'Theory present but limited application and evaluation.',4:'Definitions only; no real application.'},
+    movingUp:{'4to5':'Label diagrams FULLY: axes, curves, equilibrium point, shifts.','5to6':'Use specific data or country examples — they are worth 2-3 additional marks.','6to7':'Always evaluate: discuss why a policy might not work as well as why it would.'}},
+  'History HL':    {g7:75,g6:63,g5:51,g4:39,g3:28, note:'P1=30mk, P2=30mk, P3=45mk.',
+    descriptors:{7:'Essays have a clear thesis, specific historical evidence (dates, statistics, names), historiographical references, and a conclusion that directly addresses the question.',6:'Good argument and evidence but historiography may be absent or superficial.',5:'Argument is present but evidence is general; tends to narrate rather than analyse.',4:'Descriptive; tells the story rather than answering the analytical question.'},
+    movingUp:{'4to5':'Every paragraph: start with a topic sentence that directly answers the question. Never describe events without linking them to your thesis.','5to6':'Add a named historian for every major argument: "As Roberts argues...", "A revisionist interpretation (Taylor) suggests...".','6to7':'Integrate counter-arguments: "Despite the strength of argument X, a more convincing case is Y because..."'}},
+  'Psychology HL': {g7:75,g6:63,g5:51,g4:39,g3:28, note:'P1=46mk, P2=22mk, P3=30mk.',
+    descriptors:{7:'SAQs correctly describe the study, apply it precisely to the question. ERQs evaluate multiple studies from different angles — methodology, cultural considerations, ethical implications.',6:'SAQs accurate but application may be general. ERQs evaluate but from limited perspectives.',5:'SAQs describe studies but application to question is weak. ERQs summarise rather than evaluate.',4:'Studies are described but not applied. Limited evaluation.'},
+    movingUp:{'4to5':'For every SAQ: follow this formula exactly: (1) name the study + aim, (2) method + participants, (3) findings, (4) link to the question in 2 sentences.','5to6':'Evaluation in ERQs means: (a) methodology critique, (b) cultural/gender considerations, (c) ethical implications, (d) alternative explanation.','6to7':'Use the "however" test: every claim should have a counter-claim. If you wrote 3 paragraphs supporting X, you need at least 1 paragraph challenging X.'}}
+};
+
+// ===== NIGHT BEFORE DATA (exam-focused intelligence per subject) =====
+var NIGHT_BEFORE_DATA = {
+  'Biology HL': {
+    hotTopics:['Enzymes: inhibition (competitive vs non-competitive) — appeared in 7+ of last 10 P2 papers','Photosynthesis: light reactions + Calvin cycle + limiting factors','Respiration HL: glycolysis → link reaction → Krebs → oxidative phosphorylation','DNA: replication, transcription, translation — always on both papers','Cell membrane: fluid mosaic, transport mechanisms'],
+    commandTerms:['Explain [3-4mk] — requires mechanism (because/therefore language)','Evaluate [6-8mk] — requires both strengths AND limitations with evidence','Analyse [4-6mk] — break down the data, identify trends AND anomalies'],
+    confusedConcepts:['Competitive inhibition raises Km (not Vmax); non-competitive lowers Vmax (not Km) — examiners specifically test this distinction','Oxidation = loss of electrons/hydrogen; Reduction = gain. Students reverse these in respiration questions'],
+    examTips:['P2 Section A: first question is ALWAYS a novel data-based scenario — never seen before, but tests known biology. Practice reading graphs cold.','P2 Section B: you choose 2 of 3 questions — preview all 3 before you start, pick your two strongest.','Data questions: always state units, refer to specific data points from the table (quote the values).']
+  },
+  'Biology SL': {
+    hotTopics:['Enzymes: structure, action, denaturation, factors affecting rate','DNA: replication and protein synthesis','Cell biology: organelle functions, membrane transport','Ecology: food webs, nutrient cycles, energy flow','Genetics: monohybrid crosses, sex-linkage'],
+    commandTerms:['State [1mk] — one word or value, no explanation','Describe [2-3mk] — what happens step by step','Explain [3-4mk] — the mechanism, the WHY'],
+    confusedConcepts:['Mitosis vs meiosis: students mix up the purpose (growth vs gametes) and number of divisions','Active transport vs facilitated diffusion: both use proteins, but only active requires ATP'],
+    examTips:['P1 Section A MCQs: eliminate obviously wrong options first. Read EVERY answer option before choosing.','Diagrams are always worth 1-2 free marks — label every structure the question mentions.']
+  },
+  'Chemistry HL': {
+    hotTopics:['Acids & bases: pH, pKa, buffer calculations — HL depth including Henderson-Hasselbalch','Equilibrium: Kc expressions, Le Chatelier\'s, solubility product Ksp','Kinetics HL: rate laws, Arrhenius equation, activation energy from graph','Organic: mechanisms (SN1/SN2/E2), IR + mass spec interpretation','Redox: cell potential calculations, electrolysis'],
+    commandTerms:['Deduce [2mk] — show your working + conclusion','Explain [3-4mk] — mechanism required, not just the outcome','Evaluate [6mk] — strengths, limitations, improvement'],
+    confusedConcepts:['SN1 vs SN2: primary = SN2 (backside attack); tertiary = SN1 (carbocation). Students often confuse the substrate requirements.','Le Chatelier\'s when pressure increases: only gases are affected — solids and liquids do NOT shift the equilibrium'],
+    examTips:['Calculation questions: show EVERY step and include units on every line. Method marks are awarded even when the answer is wrong.','Organic mechanisms: draw curly arrows starting from a lone pair or bond, pointing to where the electron density moves to.','IR spectra: learn the key wavenumbers — OH broad 2500-3300, C=O sharp 1700, N-H 3100-3500.']
+  },
+  'Chemistry SL': {
+    hotTopics:['Stoichiometry: mole calculations, empirical formula, percentage yield','Bonding: ionic/covalent/metallic, VSEPR molecular shapes','Energetics: enthalpy, Hess\'s law, bond enthalpy calculations','Acids & bases: strong/weak, pH calculations, neutralisation','Organic: homologous series, functional groups, basic reactions'],
+    commandTerms:['State [1mk]','Calculate [2-3mk] — show working','Explain [3-4mk] — mechanism required'],
+    confusedConcepts:['Endothermic vs exothermic: check the sign of ΔH, not the temperature change. Students often reverse these.','Polar bonds in a non-polar molecule: CO₂ has polar bonds but is non-polar overall due to symmetry.'],
+    examTips:['Calculation errors: check units, significant figures, and whether the answer is chemically reasonable.','Titration questions always appear — know the standard procedure, indicators, and endpoint detection.']
+  },
+  'Physics HL': {
+    hotTopics:['Fields HL: gravitational + electric + magnetic field equations, field lines, potential','Electromagnetic induction: Faraday\'s law, Lenz\'s law, induced EMF calculations','Waves HL: diffraction, double-slit interference, thin film, standing waves','Nuclear physics: decay series, half-life, binding energy','Circuits: internal resistance, Kirchhoff\'s laws, potential divider'],
+    commandTerms:['State [1mk] — formula or one-line definition','Sketch [2mk] — labelled diagram with correct shape, axes, and at least 3 key features','Derive [4mk] — start from first principles, show every step'],
+    confusedConcepts:['Gravitational PE is always negative (bound system); students forget the negative sign in derivations.','Lenz\'s law direction: the induced current OPPOSES the change — not the flux, the CHANGE in flux.'],
+    examTips:['Sketch graphs: always label axes, mark origin, show correct shape and asymptotes. Graphs earn 2 marks each.','EM induction questions: identify (1) what is changing, (2) which rule applies, (3) use the right hand rule for direction.','Paper 2 extended: mark schemes often have an "allow equivalent correct statements" — write clearly and specifically.']
+  },
+  'Physics SL': {
+    hotTopics:['Kinematics: equations of motion, projectile motion','Forces: Newton\'s laws, free body diagrams, circular motion','Energy: conservation, efficiency, power calculations','Waves: properties, the Doppler effect, electromagnetic spectrum','Electricity: Ohm\'s law, series/parallel circuits, power'],
+    commandTerms:['State [1mk]','Calculate [2-3mk] — show working + units','Explain [3mk] — link cause to effect'],
+    confusedConcepts:['Work done by friction is negative; work done by applied force is positive. Net work = change in KE.','In a parallel circuit, voltage is the same across all branches; in series, current is the same throughout.'],
+    examTips:['Show ALL working, even for "obvious" steps — method marks are available.','Draw free body diagrams for EVERY mechanics question before calculating.']
+  },
+  'Mathematics AA HL': {
+    hotTopics:['Differentiation: implicit, parametric, related rates, L\'Hôpital\'s rule','Integration: by parts, by substitution, volumes of revolution','Complex numbers: de Moivre\'s theorem, nth roots, polar form','Maclaurin series: standard series + manipulation','Statistics: hypothesis testing — t-test, chi-squared, Type I/II errors'],
+    commandTerms:['Show that [3mk] — prove starting from LHS or given conditions, never assume what you want to prove','Hence [3mk] — you MUST use the result of the previous part; doing it from scratch gets zero','Find [2-3mk] — show full working'],
+    confusedConcepts:['For "show that": start from given information and derive the required result. Starting from the result and working backwards gets zero.','Complex number roots: de Moivre gives n roots equally spaced at 2π/n apart — students often find only 2 of 3 roots.'],
+    examTips:['Paper 3: the two questions lead you through unfamiliar territory step by step. Trust the structure — each part hints at the next.','No-calculator P1: practise exact values, log laws, and trig identities without a calculator every day this week.','Label all graphs with axis labels, key points (intercepts, asymptotes), and behaviour at infinity.']
+  },
+  'Mathematics AA SL': {
+    hotTopics:['Calculus: differentiation rules, integration, area under curve, optimization','Functions: transformations, inverses, composite functions, domain/range','Trigonometry: identities, solving equations, applications','Statistics: normal distribution, confidence intervals, hypothesis test (t-test)','Sequences & series: GP sum formula, sigma notation'],
+    commandTerms:['Find [2mk]','Show that [2mk]','Hence find [2mk] — use previous result'],
+    confusedConcepts:['Optimization: always verify maximum/minimum with the second derivative test. Just finding f\'(x)=0 is not enough.','Area between curves: it is the INTEGRAL of (top curve − bottom curve), not the difference of the individual integrals.'],
+    examTips:['P1 no-calculator: write all working in exact form (√3, ln2) unless told to evaluate numerically.','Definite integrals: check whether the function dips below the x-axis — you may need to split the integral.']
+  },
+  'Economics HL': {
+    hotTopics:['Diagrams: supply/demand with externalities, AS-AD model, Phillips curve — draw them perfectly','P3 HL: price elasticity calculations (PED = % ΔQd / % ΔP), Lorenz curve Gini coefficient','Macroeconomic policy: fiscal vs monetary trade-offs','International trade: comparative advantage, terms of trade, protectionism arguments'],
+    commandTerms:['Define [2mk] — precise technical definition, not a description','Explain/Analyse [6-8mk] — diagram + mechanism + real example','Evaluate/Discuss [10mk] — both sides, real evidence, justified conclusion'],
+    confusedConcepts:['PED: a value of -0.4 means INELASTIC (|PED| < 1), not elastic. Students confuse the sign with the magnitude.','Fiscal policy: changing GOVERNMENT SPENDING and TAXES. Monetary policy: changing INTEREST RATES. Students mix these up.'],
+    examTips:['Every essay answer: draw your diagram FIRST, then write your explanation referring to it.','P3 HL: quantitative questions come up every session — know PED, income multiplier, and Gini calculations by heart.','Use real countries and recent data: "The US Federal Reserve raised interest rates to 5.25% in 2023 to combat 9% inflation."']
+  },
+  'History HL': {
+    hotTopics:['P1 source analysis: OPCVL framework — Origin, Purpose, Content, Value, Limitation','P2 essay: authoritarian states, causes of wars, Cold War, rights & protest','P3 HL: your regional option — know 3-4 major events with specific dates and historians','Historiography: have 2-3 named historians ready for each major argument'],
+    commandTerms:['Examine [6mk] — analyse from multiple perspectives','Evaluate [8mk] — assess the relative importance or validity, with a justified conclusion','Discuss [8mk] — consider multiple viewpoints with evidence for each'],
+    confusedConcepts:['OPCVL: "Value" means useful to the historian studying this topic; "Limitation" means what it cannot tell us. Students describe the content instead.','Analytical vs narrative: an analytical essay answers "why/how/to what extent" at every stage. A narrative essay tells the story. Narrative essays score Grade 3-4.'],
+    examTips:['P1: spend 5 minutes reading all sources before writing a single word.','P2: write your thesis in the FIRST sentence of the introduction, not the last. Examiners assess thesis quality immediately.','P3 HL: three essays in 2h30m = 50 minutes each. Do not spend more than 52 minutes on any one essay.']
+  },
+  'Psychology HL': {
+    hotTopics:['Biological approach: neuroplasticity, neurotransmitters, genetics — Maguire (2000), Caspi (2003)','Cognitive approach: schema theory, reconstructive memory — Bartlett, Loftus & Palmer','Sociocultural approach: social identity theory, conformity — Tajfel & Turner, Asch','P3 HL qualitative: purposive sampling, triangulation, credibility, reflexivity'],
+    commandTerms:['Describe [4mk] — study + findings + link to question','Discuss [8mk] — evaluate from multiple angles: methodology, ethics, culture, replication','Evaluate [8mk] — assess strengths AND limitations with reference to specific studies'],
+    confusedConcepts:['SAQ vs ERQ: SAQs describe and apply ONE study. ERQs evaluate MULTIPLE studies from different perspectives. Students write SAQ-style answers for ERQs.','P3 qualitative: "credibility" is not the same as "validity" — credibility = whether the findings reflect the participants\' reality.'],
+    examTips:['SAQ formula: (1) Study name + researcher + year, (2) Aim, (3) Participants + method, (4) Results, (5) Link to the question. 8 lines = 4 marks.','ERQ: minimum 3 studies, from at least 2 different approaches where possible. Evaluate after presenting each study.']
+  }
+};
+
+// IA CO-PILOT STATE
+var IA_CP = {
+  stage: 1,
+  subject: '',
+  idea: '',
+  rqs: [],
+  selectedRQ: '',
+  methodology: '',
+  currentSection: 'Introduction'
+};
+
 // Tier limits
 var GUEST_LIMIT = 3;        // uses before forced to sign up (tracked by browser)
 var FREE_LIMIT = 10;        // legacy - kept for compatibility
@@ -1100,6 +1257,82 @@ function incDayUsed(k) {
   var userKey = cu.email + '_' + k;
   u[userKey] = (u[userKey] || 0) + 1;
   dbSet('ibg_day_' + today, u);
+}
+
+// ===== DYNAMIC PAPER FORM =====
+function updatePaperForm() {
+  var subj = fv('pp-subj');
+  var wrapper = document.getElementById('pp-dynamic');
+  if (wrapper) wrapper.innerHTML = buildDynamicPaperForm(subj);
+}
+
+function buildDynamicPaperForm(subj) {
+  var meta = subj ? getSubjMeta(subj) : null;
+  var papers = meta && meta.papers ? meta.papers : [
+    {id:'P1',name:'Paper 1',time:'',marks:60,calc:true,sections:[{name:'All',type:'Short answer',marks:40}]},
+    {id:'P2',name:'Paper 2',time:'',marks:80,calc:true,sections:[{name:'All',type:'Extended response',marks:80}]}
+  ];
+  var isMath = subj && /Mathematics/.test(subj);
+  var isSci  = subj && /Biology|Chemistry|Physics/.test(subj);
+  var isHum  = subj && /Economics|History|Psychology|Business|Geography|English/.test(subj);
+  var firstPaper = papers[0];
+
+  var paperOpts = papers.map(function(p) {
+    var calcNote = p.calc === false ? ' [No calc]' : ' [Calc ✓]';
+    var info = (p.time ? ' — ' + p.time : '') + (p.marks ? ', ' + p.marks + ' marks' : '') + calcNote;
+    return '<option value="' + p.id + '">' + p.name + info + '</option>';
+  }).join('');
+
+  var sectionOpts = (firstPaper.sections || []).map(function(s) {
+    return '<option>' + s.name + ': ' + s.type + ' (max ' + s.marks + ' marks)</option>';
+  }).join('');
+
+  var qstyleOpts = isMath
+    ? '<option>Calculation / algebra</option><option>Proof / Show that</option><option>Sketch / graph</option><option>Application / modelling</option><option>Paper 3 extended problem</option>'
+    : isSci
+      ? '<option>Data analysis (table + graph)</option><option>Short answer / structured</option><option>Extended response / evaluate</option><option>Diagram-based</option><option>Experimental design</option>'
+      : isHum
+        ? '<option>Essay (explain/evaluate)</option><option>Data response</option><option>Source analysis (History)</option><option>Diagram + analysis (Economics)</option><option>Short answer</option>'
+        : '<option>Short answer</option><option>Extended response</option><option>Data analysis</option>';
+
+  var maxM = firstPaper.sections && firstPaper.sections[0] ? firstPaper.sections[0].marks : 80;
+  var mVals = maxM >= 15 ? [2,3,4,5,6,8,10,12,15] : maxM >= 8 ? [1,2,3,4,5,6,8] : [1,2,3,4];
+  var marksOpts = mVals.filter(function(v){ return v <= maxM; }).map(function(v){ return '<option>' + v + ' marks</option>'; }).join('');
+
+  var noCalcBanner = firstPaper.calc === false
+    ? '<div style="background:var(--al);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber);font-weight:600;margin-bottom:.7rem">&#9888; No calculator — question will use exact values</div>' : '';
+
+  return '<div class="fl"><label>Paper</label><select id="pp-type" onchange="updatePaperSection()">' + paperOpts + '</select></div>' +
+    (sectionOpts ? '<div class="fl"><label>Section</label><select id="pp-section">' + sectionOpts + '</select></div>' : '') +
+    '<div class="fl"><label>Question style</label><select id="pp-qstyle">' + qstyleOpts + '</select></div>' +
+    '<div class="fl"><label>Topic / concept</label><input type="text" id="pp-topic" placeholder="' +
+      (isMath ? 'e.g. Integration by substitution, Complex numbers...' :
+       isSci  ? 'e.g. Enzyme inhibition, Equilibrium constant...' :
+       isHum  ? 'e.g. Market failure, Causes of WWI...' : 'e.g. Your topic...') + '"/></div>' +
+    '<div id="pp-marks-wrap"><div class="fl"><label>Marks</label><select id="pp-marks">' + marksOpts + '</select></div></div>' +
+    noCalcBanner;
+}
+
+function updatePaperSection() {
+  var subj = fv('pp-subj');
+  var meta = getSubjMeta(subj);
+  if (!meta || !meta.papers) return;
+  var paperVal = fv('pp-type');
+  var paper = null;
+  for (var i = 0; i < meta.papers.length; i++) {
+    if (meta.papers[i].id === paperVal || meta.papers[i].name.indexOf(paperVal) >= 0) { paper = meta.papers[i]; break; }
+  }
+  if (!paper) paper = meta.papers[0];
+  var secEl = document.getElementById('pp-section');
+  if (secEl && paper.sections) {
+    secEl.innerHTML = paper.sections.map(function(s) {
+      return '<option>' + s.name + ': ' + s.type + ' (max ' + s.marks + ' marks)</option>';
+    }).join('');
+  }
+  var maxM = paper.sections && paper.sections[0] ? paper.sections[0].marks : 80;
+  var mVals = maxM >= 15 ? [2,3,4,5,6,8,10,12,15] : [1,2,3,4,5,6,8];
+  var marksEl = document.getElementById('pp-marks');
+  if (marksEl) marksEl.innerHTML = mVals.filter(function(v){ return v <= maxM; }).map(function(v){ return '<option>' + v + ' marks</option>'; }).join('');
 }
 
 // ===== SIDEBAR =====
@@ -1355,11 +1588,10 @@ var FORMS = {
       '<div class="fl"><label>Style</label><select id="n-style"><option>Concise bullet points</option><option>Detailed explanation</option><option>Key definitions only</option><option>Exam tips and common mistakes</option></select></div>';
   },
   papers: function() {
-    return '<div class="fl"><label>Subject</label><select id="pp-subj">' + subOpts() + '</select></div>' +
-      '<div class="fl"><label>Topic / Concept</label><input type="text" id="pp-topic" placeholder="e.g. Enzyme inhibition, Integration by parts..."/></div>' +
-      '<div class="fl"><label>Paper type</label><select id="pp-type"><option>Paper 1 (MCQ / short answer)</option><option>Paper 2 (data analysis / structured)</option><option>Paper 3 (HL extension)</option></select></div>' +
-      '<div class="fl"><label>Question style</label><select id="pp-qstyle"><option>Data analysis (table + graph)</option><option>Short answer</option><option>Extended response</option><option>Calculation / math problem</option><option>Diagram-based</option></select></div>' +
-      '<div class="fl"><label>Marks</label><select id="pp-marks"><option>2 marks</option><option>4 marks</option><option>6 marks</option><option>8 marks</option><option>10 marks</option><option>12 marks</option><option>15 marks</option></select></div>';
+    var subjOpts = subOptsPersonalised();
+    var defaultSubj = (cu && cu.profile && cu.profile.subjects && cu.profile.subjects[0]) ? cu.profile.subjects[0] : null;
+    return '<div class="fl"><label>Subject</label><select id="pp-subj" onchange="updatePaperForm()">' + subjOpts + '</select></div>' +
+      '<div id="pp-dynamic">' + buildDynamicPaperForm(defaultSubj) + '</div>';
   },
   flashcards: function() {
     return '<div class="fl"><label>Subject</label><select id="fc-subj">' + subOpts() + '</select></div>' +
@@ -1388,10 +1620,12 @@ var FORMS = {
   },
 
   ia: function() {
-    return '<div class="fl"><label>Subject</label><select id="ia-subj">' + subOpts() + '</select></div>' +
-      '<div class="fl"><label>IA Title / RQ</label><input type="text" id="ia-title" placeholder="e.g. How does pH affect enzyme activity?"/></div>' +
-      '<div class="fl"><label>Paste your IA</label><textarea id="ia-txt" style="min-height:150px" placeholder="Paste your IA draft here..."></textarea></div>' +
-      '<div class="fl"><label>Focus</label><select id="ia-foc"><option>Full review</option><option>Research question</option><option>Methodology</option><option>Analysis and evaluation</option><option>Conclusion</option></select></div>';
+    var subjOpts = subOptsPersonalised();
+    return '<div class="fl"><label>Mode</label><select id="ia-mode" onchange="updateIAForm()">' +
+      '<option value="copilot">&#128203; Co-pilot — guide me through my IA step by step</option>' +
+      '<option value="review">&#128269; Quick Review — review my full draft now</option>' +
+      '</select></div>' +
+      '<div id="ia-form-body">' + buildIAStage1Form(subjOpts) + '</div>';
   },
   ee: function() {
     return '<div class="fl"><label>Subject group</label><select id="ee-subj"><option>Group 1 - Language and Literature</option><option>Group 2 - Language Acquisition</option><option>Group 3 - Individuals and Societies</option><option>Group 4 - Sciences</option><option>Group 5 - Mathematics</option><option>Group 6 - The Arts</option></select></div>' +
@@ -1416,6 +1650,20 @@ var FORMS = {
       '<div class="fl"><label>Level</label><select id="hum-lvl"><option>IB student (natural voice)</option><option>Academic but accessible</option><option>Formal academic</option></select></div>' +
       '<div class="fl"><label>Preserve meaning?</label><select id="hum-pres"><option>Yes - keep all facts</option><option>Loosely - allow rephrasing</option></select></div>';
   },
+  'night-before': function() {
+    var subjOpts = subOptsPersonalised();
+    return '<div class="fl"><label>Subject</label><select id="nb-subj">' + subjOpts + '</select></div>' +
+      '<div class="fl"><label>Paper</label><select id="nb-paper"><option>Paper 1</option><option>Paper 2</option><option>Paper 1 &amp; 2</option><option>Full exam</option></select></div>' +
+      '<div class="fl"><label>Exam session</label><select id="nb-session"><option>May 2026</option><option>November 2026</option><option>May 2025</option></select></div>' +
+      '<div style="background:var(--rl);border:1px solid rgba(220,38,38,.15);border-radius:8px;padding:.65rem .9rem;font-size:12px;color:var(--red);font-weight:600;margin-bottom:.7rem">&#9889; This tool is for the night before your exam. Fill it in, put your phone down, and focus.</div>';
+  },
+  'grade-boundary': function() {
+    var subjOpts = subOptsPersonalised();
+    return '<div class="fl"><label>Subject</label><select id="gb-subj">' + subjOpts + '</select></div>' +
+      '<div class="fl"><label>Your current predicted grade</label><select id="gb-grade"><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option></select></div>' +
+      '<div class="fl"><label>Your approximate % score (optional)</label><input type="number" id="gb-pct" min="0" max="100" placeholder="e.g. 58"/></div>' +
+      '<div class="fl"><label>Where you lose most marks (optional)</label><textarea id="gb-weak" style="min-height:60px" placeholder="e.g. I lose marks on extended response questions, I keep describing instead of explaining..."></textarea></div>';
+  },
   marker: function() {
     var subjOpts = subOptsPersonalised();
     return '<div class="fl"><label>Subject</label><select id="mk-subj">' + subjOpts + '</select></div>' +
@@ -1435,7 +1683,8 @@ var BTN_LABELS = {
   detector:'Analyse text', citation:'Generate citation', solver:'Solve question',
   ia:'Review my IA', ee:'Review my EE',
   tok:'Generate TOK help', cas:'Write reflection', humaniser:'Humanise text',
-  plagiarism:'Check plagiarism', marker:'Mark my answer'
+  plagiarism:'Check plagiarism', marker:'Mark my answer',
+  'night-before':'Generate my cram pack', 'grade-boundary':'Show me how to move up'
 };
 
 function renderToolUI(key, banner) {
@@ -1665,27 +1914,46 @@ function buildPrompt(key) {
   }
 
   else if (key === 'ia') {
-    p = 'You are a senior IB examiner and IA moderator for ' + fv('ia-subj') + '.\n' +
-      'You have moderated hundreds of Internal Assessments and know exactly what earns full marks.\n\n' +
-      'Subject: ' + fv('ia-subj') + '\n' +
-      'Research Question / Title: ' + fv('ia-title') + '\n' +
-      'Review focus: ' + fv('ia-foc') + '\n\n' +
-      'IA draft:\n' + fv('ia-txt') + '\n\n' +
-      'Provide a FULL examiner-level review using this exact structure:\n\n' +
-      '## Predicted Grade: [X/Y] — Grade [N]\n' +
-      'One honest sentence on overall standard.\n\n' +
-      '## Criterion-by-Criterion Breakdown\n' +
-      'For EACH criterion relevant to this subject:\n\n' +
-      '**[Criterion Name & Code] — [X / max marks]**\n' +
-      'Current band descriptor that applies. Then: what specifically is done well. Then: the exact wording needed to reach the next mark band — quote the IB mark band descriptor. Finish with one concrete revision instruction.\n\n' +
-      '## Strongest Elements\n' +
-      'Three specific strengths with direct quotes or references from the IA.\n\n' +
-      '## Critical Revisions (Priority Order)\n' +
-      '1. [Most impactful change — be specific, not vague]\n' +
-      '2. [Second change]\n' +
-      '3. [Third change]\n\n' +
-      '## Examiner Red Flags\n' +
-      'List any elements that would cause an examiner to immediately lower the mark. Be blunt.';
+    var iaMode = document.getElementById('ia-mode') ? document.getElementById('ia-mode').value : 'review';
+    var subj = fv('ia-subj');
+    var meta = getSubjMeta(subj);
+    var iaCriteria = meta && meta.ia ? (meta.ia.criteria ? meta.ia.criteria.join(', ') : meta.ia.name || '') : 'Research Design, Data Analysis, Conclusion, Evaluation';
+
+    if (iaMode === 'copilot' && IA_CP.stage === 1) {
+      IA_CP.subject = subj;
+      IA_CP.idea = fv('ia-idea');
+      p = 'You are an expert IB ' + subj + ' IA supervisor with 10+ years of experience.\n' +
+        'A student has a rough idea for their IA. Help them develop 3 excellent, focused Research Questions.\n\n' +
+        'Subject: ' + subj + '\n' +
+        'IA criteria: ' + iaCriteria + '\n' +
+        'Student\'s rough idea:\n' + IA_CP.idea + '\n\n' +
+        'Generate EXACTLY 3 research questions. For each:\n' +
+        'RQ [N]: [The complete, precise RQ written in IB format — "To what extent..." or "How does [IV] affect [DV] in [context]?"]\n' +
+        '- Feasibility: [can this be done in school lab/fieldwork? 1-2 lines]\n' +
+        '- Why it works: [why this RQ is well-focused and measurable]\n' +
+        '- Watch out: [one key risk or pitfall to manage]\n\n' +
+        'Make each RQ distinctly different — vary the IV, context, or approach. All must be realistic for a school IA.\n' +
+        'Rank them from most to least recommended.';
+    } else {
+      p = 'You are a senior IB examiner and IA moderator for ' + subj + '.\n' +
+        'You have moderated hundreds of Internal Assessments and know exactly what earns full marks.\n\n' +
+        'Subject: ' + subj + '\n' +
+        'Research Question / Title: ' + fv('ia-title') + '\n' +
+        'IA criteria: ' + iaCriteria + '\n' +
+        'Review focus: ' + fv('ia-foc') + '\n\n' +
+        'IA draft:\n' + fv('ia-txt') + '\n\n' +
+        'Provide a FULL examiner-level review:\n\n' +
+        '## Predicted Grade: [X/24] — Grade [N]\n' +
+        'One honest sentence on overall standard.\n\n' +
+        '## Criterion-by-Criterion Breakdown\n' +
+        'For EACH criterion (' + iaCriteria + '):\n' +
+        '**[Criterion Name] — [X / max marks]**\n' +
+        'Current band descriptor. What is done well (quote from IA). What is needed for next band (quote IB descriptor). One concrete revision instruction.\n\n' +
+        '## Critical Revisions (Priority Order)\n' +
+        '1. [Most impactful change — be specific]\n2. [Second]\n3. [Third]\n\n' +
+        '## Examiner Red Flags\n' +
+        'Anything that causes immediate mark penalty. Be blunt.';
+    }
   }
 
   else if (key === 'ee') {
@@ -1771,6 +2039,76 @@ function buildPrompt(key) {
       '5. KEEP all facts, arguments, and evidence from the original\n' +
       '6. DO NOT add new information or change the argument\n\n' +
       'Output ONLY the rewritten text. No explanation.';
+  }
+
+  else if (key === 'night-before') {
+    var nbSubj = fv('nb-subj');
+    var nbData = NIGHT_BEFORE_DATA[nbSubj] || NIGHT_BEFORE_DATA['Biology HL'];
+    var nbMeta = getSubjMeta(nbSubj);
+    var paperContext = nbMeta ? nbMeta.papers.map(function(p){ return p.name + ' (' + p.time + ', ' + p.marks + 'mk)'; }).join(' | ') : '';
+    p = 'You are a senior IB examiner for ' + nbSubj + '. A student has an exam TOMORROW and needs laser-focused revision.\n\n' +
+      'Subject: ' + nbSubj + '\n' +
+      'Paper: ' + fv('nb-paper') + '\n' +
+      'Session: ' + fv('nb-session') + '\n' +
+      'Paper structure: ' + paperContext + '\n\n' +
+      'KNOWN HIGH-FREQUENCY TOPICS for this subject:\n' + (nbData.hotTopics || []).join('\n') + '\n\n' +
+      'KNOWN CONCEPTUAL TRAPS:\n' + (nbData.confusedConcepts || []).join('\n') + '\n\n' +
+      'Generate a NIGHT-BEFORE CRAM PACK in this EXACT format:\n\n' +
+      '## &#127769; Tonight\'s 5 Hot Topics\n' +
+      'List the 5 topics most likely to appear on ' + fv('nb-paper') + ' tomorrow. For each:\n' +
+      '**[Topic name]** — [1 line on WHY it is likely to appear] — [the single most important fact/equation to know]\n\n' +
+      '## &#9997; Command Terms Most Likely Tomorrow\n' +
+      'List 3 command terms likely to appear, with EXACTLY what each requires in this subject:\n' +
+      '**[Command term] [likely mark value]**: [what you must include to get full marks]\n\n' +
+      '## &#128683; The 2 Concepts Students Confuse\n' +
+      'The 2 distinctions that cost students the most marks on this paper. Be precise and memorable:\n' +
+      '**Confuse:** [wrong version students write]\n' +
+      '**Correct:** [what the examiner actually wants]\n\n' +
+      '## &#9889; 10-Minute Cram Sheet\n' +
+      'The absolute minimum a student MUST know before walking in tomorrow. Bullet points only. Max 15 bullets. Each bullet = one examiner mark point. Be ruthlessly specific.\n\n' +
+      '## &#128170; Last Minute Strategy\n' +
+      '3 exam technique tips specific to ' + fv('nb-paper') + ' of ' + nbSubj + '. Not general advice — specific to THIS paper\'s format and common mistakes.';
+  }
+
+  else if (key === 'grade-boundary') {
+    var gbSubj = fv('gb-subj');
+    var gbGrade = parseInt(fv('gb-grade').replace('Grade ','')) || 5;
+    var gbPct = fv('gb-pct') ? parseInt(fv('gb-pct')) : null;
+    var gbWeak = fv('gb-weak') || '';
+    var gbData = GRADE_BOUNDARIES[gbSubj];
+    var targetGrade = gbGrade + 1;
+    var currentPct = gbData ? gbData['g' + gbGrade] : null;
+    var targetPct = gbData ? gbData['g' + targetGrade] : null;
+    var gapPct = (currentPct && targetPct) ? (targetPct - currentPct) : null;
+    var descriptor = gbData && gbData.descriptors ? gbData.descriptors[gbGrade] : '';
+    var targetDescriptor = gbData && gbData.descriptors ? gbData.descriptors[targetGrade] : '';
+    var moveUp = gbData && gbData.movingUp ? gbData.movingUp[(gbGrade) + 'to' + targetGrade] : '';
+
+    p = 'You are a senior IB examiner and academic coach for ' + gbSubj + '.\n' +
+      'A student is currently achieving Grade ' + gbGrade + ' and wants to reach Grade ' + targetGrade + '.\n\n' +
+      'Subject: ' + gbSubj + '\n' +
+      'Current grade: ' + gbGrade + (gbPct ? ' (~' + gbPct + '%)' : '') + '\n' +
+      'Target grade: ' + targetGrade + '\n' +
+      (gbData ? 'Typical boundary for Grade ' + gbGrade + ': ~' + currentPct + '% | For Grade ' + targetGrade + ': ~' + targetPct + '%\n' : '') +
+      (gapPct ? 'Gap to close: ~' + gapPct + '% of external marks (' + (gbData && gbData.note ? gbData.note : '') + ')\n' : '') +
+      (descriptor ? 'Current Grade ' + gbGrade + ' descriptor: ' + descriptor + '\n' : '') +
+      (targetDescriptor ? 'Target Grade ' + targetGrade + ' descriptor: ' + targetDescriptor + '\n' : '') +
+      (moveUp ? 'Known strategy: ' + moveUp + '\n' : '') +
+      (gbWeak ? 'Student\'s weak areas: ' + gbWeak + '\n' : '') + '\n' +
+      'Generate a GRADE BOOSTER REPORT in this format:\n\n' +
+      '## Where Grade ' + gbGrade + ' Students Go Wrong\n' +
+      'Explain in 3-4 sentences what a Grade ' + gbGrade + ' answer looks like in ' + gbSubj + ' — specifically what is MISSING compared to Grade ' + targetGrade + '. Quote the IB grade descriptor language.\n\n' +
+      '## The Exact Gap: Grade ' + gbGrade + ' → Grade ' + targetGrade + '\n' +
+      'The single most important difference between these two grade bands in ' + gbSubj + '. One paragraph, very specific.\n\n' +
+      '## Your 5-Point Upgrade Plan\n' +
+      'Five specific, actionable changes this student must make. Each one should be:\n' +
+      '**[Change N]:** [what to do differently — name the specific skill/habit]\n' +
+      '*Why it moves you up:* [which marks it unlocks]\n' +
+      '*How to practise:* [specific exercise or drill to do this week]\n\n' +
+      '## What Grade ' + targetGrade + ' Answers Look Like\n' +
+      'Show a concrete BEFORE (Grade ' + gbGrade + ') and AFTER (Grade ' + targetGrade + ') example for the most common question type in ' + gbSubj + '. Make it feel real and immediately applicable.\n\n' +
+      '## Your Grade Boundary Target\n' +
+      'Tell the student: to reach Grade ' + targetGrade + ' in ' + gbSubj + ', they need approximately ' + (targetPct || '?') + '% on the external exams. That means gaining ' + (gapPct || '?') + ' additional percentage points. Frame this as a concrete, achievable goal with a 2-week study sprint plan.';
   }
 
   else if (key === 'marker') {
@@ -1869,6 +2207,9 @@ function runTool(key) {
     else if (key === 'detector') renderDetOutput(text, out);
     else if (key === 'papers') renderPaperOutput(text, out, fv('pp-subj'));
     else if (key === 'marker') renderMarkerOutput(text, out);
+    else if (key === 'ia') renderIAOutput(text, out);
+    else if (key === 'night-before') renderNightBeforeOutput(text, out);
+    else if (key === 'grade-boundary') renderGradeBoundaryOutput(text, out);
     else renderResOutput(text, out, key);
     renderSB();
     showToast('Done!', 'ok');
@@ -1968,6 +2309,242 @@ function mdToHtml(text) {
   }
   closeList();
   return html;
+}
+
+// ===== IA CO-PILOT =====
+function buildIAStage1Form(subjOpts) {
+  return '<div class="fl"><label>Subject</label><select id="ia-subj">' + subjOpts + '</select></div>' +
+    '<div class="fl"><label>Your rough idea (describe what you want to investigate)</label>' +
+    '<textarea id="ia-idea" style="min-height:80px" placeholder="e.g. I want to investigate how temperature affects enzyme activity — maybe using catalase and hydrogen peroxide. Not sure about the exact RQ yet."></textarea></div>';
+}
+
+function buildIAReviewForm(subjOpts) {
+  return '<div class="fl"><label>Subject</label><select id="ia-subj">' + subjOpts + '</select></div>' +
+    '<div class="fl"><label>IA Title / RQ</label><input type="text" id="ia-title" placeholder="e.g. How does pH affect enzyme activity?"/></div>' +
+    '<div class="fl"><label>Paste your IA</label><textarea id="ia-txt" style="min-height:150px" placeholder="Paste your IA draft here..."></textarea></div>' +
+    '<div class="fl"><label>Focus</label><select id="ia-foc"><option>Full review</option><option>Research question</option><option>Methodology</option><option>Analysis and evaluation</option><option>Conclusion</option></select></div>';
+}
+
+function updateIAForm() {
+  var mode = document.getElementById('ia-mode') ? document.getElementById('ia-mode').value : 'copilot';
+  var body = document.getElementById('ia-form-body');
+  var subjOpts = subOptsPersonalised();
+  if (!body) return;
+  if (mode === 'copilot') {
+    IA_CP.stage = 1;
+    body.innerHTML = buildIAStage1Form(subjOpts);
+    // Update run button label
+    var btn = document.getElementById('run-btn');
+    if (btn) btn.textContent = 'Refine my research question ✶';
+  } else {
+    body.innerHTML = buildIAReviewForm(subjOpts);
+    var btn = document.getElementById('run-btn');
+    if (btn) btn.textContent = 'Review my IA ✶';
+  }
+}
+
+function renderIAOutput(text, out) {
+  if (!out) return;
+  var mode = document.getElementById('ia-mode') ? document.getElementById('ia-mode').value : 'review';
+  if (mode === 'review') { renderResOutput(text, out, 'ia'); return; }
+
+  // Co-pilot mode: advance stage
+  var stage = IA_CP.stage;
+  if (stage === 1) {
+    // Show 3 refined RQs from AI
+    IA_CP.rqs = [];
+    var rqMatches = text.matchAll(/RQ\s*\d+[:\-\.]?\s*([^\n]+)/gi);
+    for (var m of rqMatches) IA_CP.rqs.push(m[1].trim());
+    if (IA_CP.rqs.length < 2) {
+      // Fallback: split by numbered list
+      IA_CP.rqs = text.split(/\n\d+[\.\)]\s*/).filter(function(r){ return r.trim().length > 20; }).slice(0,3);
+    }
+
+    var rqHTML = '<div class="cp-output"><div class="cp-output-label">&#128203; Suggested Research Questions</div>';
+    IA_CP.rqs.forEach(function(rq, i) {
+      rqHTML += '<div class="rq-option" id="rq' + i + '" onclick="selectRQ(' + i + ')">' +
+        '<div class="rq-radio"></div>' +
+        '<div class="rq-text"><strong>RQ ' + (i+1) + ':</strong> ' + htmlEnc(rq) + '</div></div>';
+    });
+    rqHTML += '<div class="fl" style="margin-top:.6rem"><label>Or write your own RQ</label>' +
+      '<input type="text" id="ia-custom-rq" placeholder="To what extent does..."/></div></div>';
+
+    out.innerHTML = rqHTML +
+      '<button class="btn btn-ink btn-full" onclick="advanceIAStage(2)" style="margin-top:.5rem">Plan my methodology &#8594;</button>';
+    IA_CP.stage = 2;
+
+  } else if (stage === 2) {
+    // Show methodology plan
+    IA_CP.methodology = text;
+    out.innerHTML = '<div class="cp-output"><div class="cp-output-label">&#9881; Methodology Plan</div>' +
+      '<div id="ia-meth-out" style="font-size:13px;line-height:1.8">' + mdToHtml(text) + '</div></div>' +
+      '<div class="fl" style="margin-top:.6rem"><label>Any adjustments or constraints?</label>' +
+      '<textarea id="ia-meth-notes" style="min-height:60px" placeholder="e.g. I only have access to a water bath up to 60°C..."></textarea></div>' +
+      '<button class="btn btn-ink btn-full" onclick="advanceIAStage(3)" style="margin-top:.5rem">Review a section of my IA &#8594;</button>';
+    IA_CP.stage = 3;
+
+  } else if (stage === 3) {
+    // Section review output
+    out.innerHTML = '<div class="cp-output"><div class="cp-output-label">&#128203; Section Feedback</div>' +
+      '<div style="font-size:13px;line-height:1.8">' + mdToHtml(text) + '</div></div>' +
+      '<div class="fl" style="margin-top:.5rem"><label>Review another section</label>' +
+      '<select id="ia-section-pick"><option>Introduction / Background</option><option>Research Design</option><option>Raw Data</option><option>Processed Data &amp; Analysis</option><option>Conclusion</option><option>Evaluation</option></select></div>' +
+      '<div class="fl"><label>Paste the section text</label>' +
+      '<textarea id="ia-section-txt" style="min-height:120px" placeholder="Paste this section of your IA..."></textarea></div>' +
+      '<div style="display:flex;gap:8px;margin-top:.4rem">' +
+      '<button class="btn btn-ink" onclick="advanceIAStage(3)" style="flex:1">Review this section &#8594;</button>' +
+      '<button class="btn btn-out" onclick="advanceIAStage(4)" style="flex:1">Full IA review &#8594;</button></div>';
+    IA_CP.stage = 3;
+
+  } else if (stage === 4) {
+    renderResOutput(text, out, 'ia');
+  }
+}
+
+function selectRQ(idx) {
+  document.querySelectorAll('.rq-option').forEach(function(el){ el.classList.remove('selected'); });
+  var el = document.getElementById('rq' + idx);
+  if (el) el.classList.add('selected');
+  IA_CP.selectedRQ = IA_CP.rqs[idx] || '';
+}
+
+function advanceIAStage(targetStage) {
+  if (targetStage === 2) {
+    // Get selected RQ
+    var customRQ = document.getElementById('ia-custom-rq') ? document.getElementById('ia-custom-rq').value.trim() : '';
+    IA_CP.selectedRQ = customRQ || IA_CP.selectedRQ || (IA_CP.rqs[0] || '');
+    if (!IA_CP.selectedRQ) { showToast('Please select or write a research question.', 'err'); return; }
+    // Run methodology prompt
+    runIACopiloPrompt(2);
+  } else if (targetStage === 3) {
+    runIACopiloPrompt(3);
+  } else if (targetStage === 4) {
+    runIACopiloPrompt(4);
+  }
+}
+
+function runIACopiloPrompt(stage) {
+  var btn = document.querySelector('.cp-output + button, .fp button.btn-ink, #run-btn');
+  var out = document.getElementById('tool-out');
+  if (!out) return;
+
+  var prompt = '';
+  var subj = fv('ia-subj') || IA_CP.subject;
+  var meta = getSubjMeta(subj);
+  var iaCriteria = meta && meta.ia ? meta.ia.criteria ? meta.ia.criteria.join(', ') : '' : '';
+
+  if (stage === 2) {
+    prompt = 'You are an expert IB ' + subj + ' supervisor.\n' +
+      'Research Question: ' + IA_CP.selectedRQ + '\n' +
+      'Subject: ' + subj + '\n\n' +
+      'Generate a detailed METHODOLOGY PLAN for this IA:\n\n' +
+      '## Research Design\n' +
+      '**Type of investigation:** [laboratory/fieldwork/secondary data/survey]\n' +
+      '**Independent variable:** [define precisely, with range and units]\n' +
+      '**Dependent variable:** [what is measured, method of measurement, units]\n' +
+      '**Controlled variables:** [list 5+ with why each matters and how to control it]\n\n' +
+      '## Materials & Equipment\n' +
+      '[Specific list with quantities and specifications]\n\n' +
+      '## Procedure\n' +
+      '[Numbered steps, 8-12 steps, written precisely enough for replication]\n\n' +
+      '## Safety & Ethics\n' +
+      '[Any hazards, risk assessments, ethical considerations relevant to this investigation]\n\n' +
+      '## IA Criteria Alignment\n' +
+      '[How this design addresses: ' + (iaCriteria || 'Research Design, Data Analysis, Conclusion, Evaluation') + ']\n\n' +
+      '## Potential Weaknesses\n' +
+      '[2-3 limitations of this design and how to minimise them]';
+
+  } else if (stage === 3) {
+    var section = document.getElementById('ia-section-pick') ? document.getElementById('ia-section-pick').value : 'Introduction';
+    var sectionText = document.getElementById('ia-section-txt') ? document.getElementById('ia-section-txt').value : '';
+    IA_CP.currentSection = section;
+    prompt = 'You are an IB IA examiner for ' + subj + '.\n' +
+      'Review the following ' + section + ' section of a student\'s IA.\n\n' +
+      'Subject: ' + subj + '\n' +
+      'Research Question: ' + IA_CP.selectedRQ + '\n' +
+      'IA criteria: ' + (iaCriteria || 'Research Design /6, Data Analysis /6, Conclusion /6, Evaluation /6') + '\n\n' +
+      section + ' SECTION:\n' + sectionText + '\n\n' +
+      'Provide criterion-specific feedback:\n\n' +
+      '## Section Score Estimate\n' +
+      'Which criteria does this section contribute to? Estimated marks for this section.\n\n' +
+      '## What Works Well\n' +
+      'Specific phrases or approaches that would earn marks. Quote from their text.\n\n' +
+      '## What Is Missing\n' +
+      'For each criterion this section should address: what specific content is absent? Quote the IB mark band descriptor for the next level up.\n\n' +
+      '## Priority Revisions\n' +
+      'The top 3 changes that will have the highest mark impact. Be specific and actionable.\n\n' +
+      '## Model Sentences\n' +
+      'Write 2-3 model sentences showing the level of specificity and language expected at the top band.';
+
+  } else if (stage === 4) {
+    var fullDraft = document.getElementById('ia-full-draft') ? document.getElementById('ia-full-draft').value : '';
+    prompt = 'You are an IB IA moderator for ' + subj + '.\n' +
+      'Provide a COMPLETE FINAL REVIEW of this IA.\n\n' +
+      'Subject: ' + subj + '\n' +
+      'RQ: ' + IA_CP.selectedRQ + '\n\n' +
+      'FULL IA DRAFT:\n' + fullDraft + '\n\n' +
+      'Complete review in this format:\n\n' +
+      '## Predicted Grade: [X/24] — [Grade N]\n\n' +
+      '## Criterion-by-Criterion\n' +
+      'For each criterion: current mark / max, what earns it, what is missing, exact wording to improve.\n\n' +
+      '## Three Highest-Impact Revisions\n' +
+      'The changes that would move the grade up most. Be ruthlessly specific.\n\n' +
+      '## Examiner Red Flags\n' +
+      'Anything that would cause an examiner to immediately lower marks.';
+    IA_CP.stage = 4;
+  }
+
+  // Show loading
+  out.innerHTML = '<div class="empty-box"><div class="eb-icon">&#128203;</div><p style="font-weight:600">Thinking like your IA supervisor...</p></div>';
+
+  var msgs = [{role:'user', content: prompt}];
+  fetch('/api/generate', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({model:'llama-3.3-70b-versatile', messages:msgs, max_tokens:2500})
+  }).then(function(r){ return r.json(); }).then(function(data){
+    if (data.error) { showToast('Error: ' + (data.error.message || data.error), 'err'); return; }
+    var text = data.choices[0].message.content.trim();
+    renderIAOutput(text, out);
+  }).catch(function(e){ showToast('Error: ' + e.message, 'err'); });
+}
+
+// ===== NIGHT BEFORE RENDERER =====
+function renderNightBeforeOutput(text, out) {
+  if (!out) return;
+  out.innerHTML = '<div style="background:linear-gradient(135deg,#1A1A14,#2A2A20);border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:.9rem;display:flex;align-items:center;gap:.9rem">' +
+    '<div style="font-size:2rem">&#127769;</div>' +
+    '<div><div style="font-family:Georgia,serif;font-size:1.15rem;font-weight:700;color:#fff">Night Before Pack</div>' +
+    '<div style="font-size:12px;color:rgba(255,255,255,.55)">Read this. Then put your phone down.</div></div></div>' +
+    '<div id="nb-content" style="font-size:14px;line-height:1.8">' + mdToHtml(text) + '</div>' +
+    '<div class="rb-actions" style="margin-top:.75rem"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy cram sheet</button></div>';
+  window._lastResult = text;
+}
+
+// ===== GRADE BOUNDARY RENDERER =====
+function renderGradeBoundaryOutput(text, out) {
+  if (!out) return;
+  var subj = fv('gb-subj');
+  var grade = parseInt(fv('gb-grade').replace('Grade ','')) || 5;
+  var gbData = GRADE_BOUNDARIES[subj];
+  var bandHTML = '';
+  if (gbData) {
+    var grades = [7,6,5,4,3];
+    var pcts = grades.map(function(g){ return gbData['g'+g] || 0; });
+    bandHTML = '<div class="gb-meter"><div class="gb-bands">';
+    grades.forEach(function(g, i) {
+      var width = (pcts[i] - (pcts[i+1]||0)) || 15;
+      bandHTML += '<div class="gb-band gb-band-' + g + '" style="width:' + width + '%">G' + g + '</div>';
+    });
+    bandHTML += '</div>';
+    var currentPct = gbData['g'+grade] || 50;
+    bandHTML += '<div class="gb-marker" style="position:relative"><div class="gb-needle" style="left:' + currentPct + '%"></div></div>';
+    bandHTML += '<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--i4);margin-top:2px">';
+    bandHTML += '<span>0%</span><span>You ~' + currentPct + '%</span><span>100%</span></div></div>';
+  }
+  out.innerHTML = bandHTML +
+    '<div id="gb-content" style="font-size:14px;line-height:1.8;margin-top:.5rem">' + mdToHtml(text) + '</div>' +
+    '<div class="rb-actions" style="margin-top:.75rem"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy plan</button></div>';
+  window._lastResult = text;
 }
 
 // ===== IB PAPER RENDERER =====
