@@ -1243,29 +1243,41 @@ function buildDynamicPaperForm(subj) {
     return '<option>' + s.name + ': ' + s.type + ' (max ' + s.marks + ' marks)</option>';
   }).join('');
 
-  var qstyleOpts = isMath
-    ? '<option>Calculation / algebra</option><option>Proof / Show that</option><option>Sketch / graph</option><option>Application / modelling</option><option>Paper 3 extended problem</option>'
-    : isSci
-      ? '<option>Data analysis (table + graph)</option><option>Short answer / structured</option><option>Extended response / evaluate</option><option>Diagram-based</option><option>Experimental design</option>'
-      : isHum
-        ? '<option>Essay (explain/evaluate)</option><option>Data response</option><option>Source analysis (History)</option><option>Diagram + analysis (Economics)</option><option>Short answer</option>'
-        : '<option>Short answer</option><option>Extended response</option><option>Data analysis</option>';
+  var firstSectionIsMCQ = firstPaper.sections && firstPaper.sections[0] && /Multiple Choice|MCQ/.test(firstPaper.sections[0].type);
+
+  var qstyleOpts;
+  if (isMath) {
+    qstyleOpts = '<option>Calculation / algebra</option><option>Proof / Show that</option><option>Sketch / graph</option><option>Application / modelling</option><option>Paper 3 extended problem</option>';
+  } else if (isSci) {
+    qstyleOpts = firstSectionIsMCQ
+      ? '<option value="MCQ">Multiple Choice (MCQ) — 1 mark each, 4 options</option><option>Data analysis (table + graph)</option><option>Short answer / structured</option><option>Extended response / evaluate</option><option>Diagram-based</option>'
+      : '<option>Data analysis (table + graph)</option><option>Short answer / structured</option><option>Extended response / evaluate</option><option>Diagram-based</option><option>Experimental design</option>';
+  } else if (isHum) {
+    qstyleOpts = '<option>Essay (explain/evaluate)</option><option>Data response</option><option>Source analysis (History)</option><option>Diagram + analysis (Economics)</option><option>Short answer</option>';
+  } else {
+    qstyleOpts = '<option>Short answer</option><option>Extended response</option><option>Data analysis</option>';
+  }
 
   var maxM = firstPaper.sections && firstPaper.sections[0] ? firstPaper.sections[0].marks : 80;
   var mVals = maxM >= 15 ? [2,3,4,5,6,8,10,12,15] : maxM >= 8 ? [1,2,3,4,5,6,8] : [1,2,3,4];
   var marksOpts = mVals.filter(function(v){ return v <= maxM; }).map(function(v){ return '<option>' + v + ' marks</option>'; }).join('');
 
+  var mcqCountOpts = '<option>5 questions</option><option>10 questions</option><option>15 questions</option><option>20 questions</option>';
   var noCalcBanner = firstPaper.calc === false
     ? '<div style="background:var(--al);border-radius:6px;padding:6px 10px;font-size:12px;color:var(--amber);font-weight:600;margin-bottom:.7rem">&#9888; No calculator — question will use exact values</div>' : '';
 
   return '<div class="fl"><label>Paper</label><select id="pp-type" onchange="updatePaperSection()">' + paperOpts + '</select></div>' +
-    (sectionOpts ? '<div class="fl"><label>Section</label><select id="pp-section">' + sectionOpts + '</select></div>' : '') +
-    '<div class="fl"><label>Question style</label><select id="pp-qstyle">' + qstyleOpts + '</select></div>' +
+    (sectionOpts ? '<div class="fl"><label>Section</label><select id="pp-section" onchange="updateQstyleForSection()">' + sectionOpts + '</select></div>' : '') +
+    '<div class="fl"><label>Question style</label><select id="pp-qstyle" onchange="toggleMCQMode()">' + qstyleOpts + '</select></div>' +
     '<div class="fl"><label>Topic / concept</label><input type="text" id="pp-topic" placeholder="' +
       (isMath ? 'e.g. Integration by substitution, Complex numbers...' :
        isSci  ? 'e.g. Enzyme inhibition, Equilibrium constant...' :
        isHum  ? 'e.g. Market failure, Causes of WWI...' : 'e.g. Your topic...') + '"/></div>' +
-    '<div id="pp-marks-wrap"><div class="fl"><label>Marks</label><select id="pp-marks">' + marksOpts + '</select></div></div>' +
+    '<div id="pp-marks-wrap">' +
+      (firstSectionIsMCQ
+        ? '<div class="fl"><label>Number of questions</label><select id="pp-mcq-count">' + mcqCountOpts + '</select></div>'
+        : '<div class="fl"><label>Marks</label><select id="pp-marks">' + marksOpts + '</select></div>') +
+    '</div>' +
     noCalcBanner;
 }
 
@@ -1285,10 +1297,42 @@ function updatePaperSection() {
       return '<option>' + s.name + ': ' + s.type + ' (max ' + s.marks + ' marks)</option>';
     }).join('');
   }
-  var maxM = paper.sections && paper.sections[0] ? paper.sections[0].marks : 80;
-  var mVals = maxM >= 15 ? [2,3,4,5,6,8,10,12,15] : [1,2,3,4,5,6,8];
-  var marksEl = document.getElementById('pp-marks');
-  if (marksEl) marksEl.innerHTML = mVals.filter(function(v){ return v <= maxM; }).map(function(v){ return '<option>' + v + ' marks</option>'; }).join('');
+  updateQstyleForSection();
+}
+
+function updateQstyleForSection() {
+  var secVal = fv('pp-section') || '';
+  var isMCQSec = /Multiple Choice|MCQ|Paper 1A/.test(secVal);
+  var subj = fv('pp-subj');
+  var isSci = /Biology|Chemistry|Physics/.test(subj);
+  var isMath = /Mathematics/.test(subj);
+
+  var qsEl = document.getElementById('pp-qstyle');
+  if (qsEl && isSci) {
+    if (isMCQSec) {
+      qsEl.innerHTML = '<option value="MCQ">Multiple Choice (MCQ) — 1 mark each, 4 options</option><option>Data analysis (table + graph)</option><option>Short answer / structured</option>';
+    } else {
+      qsEl.innerHTML = '<option>Data analysis (table + graph)</option><option>Short answer / structured</option><option>Extended response / evaluate</option><option>Diagram-based</option><option>Experimental design</option>';
+    }
+  }
+  toggleMCQMode();
+}
+
+function toggleMCQMode() {
+  var qstyle = fv('pp-qstyle');
+  var isMCQ = qstyle === 'MCQ' || qstyle === 'Multiple Choice (MCQ) — 1 mark each, 4 options';
+  var wrap = document.getElementById('pp-marks-wrap');
+  if (!wrap) return;
+  if (isMCQ) {
+    wrap.innerHTML = '<div class="fl"><label>Number of questions</label><select id="pp-mcq-count"><option>5 questions</option><option>10 questions</option><option>15 questions</option><option>20 questions</option></select></div>';
+  } else {
+    var maxM = 80;
+    var secVal = fv('pp-section') || '';
+    var mMatch = secVal.match(/max (\d+) marks/);
+    if (mMatch) maxM = parseInt(mMatch[1]);
+    var mVals = maxM >= 15 ? [2,3,4,5,6,8,10,12,15] : [1,2,3,4,5,6,8];
+    wrap.innerHTML = '<div class="fl"><label>Marks</label><select id="pp-marks">' + mVals.filter(function(v){ return v <= maxM; }).map(function(v){ return '<option>' + v + ' marks</option>'; }).join('') + '</select></div>';
+  }
 }
 
 // ===== SIDEBAR =====
@@ -1751,54 +1795,79 @@ function buildPrompt(key) {
     var qstyle = fv('pp-qstyle');
     var pptype = fv('pp-type');
     var marks = fv('pp-marks');
+    var isMCQ = qstyle === 'MCQ' || /Multiple Choice/i.test(qstyle) || /Multiple Choice|MCQ|Paper 1A/.test(fv('pp-section') || '');
+    var mcqCount = fv('pp-mcq-count') ? parseInt(fv('pp-mcq-count')) : 5;
 
-    // Pull real paper context from meta
-    var paperIdMap = {'Paper 1 (MCQ / short answer)':'P1','Paper 2 (data analysis / structured)':'P2','Paper 3 (HL extension)':'P3'};
-    var paperCtx = meta ? formatPaperContext(meta, paperIdMap[pptype] || 'P2') : '';
+    var paperIdMap = {'P1':'P1','P2':'P2','P3':'P3'};
+    var paperCtx = meta ? formatPaperContext(meta, pptype || 'P2') : '';
 
-    var extraInstructions = '';
-    if (isSci && (qstyle === 'Data analysis (table + graph)')) {
-      extraInstructions = 'CRITICAL: Include a realistic, specific data table using markdown pipe format. Column headers MUST include units (e.g. Time / s, Absorbance / au, Rate / mol dm⁻³ s⁻¹). Then add: [GRAPH: x="Time / s", y="Rate / mol dm⁻³ s⁻¹", trend="describe the expected pattern"]. Make the data look like genuine experimental results with realistic variation, not perfect numbers.';
-    } else if (isSci && qstyle === 'Diagram-based') {
-      extraInstructions = 'CRITICAL: Describe a labelled scientific diagram as [DIAGRAM: describe what the diagram shows and list labels A, B, C...]. Question parts must reference the diagram labels. The diagram must be relevant to the specific topic.';
-    } else if (isMath && qstyle === 'Calculation / math problem') {
-      extraInstructions = 'CRITICAL: Present all mathematical expressions clearly. Use ^ for powers, sqrt() for roots, dy/dx for derivatives. Prefix any standalone formula/equation with >>> on its own line. For geometry: describe figure as [DIAGRAM: description of shape with labeled points]. Show all given information clearly before the question.';
-    } else if (isHum && (qstyle === 'Extended response' || qstyle === 'Short answer')) {
-      extraInstructions = 'CRITICAL: For Economics, include a diagram description that the student must draw. For History, specify which prescribed subject or World History topic. For Psychology, specify which approach and list 2 key studies the question could reference.';
+    if (isMCQ) {
+      var subjShort = subj.replace(' HL','').replace(' SL','');
+      p = 'You are a senior IB examiner for ' + subj + ' who writes real Paper 1A MCQ questions.\n' +
+        'Topic: ' + fv('pp-topic') + '\n' +
+        'Generate EXACTLY ' + mcqCount + ' multiple-choice questions.\n\n' +
+        'Use EXACTLY this format for EVERY question — no deviations:\n\n' +
+        'Q1. [Question stem — concise, unambiguous, IB-style]\n' +
+        'A. [Option]\n' +
+        'B. [Option]\n' +
+        'C. [Option]\n' +
+        'D. [Option]\n' +
+        'ANSWER: [A or B or C or D]\n' +
+        'EXPLANATION: [Why the answer is correct; why each distractor is wrong — name the misconception]\n\n' +
+        '[Repeat exactly for Q2, Q3, ... Q' + mcqCount + ']\n\n' +
+        'IB MCQ rules — follow all of these:\n' +
+        '1. ONE unambiguously correct answer — no "best answer" ambiguity\n' +
+        '2. THREE distractors each targeting a DIFFERENT specific student misconception\n' +
+        '3. Mix question types: ~40% recall, ~40% application/calculation, ~20% data interpretation\n' +
+        '4. For calculation questions: include realistic numerical values with units\n' +
+        '5. No "all of the above" or "none of the above"\n' +
+        '6. All 4 options grammatically parallel (all nouns, or all complete sentences, not mixed)\n' +
+        '7. Distractor explanations must name the exact misconception students have\n' +
+        '8. Use precise ' + subjShort + ' terminology — species names, compound names, exact values\n' +
+        '9. Questions should match real IB paper difficulty: NOT too easy, NOT trick questions';
+    } else {
+      var extraInstructions = '';
+      if (isSci && qstyle === 'Data analysis (table + graph)') {
+        extraInstructions = 'CRITICAL: Include a realistic data table using markdown pipe format with units in headers (e.g. Time / s, Absorbance / au). Then: [GRAPH: x="label (unit)", y="label (unit)", trend="description"]. Data must show realistic variation — not perfectly linear. Reference specific data values in the question parts.';
+      } else if (isSci && qstyle === 'Diagram-based') {
+        extraInstructions = 'CRITICAL: Describe a labelled diagram: [DIAGRAM: what it shows, labels A, B, C...]. Question parts MUST reference the diagram labels. Choose a diagram directly relevant to the topic (e.g. enzyme active site, cell membrane, titration apparatus).';
+      } else if (isMath) {
+        extraInstructions = 'CRITICAL: All maths on its own line prefixed with >>>. Use standard notation. For diagrams: [DIAGRAM: description]. State all given info before asking the question. For "Show that" questions: provide the target result in the question stem.';
+      } else if (isHum && /Economics/.test(subj)) {
+        extraInstructions = 'CRITICAL: Include a diagram description the student must draw to answer the question. For evaluation questions: specify a real country or policy as context. Economics questions MUST require a diagram for full marks.';
+      } else if (isHum && /History/.test(subj)) {
+        extraInstructions = 'CRITICAL: Specify an exact historical context (country, time period, event). For P1: provide a source extract with origin, date, and content. For P2/P3: use a focused analytical question with a clear command term.';
+      } else if (isHum && /Psychology/.test(subj)) {
+        extraInstructions = 'CRITICAL: Specify which approach (Biological/Cognitive/Sociocultural) or option (Abnormal/Health/Relationships/Sport). For ERQs: require evaluation of specific named studies. Include the exact IB command term.';
+      }
+
+      var commandTermGuide = meta && meta.commandTerms ?
+        'Command terms for ' + marks + ' marks in ' + subj + ': ' + Object.keys(meta.commandTerms).filter(function(k){ return meta.commandTerms[k] <= parseInt(marks); }).join(', ') + '.\n' : '';
+
+      p = 'You are a SENIOR IB EXAMINER for ' + subj + ' who has written and marked real past papers.\n' +
+        'Generate ONE original, exam-quality question. It must be indistinguishable from a real IB paper question.\n\n' +
+        'Subject: ' + subj + '\n' +
+        'Topic: ' + fv('pp-topic') + '\n' +
+        'Paper: ' + pptype + ' | Section: ' + (fv('pp-section') || '') + '\n' +
+        'Question style: ' + qstyle + '\n' +
+        'Total marks: ' + marks + '\n' +
+        paperCtx + commandTermGuide + '\n' +
+        (extraInstructions ? 'CONTENT REQUIREMENTS:\n' + extraInstructions + '\n\n' : '') +
+        'OUTPUT FORMAT — use EXACTLY these markers:\n\n' +
+        '===QUESTION===\n' +
+        '[Stimulus/data/diagram first if applicable]\n' +
+        '[Question text with precise IB command term]\n' +
+        '[Sub-parts labelled (a) [Xmk], (b) [Ymk] etc — must total ' + marks + ' marks]\n\n' +
+        '===MARKSCHEME===\n' +
+        '[Each mark point starts with • ]\n' +
+        '[• Award [1] for... | accept ... / OR ...]\n' +
+        '[**Required key words or values in bold**]\n' +
+        '[note: do not accept... where relevant]\n\n' +
+        '===EXAMINER_NOTES===\n' +
+        '[What a 7-level response includes vs 5-level]\n' +
+        '[2-3 most penalised student errors]\n' +
+        '[Subject-specific marking rules]\n';
     }
-
-    var commandTermGuide = meta && meta.commandTerms ?
-      'COMMAND TERM REFERENCE for ' + marks + ': ' + Object.keys(meta.commandTerms).filter(function(k){ return meta.commandTerms[k] <= parseInt(marks); }).join(', ') + '.\n' : '';
-
-    p = 'You are a SENIOR IB EXAMINER for ' + subj + ' who has written and marked real IB papers.\n' +
-      'Generate ONE original, exam-quality question indistinguishable from a real IB paper.\n\n' +
-      '=== PAPER SPECIFICATION ===\n' +
-      'Subject: ' + subj + '\n' +
-      'Topic: ' + fv('pp-topic') + '\n' +
-      'Paper type: ' + pptype + '\n' +
-      'Question style: ' + qstyle + '\n' +
-      'Total marks: ' + marks + '\n' +
-      paperCtx + '\n' +
-      commandTermGuide + '\n' +
-      (extraInstructions ? '=== CONTENT REQUIREMENTS ===\n' + extraInstructions + '\n\n' : '') +
-      '=== OUTPUT FORMAT (use EXACTLY these markers) ===\n\n' +
-      '===QUESTION===\n' +
-      '[If data analysis: insert table first, then graph marker, then question text]\n' +
-      '[If diagram-based: insert [DIAGRAM:...] first, then question referencing labels]\n' +
-      '[If calculation: state given information clearly, then question]\n' +
-      '[For multi-part: label (a) [X marks], (b) [Y marks], etc — must total ' + marks + ' marks]\n' +
-      '[Use PRECISE IB command term matching the mark value]\n' +
-      '[Context/stimulus must feel REAL — use specific species names, real compounds, real economic scenarios, real historical periods]\n\n' +
-      '===MARKSCHEME===\n' +
-      '[IB-style mark scheme. Each point starts with •]\n' +
-      '[Show: • award [1] for... OR accept... / OR ...]\n' +
-      '[Required words/values in **bold**]\n' +
-      '[Show sub-part mark allocation: (a) ... (b) ... matching the question]\n' +
-      '[Include: note: do not accept... / penalise... where relevant]\n\n' +
-      '===EXAMINER_NOTES===\n' +
-      '[2-3 sentences: what separates a 7 response from a 5 response on THIS specific question]\n' +
-      '[2-3 most common student errors to penalise]\n' +
-      '[Any subject-specific marking rules for this topic]\n';
   }
 
   else if (key === 'flashcards') {
@@ -1913,53 +1982,80 @@ function buildPrompt(key) {
   }
 
   else if (key === 'ee') {
-    p = 'You are an IB Extended Essay examiner and supervisor.\n' +
+    p = 'You are a senior IB Extended Essay examiner and supervisor who has assessed hundreds of EEs.\n' +
+      'The EE is marked out of 34 across 5 criteria. An A grade requires 30-34 marks.\n\n' +
       'Subject group: ' + fv('ee-subj') + '\n' +
       'Research Question: ' + fv('ee-rq') + '\n' +
-      'Current word count: ' + fv('ee-wc') + '\n\n' +
-      'EE to review:\n' +
-      fv('ee-txt') + '\n\n' +
-      '## Research Question Assessment\n' +
-      'Is the RQ focused, appropriately scoped, and suitable for an EE?\n\n' +
-      '## Criteria Assessment\n\n' +
-      '**Criterion A - Focus and Method (0-6)**\n' +
-      'Score: X/6 | Justification and specific improvements needed\n\n' +
-      '**Criterion B - Knowledge and Understanding (0-6)**\n' +
-      'Score: X/6 | Justification and specific improvements needed\n\n' +
-      '**Criterion C - Critical Thinking (0-12)**\n' +
-      'Score: X/12 | Justification and specific improvements needed\n\n' +
-      '**Criterion D - Presentation (0-4)**\n' +
-      'Score: X/4 | Justification and specific improvements needed\n\n' +
-      '**Criterion E - Engagement (0-6)**\n' +
-      'Score: X/6 | Justification and specific improvements needed\n\n' +
-      '## Predicted Total: X/34 - Grade X\n\n' +
-      '## Top 3 Changes to Raise Your Grade\n' +
-      'Be specific and actionable.';
+      'Word count: ' + fv('ee-wc') + '\n\n' +
+      'EE draft:\n' + fv('ee-txt') + '\n\n' +
+      'Assess against the OFFICIAL IB EE criteria:\n\n' +
+      '## Predicted Grade: [A/B/C/D/E] — [X/34 marks]\n\n' +
+      '## Criterion A: Focus and Method [X/6]\n' +
+      'Top band (5-6): Topic is well-defined, RQ is sharp and researchable, methodology is clearly explained and appropriate for the subject, coherence between RQ, method and structure throughout.\n' +
+      'Mid band (3-4): Topic focused, RQ workable, methodology described but not always justified.\n' +
+      'Low band (1-2): RQ is vague or too broad, methodology unclear or inappropriate.\n' +
+      'AWARD: [X/6] — [specific justification citing evidence from the EE]\n' +
+      'IMPROVE: [exact change needed to reach the next mark band]\n\n' +
+      '## Criterion B: Knowledge and Understanding [X/6]\n' +
+      'Top band (5-6): Precise, confident use of subject-specific terminology. Evidence of wide reading. Theory and concepts applied correctly and insightfully.\n' +
+      'Mid band (3-4): Good knowledge with occasional gaps. Terminology used but not always precisely.\n' +
+      'Low band (1-2): Limited knowledge. Terminology used incorrectly or absent.\n' +
+      'AWARD: [X/6] — [specific justification]\n' +
+      'IMPROVE: [exact change needed]\n\n' +
+      '## Criterion C: Critical Thinking [X/12]\n' +
+      'This is the most heavily weighted criterion (12/34 marks).\n' +
+      'Top band (10-12): Original analysis. Arguments are coherent, well-evidenced, logically developed. Counter-arguments are acknowledged and rebutted. Conclusions are well-reasoned and connected to the RQ. Evidence is evaluated for reliability and validity.\n' +
+      'Upper-mid (7-9): Good analysis with some evaluation. Arguments present but may not all be equally developed.\n' +
+      'Mid (4-6): Some analysis but largely descriptive. Limited evaluation.\n' +
+      'Low (1-3): Mostly descriptive with little analysis.\n' +
+      'AWARD: [X/12] — [specific justification — quote from EE to support]\n' +
+      'IMPROVE: [exact change needed — this is most important for grade improvement]\n\n' +
+      '## Criterion D: Presentation [X/4]\n' +
+      'Top band (3-4): Structure supports the argument. Title page, table of contents, bibliography present and correctly formatted. Word count within 4000. References accurate and consistent.\n' +
+      'AWARD: [X/4] — [specific issues if any]\n\n' +
+      '## Criterion E: Engagement [X/6]\n' +
+      'Assessed on the Researcher\'s Reflection Space (RRS) and viva voce.\n' +
+      'Top band (5-6): Genuine intellectual curiosity evident. Reflections show development of thinking, not just description of activities. Personal voice is authentic.\n' +
+      'AWARD: [X/6] — [assessment based on essay voice and any reflection evidence]\n\n' +
+      '## What Would Earn an A Grade\n' +
+      'Specifically: what 3-4 changes would push this EE from its current score to 30+?\n' +
+      'For Criterion C specifically: show an example of what a top-band paragraph would look like vs what was written.\n\n' +
+      '## Grade A vs Grade B: The Key Difference\n' +
+      'One paragraph explaining the precise distinction between an A and B EE in this subject, referencing this specific essay.';
   }
 
   else if (key === 'tok') {
-    p = 'You are an experienced IB Theory of Knowledge teacher and examiner using the May 2022+ framework.\n' +
+    p = 'You are an IB Theory of Knowledge examiner using the 2022+ framework (first examined May 2022).\n' +
+      'The TOK essay is assessed on a single holistic 10-point scale:\n' +
+      '9-10 EXCELLENT: Sustained focus on title throughout. Arguments clear, coherent, well-supported by specific real-life examples. Implications of arguments considered. KQs explicitly framed and evaluated. Genuine personal insight.\n' +
+      '7-8 GOOD: Good focus on title, mostly clear arguments with examples, some exploration of implications.\n' +
+      '5-6 SATISFACTORY: Engages with title but focus lapses. Arguments present but not always developed. Examples given but not always analysed.\n' +
+      '3-4 BASIC: Limited engagement with title. Claims made without support. Examples descriptive not analytical.\n' +
+      '1-2 RUDIMENTARY: Minimal engagement. Largely opinion, no KQ exploration.\n\n' +
       'Prescribed title: ' + fv('tok-title') + '\n' +
       'Areas of Knowledge: ' + fv('tok-aok') + '\n' +
       'What is needed: ' + fv('tok-mode') + '\n' +
-      'Existing draft: ' + (fv('tok-draft') || 'None provided') + '\n\n' +
-      'Requirements:\n' +
-      '- Frame all knowledge claims properly\n' +
-      '- Real-life examples must be SPECIFIC (name the person, event, study, artwork)\n' +
-      '- Counter-claims must genuinely challenge the main claim\n' +
-      '- Use IB TOK criteria: Knowledge and understanding, Analysis, Synthesis, Evaluation\n\n' +
-      'For essay outline, structure as:\n\n' +
-      '## Introduction\n' +
-      'Unpack the title, define key terms, state your thesis, introduce both AOKs.\n\n' +
-      '## AOK 1: [Subject Name]\n' +
-      '**Knowledge Claim:** [Specific claim]\n' +
-      '**Real-life Example:** [Named, specific example]\n' +
-      '**Counter-claim:** [Genuine challenge]\n' +
-      '**Mini-conclusion:** [What this reveals about the title]\n\n' +
-      '## AOK 2: [Subject Name]\n' +
-      '[Same structure as AOK 1]\n\n' +
-      '## Conclusion\n' +
-      'Synthesise both AOKs, acknowledge implications, return to the title.';
+      'Student draft: ' + (fv('tok-draft') || 'None provided') + '\n\n' +
+      'REQUIREMENTS FOR TOP-BAND (9-10) CONTENT:\n' +
+      '- Every claim must be a genuine knowledge claim (not personal opinion)\n' +
+      '- Real-life examples MUST be specific: name person, event, date, study, artwork — no vague examples\n' +
+      '- Counter-claims must GENUINELY challenge the main claim, not be straw men\n' +
+      '- The prescribed title must be directly addressed in every paragraph, not just the conclusion\n' +
+      '- Implications: go beyond "therefore we know X" to "this means that knowledge in Y AOK is uncertain because..."\n\n' +
+      'Generate the requested content (' + fv('tok-mode') + '):\n\n' +
+      '## INTRODUCTION\n' +
+      'Open with a hook that grounds the title in a real situation. Unpack key terms (define them as a philosopher would, not a dictionary). State a clear, arguable thesis. Preview both AOKs and how they will explore the question.\n\n' +
+      '## AOK 1: [Name of Area of Knowledge]\n' +
+      '**Knowledge Claim:** [A specific, arguable claim about how knowledge works in this AOK — not a fact]\n' +
+      '**Real-Life Example:** [Name the specific case: researcher, experiment, artwork, historical event. One sentence on the example, two sentences on what it shows about the knowledge claim.]\n' +
+      '**Counter-claim:** [A genuine challenge that a thoughtful person would raise. What does this complicate?]\n' +
+      '**Response to counter-claim:** [How does the counter-claim affect your overall argument? Don\'t dismiss it — qualify your thesis.]\n\n' +
+      '## AOK 2: [Name of Area of Knowledge]\n' +
+      '[Same structure as AOK 1. The two AOKs should contrast or complement each other to deepen the argument.]\n\n' +
+      '## CONCLUSION\n' +
+      'Synthesise — what do the two AOKs reveal together about the title that neither could reveal alone? Return to the prescribed title with a final answer. Acknowledge one remaining uncertainty or implication. Avoid introducing new examples.\n\n' +
+      '## EXAMINER NOTE\n' +
+      'Identify 2-3 specific improvements needed to reach the 9-10 band. Be precise.';
   }
 
   else if (key === 'cas') {
@@ -2161,7 +2257,15 @@ function runTool(key) {
     else { incDayUsed(key); saveHist(key, text); }
     if (key === 'flashcards') renderFCOutput(text, out);
     else if (key === 'detector') renderDetOutput(text, out);
-    else if (key === 'papers') renderPaperOutput(text, out, fv('pp-subj'));
+    else if (key === 'papers') {
+      var qs = fv('pp-qstyle');
+      var sec = fv('pp-section') || '';
+      if (qs === 'MCQ' || /Multiple Choice/i.test(qs) || /Multiple Choice|MCQ|Paper 1A/.test(sec)) {
+        renderMCQOutput(text, out);
+      } else {
+        renderPaperOutput(text, out, fv('pp-subj'));
+      }
+    }
     else if (key === 'marker') renderMarkerOutput(text, out);
     else if (key === 'ia') renderIAOutput(text, out);
     else if (key === 'night-before') renderNightBeforeOutput(text, out);
@@ -2501,6 +2605,117 @@ function renderGradeBoundaryOutput(text, out) {
     '<div id="gb-content" style="font-size:14px;line-height:1.8;margin-top:.5rem">' + mdToHtml(text) + '</div>' +
     '<div class="rb-actions" style="margin-top:.75rem"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy plan</button></div>';
   window._lastResult = text;
+}
+
+// ===== MCQ RENDERER =====
+function renderMCQOutput(text, out) {
+  if (!out) return;
+  var blocks = [];
+  var lines = text.split('\n');
+  var cur = null;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var trim = line.trim();
+    if (/^Q\d+[.\):]\s*/.test(trim)) {
+      if (cur) blocks.push(cur);
+      cur = { q: trim.replace(/^Q\d+[.\):]\s*/, ''), A:'', B:'', C:'', D:'', answer:'', explain:'' };
+    } else if (cur) {
+      if (/^A[.\)]\s/.test(trim)) cur.A = trim.replace(/^A[.\)]\s*/, '');
+      else if (/^B[.\)]\s/.test(trim)) cur.B = trim.replace(/^B[.\)]\s*/, '');
+      else if (/^C[.\)]\s/.test(trim)) cur.C = trim.replace(/^C[.\)]\s*/, '');
+      else if (/^D[.\)]\s/.test(trim)) cur.D = trim.replace(/^D[.\)]\s*/, '');
+      else if (/^ANSWER:/i.test(trim)) cur.answer = trim.replace(/^ANSWER:\s*/i,'').charAt(0).toUpperCase();
+      else if (/^EXPLANATION:/i.test(trim)) cur.explain = trim.replace(/^EXPLANATION:\s*/i,'');
+      else if (cur.explain) cur.explain += ' ' + trim;
+      else if (!cur.A && trim) cur.q += ' ' + trim;
+    }
+  }
+  if (cur) blocks.push(cur);
+  if (!blocks.length) { renderResOutput(text, out, 'papers'); return; }
+
+  var subj = fv('pp-subj') || 'IB';
+  var allAnswers = blocks.map(function(b){ return b.answer || '?'; }).join('');
+  var html = '<div class="ib-paper">' +
+    '<div class="paper-hd"><div class="paper-hd-left"><strong>IBGenius</strong> Past Paper Simulator<br>' + htmlEnc(subj) + '</div>' +
+    '<div class="paper-hd-right">Paper 1 — Section A<br>' + blocks.length + ' Multiple Choice Questions<br><span style="color:rgba(5,150,105,.8);font-weight:700">&#10003; Examiner-authored</span></div></div>' +
+    '<div class="paper-body"><div class="paper-instruct">Circle the letter of the best answer for each question. Each question is worth <strong>1 mark</strong>. No marks are deducted for incorrect answers.</div>';
+
+  blocks.forEach(function(b, idx) {
+    var n = idx + 1;
+    var opts = ['A','B','C','D'];
+    html += '<div class="q-block" style="padding-bottom:1rem;border-bottom:1px solid var(--bd);margin-bottom:1rem">';
+    html += '<div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:.65rem">' +
+      '<div style="width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px">' + n + '</div>' +
+      '<div style="font-family:\'Times New Roman\',serif;font-size:14px;line-height:1.6;flex:1">' + htmlEnc(b.q) + '</div></div>';
+    html += '<div style="display:flex;flex-direction:column;gap:5px;margin-left:32px">';
+    opts.forEach(function(opt) {
+      var val = b[opt];
+      if (!val) return;
+      html += '<div class="mcq-opt" data-q="' + n + '" data-opt="' + opt + '" onclick="selectMCQ(' + n + ',\'' + opt + '\')" style="display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:7px;border:1px solid var(--bd);cursor:pointer;transition:all .12s;font-family:\'Times New Roman\',serif;font-size:13px">' +
+        '<div class="mcq-circle" style="width:20px;height:20px;border-radius:50%;border:2px solid var(--bd2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;transition:all .12s"></div>' +
+        '<strong>' + opt + '.</strong>&ensp;' + htmlEnc(val) + '</div>';
+    });
+    html += '</div>';
+    html += '<div id="mcq-ans-' + n + '" style="display:none;margin:6px 0 0 32px;background:var(--gl);border:1px solid rgba(5,150,105,.2);border-radius:8px;padding:.65rem .9rem">' +
+      '<div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:3px">&#10003; Correct answer: ' + (b.answer||'?') + '</div>' +
+      '<div style="font-size:13px;color:var(--i2);line-height:1.65">' + htmlEnc(b.explain) + '</div></div>';
+    html += '<div style="margin:6px 0 0 32px">' +
+      '<button id="rev-btn-' + n + '" class="btn btn-out btn-sm" onclick="revealMCQ(' + n + ',\'' + (b.answer||'') + '\')">Show answer</button></div>';
+    html += '</div>';
+  });
+
+  html += '<div style="margin-top:.75rem;display:flex;gap:8px;flex-wrap:wrap">' +
+    '<button class="btn btn-ink btn-sm" onclick="revealAllMCQ(' + blocks.length + ',\'' + allAnswers + '\')">Reveal all answers</button>' +
+    '<button class="btn btn-out btn-sm" onclick="resetMCQ(' + blocks.length + ')">Reset</button>' +
+    '<button class="btn btn-out btn-sm" onclick="openTool(\'papers\')">New questions</button></div>' +
+    '</div></div>';
+
+  out.innerHTML = html;
+  window._lastResult = text;
+}
+
+function selectMCQ(n, opt) {
+  document.querySelectorAll('.mcq-opt[data-q="' + n + '"]').forEach(function(el) {
+    el.style.background = '';  el.style.borderColor = 'var(--bd)';
+    var c = el.querySelector('.mcq-circle');
+    if (c) { c.style.background=''; c.style.borderColor='var(--bd2)'; c.textContent=''; c.style.color=''; }
+  });
+  var sel = document.querySelector('.mcq-opt[data-q="' + n + '"][data-opt="' + opt + '"]');
+  if (sel) {
+    sel.style.background = 'var(--bdim)'; sel.style.borderColor = 'var(--blue)';
+    var c = sel.querySelector('.mcq-circle');
+    if (c) { c.style.background='var(--blue)'; c.style.borderColor='var(--blue)'; c.style.color='#fff'; c.textContent=opt; }
+  }
+}
+
+function revealMCQ(n, answer) {
+  document.querySelectorAll('.mcq-opt[data-q="' + n + '"]').forEach(function(el) {
+    var opt = el.getAttribute('data-opt');
+    el.style.opacity = opt === answer ? '1' : '0.45';
+    if (opt === answer) {
+      el.style.background='var(--gl)'; el.style.borderColor='var(--green)';
+      var c = el.querySelector('.mcq-circle');
+      if (c) { c.style.background='var(--green)'; c.style.borderColor='var(--green)'; c.style.color='#fff'; c.textContent='&#10003;'; c.innerHTML='&#10003;'; }
+    }
+  });
+  var a = document.getElementById('mcq-ans-' + n); if (a) a.style.display = 'block';
+  var b = document.getElementById('rev-btn-' + n); if (b) b.style.display = 'none';
+}
+
+function revealAllMCQ(count, answers) {
+  for (var i = 1; i <= count; i++) revealMCQ(i, answers.charAt(i-1));
+}
+
+function resetMCQ(count) {
+  for (var i = 1; i <= count; i++) {
+    document.querySelectorAll('.mcq-opt[data-q="' + i + '"]').forEach(function(el) {
+      el.style.background=''; el.style.borderColor='var(--bd)'; el.style.opacity='1';
+      var c = el.querySelector('.mcq-circle');
+      if (c) { c.style.background=''; c.style.borderColor='var(--bd2)'; c.textContent=''; }
+    });
+    var a = document.getElementById('mcq-ans-' + i); if (a) a.style.display='none';
+    var b = document.getElementById('rev-btn-' + i); if (b) b.style.display='';
+  }
 }
 
 // ===== IB PAPER RENDERER =====
