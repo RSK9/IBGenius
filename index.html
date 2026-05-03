@@ -313,6 +313,54 @@ input,select,textarea,button{font-family:inherit}
 .crit-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),#34D399)}
 .crit-text{font-size:12px;color:var(--i2);line-height:1.6}
 @media(max-width:720px){.ex-band-inner{grid-template-columns:1fr}.ex-cards{display:none}.paper-body{padding:1rem}}
+/* IB PROFILE */
+.profile-bar{background:linear-gradient(90deg,var(--bdim),transparent);border:1px solid rgba(37,99,235,.15);border-radius:9px;padding:.6rem 1rem;display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;flex-wrap:wrap}
+.profile-bar-label{font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;flex-shrink:0}
+.subj-chip{display:inline-flex;align-items:center;gap:4px;background:var(--sf);border:1px solid var(--bd);border-radius:100px;padding:3px 10px;font-size:11px;font-weight:600;color:var(--i2)}
+.subj-chip.hl{border-color:rgba(37,99,235,.3);color:var(--blue);background:var(--bl)}
+.subj-chip.sl{border-color:var(--bd2)}
+/* MARK MY ANSWER */
+.score-ring{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;flex-shrink:0;border:4px solid var(--green)}
+.score-ring.mid{border-color:var(--amber)}
+.score-ring.low{border-color:var(--red)}
+.score-n{font-family:Georgia,serif;font-size:1.4rem;font-weight:700;line-height:1}
+.score-d{font-size:10px;color:var(--i3)}
+.marking-row{border:1px solid var(--bd);border-radius:8px;padding:.7rem .9rem;margin-bottom:.5rem}
+.mr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.3rem}
+.mr-label{font-size:13px;font-weight:700}
+.mr-score{font-size:12px;font-weight:700;color:var(--blue)}
+.mr-bar{height:5px;background:var(--s2);border-radius:3px;overflow:hidden;margin-bottom:.4rem}
+.mr-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--green),#34D399)}
+.mr-fill.mid{background:linear-gradient(90deg,var(--amber),#FCD34D)}
+.mr-fill.low{background:linear-gradient(90deg,var(--red),#F87171)}
+.mr-text{font-size:12px;color:var(--i2);line-height:1.6}
+/* SYLLABUS TRACKER */
+.tracker-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.tracker-pct{font-family:Georgia,serif;font-size:1.6rem;font-weight:700;color:var(--blue)}
+.tracker-prog{height:8px;background:var(--s2);border-radius:4px;overflow:hidden;margin-bottom:1.25rem;border:1px solid var(--bd)}
+.tracker-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--green),#34D399);transition:width .4s}
+.tracker-section{margin-bottom:1rem}
+.ts-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--i3);margin-bottom:.4rem;padding-bottom:.25rem;border-bottom:1px solid var(--bd)}
+.tracker-item{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:6px;cursor:pointer;transition:background .1s}
+.tracker-item:hover{background:var(--s2)}
+.tracker-item.done{opacity:.55}
+.tracker-item.done .ti-label{text-decoration:line-through;color:var(--i4)}
+.ti-box{width:16px;height:16px;border-radius:4px;border:2px solid var(--bd2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;transition:all .15s}
+.tracker-item.done .ti-box{background:var(--green);border-color:var(--green)}
+.ti-label{font-size:13px;color:var(--ink);flex:1}
+.ti-hl{font-size:10px;color:var(--purple);font-weight:700;background:var(--pl);padding:1px 6px;border-radius:3px;flex-shrink:0}
+/* VS TABLE */
+.vs-section{padding:2rem 2.5rem;background:var(--s2);border-top:1px solid var(--bd)}
+.vs-table{width:100%;border-collapse:collapse;max-width:860px;margin:1rem auto 0}
+.vs-table th{padding:.7rem 1rem;font-size:12px;font-weight:700;text-align:left;border-bottom:2px solid var(--bd)}
+.vs-table td{padding:.65rem 1rem;font-size:13px;border-bottom:1px solid var(--bd);vertical-align:top;line-height:1.5}
+.vs-table tr:last-child td{border-bottom:none}
+.vs-table th:first-child,.vs-table td:first-child{color:var(--i3);font-weight:600}
+.vs-table th.ibg{background:var(--ink);color:#fff;border-radius:6px 6px 0 0}
+.vs-table td.ibg{background:var(--bdim);font-weight:600;color:var(--ink)}
+.vs-y{color:var(--green);font-weight:700}
+.vs-n{color:var(--i4)}
+.vs-p{color:var(--blue);font-weight:600}
 </style>
 </head>
 <body>
@@ -332,13 +380,13 @@ input,select,textarea,button{font-family:inherit}
   <div class="content" id="content">
     <div id="pg-home">
       <div class="hero">
-        <div class="hbadge"><span class="bdot"></span> Crafted by real IB Examiners &mdash; not just AI</div>
-        <h1>The IB toolkit built by<br><em>actual examiners</em></h1>
-        <p class="hero-sub">Every prompt, every rubric, every mark scheme was designed by IB examiners who have marked thousands of real student scripts. Not generic AI — tools that know <em>exactly</em> what gets a 7.</p>
+        <div class="hbadge"><span class="bdot"></span> Your personal IB tutor &mdash; writes <em>with</em> you, not just for you to read</div>
+        <h1>Not a revision site.<br><em>A writing partner.</em></h1>
+        <p class="hero-sub">SaveMyExams helps you study. Revision Village drills maths. IBGenius does something neither can: it <strong>writes with you</strong> — IA drafts, EE feedback, TOK outlines, mark-scheme grading, CAS reflections. Built on real IB examiner knowledge, personalised to your exact 6 subjects.</p>
         <div class="hero-ctas">
-          <button class="btn-hero" onclick="openTool('notes')">Try free — no signup</button>
-          <button class="btn-hero-out" onclick="showPricing()">See pricing</button>
-          <span class="hero-note">5 free uses daily. No card required.</span>
+          <button class="btn-hero" onclick="openTool('profile')">Set up my IB profile</button>
+          <button class="btn-hero-out" onclick="openTool('marker')">Mark my answer free</button>
+          <span class="hero-note">No card. 5 free uses/day. Works instantly.</span>
         </div>
       </div>
       <div class="home-stats">
@@ -362,8 +410,33 @@ input,select,textarea,button{font-family:inherit}
           </div>
         </div>
       </div>
+      <div class="vs-section">
+        <h2 class="sec-h" style="font-size:1.2rem;margin-bottom:.2rem">How we compare</h2>
+        <p style="font-size:13px;color:var(--i3);margin-bottom:0">Why students switch from SaveMyExams and Revision Village</p>
+        <table class="vs-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>SaveMyExams</th>
+              <th>Revision Village</th>
+              <th class="ibg">IBGenius</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Covers all IB subjects</td><td><span class="vs-y">&#10003;</span> Yes</td><td><span class="vs-n">Maths only</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — all 19</td></tr>
+            <tr><td>Writes your IA / EE for review</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — AI reviewer</td></tr>
+            <tr><td>Marks your exam answers</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — like an examiner</td></tr>
+            <tr><td>TOK / CAS / EE support</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — all three</td></tr>
+            <tr><td>Personalised to your 6 subjects</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — IB Profile</td></tr>
+            <tr><td>Generates exam questions</td><td><span class="vs-p">Static bank</span></td><td><span class="vs-p">Static bank</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Unlimited, dynamic</td></tr>
+            <tr><td>Syllabus tracker</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — per topic</td></tr>
+            <tr><td>Free tier (genuinely useful)</td><td><span class="vs-n">Very limited</span></td><td><span class="vs-n">Very limited</span></td><td class="ibg"><span class="vs-y">&#10003;</span> 5 uses/day free</td></tr>
+            <tr><td>Price</td><td>£29.99/year</td><td>$35/year</td><td class="ibg"><span class="vs-p">&#8377;2,000/mo or &#8377;15k/year</span></td></tr>
+          </tbody>
+        </table>
+      </div>
       <div class="home-tools">
-        <h2 class="sec-h">13 examiner-designed tools to <em>ace the IB</em></h2>
+        <h2 class="sec-h">15 examiner-designed tools to <em>ace the IB</em></h2>
         <div class="tool-cards" id="home-tools"></div>
       </div>
       <div class="home-testi">
@@ -530,7 +603,10 @@ var TOOLS = [
   {key:'tok',      icon:'&#129504;', name:'TOK Writer',      tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-teal',  desc:'Outlines, paragraphs, KQs for TOK essays.'},
   {key:'cas',      icon:'&#127807;', name:'CAS Reflection',  tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-green', desc:'Write IB-standard CAS reflections in minutes.'},
   {key:'humaniser',icon:'&#9997;',   name:'AI Humaniser',    tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-red',   desc:'Rewrite AI text to sound authentically human.'},
-  {key:'plagiarism',icon:'&#128737;',name:'Plagiarism',      tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-amber', desc:'Identify plagiarism risks before submission.'}
+  {key:'plagiarism',icon:'&#128737;',name:'Plagiarism',      tier:'pro',  tag:'PRO',  tc:'lt-pro',  hc:'tg-amber', desc:'Identify plagiarism risks before submission.'},
+  {key:'marker',   icon:'&#9999;',   name:'Mark My Answer',  tier:'preview',tag:'1/DAY',tc:'lt-new', hc:'tg-pink',  desc:'Type your exam answer — AI marks it like an IB examiner with a real score.'},
+  {key:'tracker',  icon:'&#128202;', name:'Syllabus Tracker',tier:'free',  tag:'FREE', tc:'lt-free', hc:'tg-green', desc:'Tick off syllabus topics as you revise. Progress bar per subject.'},
+  {key:'profile',  icon:'&#128100;', name:'My IB Profile',   tier:'free',  tag:'FREE', tc:'lt-free', hc:'tg-blue',  desc:'Set your 6 subjects and exam session. All tools personalise to you.'}
 ];
 
 var SUBJECTS = ['Biology HL','Biology SL','Chemistry HL','Chemistry SL','Physics HL','Physics SL',
@@ -1192,6 +1268,8 @@ function openTool(key) {
   if (key === 'history') { renderHistoryPage(); return; }
   if (key === 'settings') { renderSettingsPage(); return; }
   if (key === 'countdown') { renderCountdown(); return; }
+  if (key === 'tracker') { renderTracker(); return; }
+  if (key === 'profile') { renderProfile(); return; }
   var check = canUse(key);
   if (!check.ok) { renderBlocked(key, check.why); return; }
   var t = null;
@@ -1252,6 +1330,20 @@ function renderBlocked(key, why) {
 function subOpts() {
   var h = '';
   for (var i = 0; i < SUBJECTS.length; i++) h += '<option>' + SUBJECTS[i] + '</option>';
+  return h;
+}
+function subOptsPersonalised() {
+  // If user has a profile, put their subjects first
+  var profile = cu && cu.profile;
+  var mySubjects = profile && profile.subjects && profile.subjects.length ? profile.subjects : [];
+  if (!mySubjects.length) return subOpts();
+  var h = '<optgroup label="My Subjects">';
+  for (var i = 0; i < mySubjects.length; i++) h += '<option>' + mySubjects[i] + '</option>';
+  h += '</optgroup><optgroup label="All Subjects">';
+  for (var j = 0; j < SUBJECTS.length; j++) {
+    if (mySubjects.indexOf(SUBJECTS[j]) < 0) h += '<option>' + SUBJECTS[j] + '</option>';
+  }
+  h += '</optgroup>';
   return h;
 }
 
@@ -1324,6 +1416,14 @@ var FORMS = {
       '<div class="fl"><label>Level</label><select id="hum-lvl"><option>IB student (natural voice)</option><option>Academic but accessible</option><option>Formal academic</option></select></div>' +
       '<div class="fl"><label>Preserve meaning?</label><select id="hum-pres"><option>Yes - keep all facts</option><option>Loosely - allow rephrasing</option></select></div>';
   },
+  marker: function() {
+    var subjOpts = subOptsPersonalised();
+    return '<div class="fl"><label>Subject</label><select id="mk-subj">' + subjOpts + '</select></div>' +
+      '<div class="fl"><label>Question (paste it)</label><textarea id="mk-q" style="min-height:80px" placeholder="e.g. Explain the effect of temperature on enzyme activity. [4 marks]"></textarea></div>' +
+      '<div class="fl"><label>Marks available</label><select id="mk-marks"><option>1 mark</option><option>2 marks</option><option>3 marks</option><option>4 marks</option><option>6 marks</option><option>8 marks</option><option>10 marks</option><option>12 marks</option></select></div>' +
+      '<div class="fl"><label>Your answer</label><textarea id="mk-ans" style="min-height:140px" placeholder="Write your answer as you would in the exam..."></textarea></div>' +
+      '<div class="fl"><label>Mark scheme (optional — paste if you have it)</label><textarea id="mk-ms" style="min-height:70px" placeholder="Paste the mark scheme if you have it..."></textarea></div>';
+  },
   plagiarism: function() {
     return '<div class="fl"><label>Paste your text</label><textarea id="plag-txt" style="min-height:180px" placeholder="Paste your essay or IA..."></textarea></div>' +
       '<div class="fl"><label>Document type</label><select id="plag-type"><option>IA</option><option>EE</option><option>TOK Essay</option><option>Regular essay</option></select></div>';
@@ -1333,8 +1433,9 @@ var FORMS = {
 var BTN_LABELS = {
   notes:'Generate notes', papers:'Generate question', flashcards:'Generate deck',
   detector:'Analyse text', citation:'Generate citation', solver:'Solve question',
-ia:'Review my IA', ee:'Review my EE',
-  tok:'Generate TOK help', cas:'Write reflection', humaniser:'Humanise text', plagiarism:'Check plagiarism'
+  ia:'Review my IA', ee:'Review my EE',
+  tok:'Generate TOK help', cas:'Write reflection', humaniser:'Humanise text',
+  plagiarism:'Check plagiarism', marker:'Mark my answer'
 };
 
 function renderToolUI(key, banner) {
@@ -1347,7 +1448,18 @@ function renderToolUI(key, banner) {
   var formHTML = formFn ? formFn() : '<p>Coming soon</p>';
   var newPill = t.tag === 'NEW' ? '<span class="npill">NEW</span>' : '';
   var label = BTN_LABELS[key] || 'Generate';
-  tc.innerHTML = (banner || '') +
+  var profileBar = '';
+  var prf = cu && cu.profile && cu.profile.subjects && cu.profile.subjects.length;
+  if (prf && key !== 'profile' && key !== 'tracker') {
+    var chips = (cu.profile.subjects || []).map(function(s){
+      var isHL = s.indexOf(' HL') >= 0;
+      return '<span class="subj-chip ' + (isHL ? 'hl' : 'sl') + '">' + htmlEnc(s) + '</span>';
+    }).join(' ');
+    profileBar = '<div class="profile-bar"><span class="profile-bar-label">&#128100; Your profile</span>' + chips +
+      (cu.profile.session ? '<span style="font-size:11px;color:var(--i3);margin-left:4px">' + htmlEnc(cu.profile.session) + '</span>' : '') +
+      '</div>';
+  }
+  tc.innerHTML = (banner || '') + profileBar +
     '<div class="tool-hdr"><h1>' + t.icon + ' ' + t.name + newPill + '</h1><p>' + t.desc + '</p></div>' +
     '<div class="pbar" id="pbar"><div class="pfill" id="pfill"></div></div>' +
     '<div class="tl"><div class="fp"><div class="fp-title">' + t.icon + ' ' + t.name + '</div>' + formHTML +
@@ -1661,6 +1773,34 @@ function buildPrompt(key) {
       'Output ONLY the rewritten text. No explanation.';
   }
 
+  else if (key === 'marker') {
+    var meta = getSubjMeta(fv('mk-subj'));
+    var ctInfo = meta && meta.commandTerms ? 'Command terms for this subject: ' + Object.keys(meta.commandTerms).map(function(k){ return k + '=' + meta.commandTerms[k] + 'mk'; }).join(', ') + '.' : '';
+    var marks = parseInt(fv('mk-marks')) || 4;
+    p = 'You are a senior IB examiner for ' + fv('mk-subj') + ' marking a student exam script.\n' +
+      'Mark this answer EXACTLY as an IB examiner would in a real marking session.\n\n' +
+      'QUESTION: ' + fv('mk-q') + '\n' +
+      'MARKS AVAILABLE: ' + fv('mk-marks') + '\n' +
+      (fv('mk-ms') ? 'MARK SCHEME PROVIDED:\n' + fv('mk-ms') + '\n\n' : 'No mark scheme provided — use your IB examiner knowledge to construct the expected marking points.\n\n') +
+      'STUDENT\'S ANSWER:\n' + fv('mk-ans') + '\n\n' +
+      ctInfo + '\n\n' +
+      'Output in this EXACT format:\n\n' +
+      '===SCORE===\n' +
+      '[X] / [' + marks + ']\n\n' +
+      '===BAND===\n' +
+      '[One of: Excellent (7) | Good (6) | Satisfactory (5) | Borderline (4) | Weak (3-1)]\n\n' +
+      '===MARKS_AWARDED===\n' +
+      '[For each marking point from the mark scheme — or the expected points if no MS provided:]\n' +
+      '• [marking point text] — [AWARDED / NOT AWARDED] [reason in 6 words max]\n\n' +
+      '===STRENGTHS===\n' +
+      '[2-3 specific things done well. Quote phrases from the student\'s answer. Be precise.]\n\n' +
+      '===MISSED===\n' +
+      '[Every marking point not addressed. Quote IB-standard phrasing they should have used.]\n\n' +
+      '===EXAMINER_COMMENT===\n' +
+      '[2-3 sentences an examiner would write on the script. Honest, specific, actionable.]\n\n' +
+      '===IMPROVED_ANSWER===\n' +
+      '[A model answer at the same level as the student\'s but corrected and completed. Not too polished — sound like a strong student, not a textbook.]';
+  }
   else if (key === 'plagiarism') {
     p = 'You are an academic integrity expert reviewing student work.\n' +
       'Document type: ' + fv('plag-type') + '\n\n' +
@@ -1728,6 +1868,7 @@ function runTool(key) {
     if (key === 'flashcards') renderFCOutput(text, out);
     else if (key === 'detector') renderDetOutput(text, out);
     else if (key === 'papers') renderPaperOutput(text, out, fv('pp-subj'));
+    else if (key === 'marker') renderMarkerOutput(text, out);
     else renderResOutput(text, out, key);
     renderSB();
     showToast('Done!', 'ok');
@@ -1937,6 +2078,313 @@ function renderMarkScheme(msText) {
   }
   html += '</div>';
   return html;
+}
+
+// ===== MARK MY ANSWER RENDERER =====
+function renderMarkerOutput(text, out) {
+  if (!out) return;
+  var scoreM = text.match(/===SCORE===\s*([\s\S]*?)(?====BAND===)/);
+  var bandM = text.match(/===BAND===\s*([\s\S]*?)(?====MARKS_AWARDED===)/);
+  var marksM = text.match(/===MARKS_AWARDED===\s*([\s\S]*?)(?====STRENGTHS===)/);
+  var strM = text.match(/===STRENGTHS===\s*([\s\S]*?)(?====MISSED===)/);
+  var missM = text.match(/===MISSED===\s*([\s\S]*?)(?====EXAMINER_COMMENT===)/);
+  var exM = text.match(/===EXAMINER_COMMENT===\s*([\s\S]*?)(?====IMPROVED_ANSWER===)/);
+  var impM = text.match(/===IMPROVED_ANSWER===\s*([\s\S]*?)$/);
+
+  var scoreRaw = scoreM ? scoreM[1].trim() : '?/?';
+  var band = bandM ? bandM[1].trim() : '';
+  var numMatch = scoreRaw.match(/(\d+)\s*\/\s*(\d+)/);
+  var scored = numMatch ? parseInt(numMatch[1]) : 0;
+  var total = numMatch ? parseInt(numMatch[2]) : 1;
+  var pct = total ? scored / total : 0;
+  var ringCls = pct >= 0.7 ? '' : pct >= 0.4 ? ' mid' : ' low';
+  var bandColor = pct >= 0.7 ? 'var(--green)' : pct >= 0.4 ? 'var(--amber)' : 'var(--red)';
+
+  function parseBullets(raw) {
+    if (!raw) return '';
+    var html = '';
+    raw.trim().split('\n').forEach(function(line) {
+      line = line.trim();
+      if (!line) return;
+      if (/^•/.test(line)) {
+        var isAwarded = /AWARDED/.test(line) && !/NOT AWARDED/.test(line);
+        var icon = isAwarded ? '<span style="color:var(--green);font-weight:700">✓</span>' : '<span style="color:var(--red);font-weight:700">✗</span>';
+        html += '<div class="ms-row">' + icon + '<span class="ms-pt">' + line.replace(/^•\s*/,'').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>') + '</span></div>';
+      } else {
+        html += '<p style="font-size:13px;color:var(--i2);line-height:1.6;margin:.2rem 0">' + line + '</p>';
+      }
+    });
+    return html;
+  }
+
+  out.innerHTML =
+    '<div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.25rem;padding:1.25rem;background:var(--sf);border:1px solid var(--bd);border-radius:12px">' +
+    '<div class="score-ring' + ringCls + '"><div class="score-n">' + scoreRaw + '</div><div class="score-d">marks</div></div>' +
+    '<div><div style="font-family:Georgia,serif;font-size:1.3rem;font-weight:700">' + scoreRaw + ' &mdash; ' + (band.split('(')[0].trim()) + '</div>' +
+    '<div style="font-size:13px;color:var(--i3);margin-top:2px">' + band + '</div></div></div>' +
+
+    '<div style="background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:1.1rem;margin-bottom:.75rem">' +
+    '<div class="ms-title">Marking Points</div>' + parseBullets(marksM ? marksM[1] : '') + '</div>' +
+
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem">' +
+    '<div style="background:var(--gl);border:1px solid rgba(5,150,105,.2);border-radius:10px;padding:1rem"><div style="font-size:11px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">What You Did Well</div>' +
+    '<div style="font-size:13px;color:var(--i2);line-height:1.7">' + mdToHtml(strM ? strM[1].trim() : '') + '</div></div>' +
+    '<div style="background:var(--rl);border:1px solid rgba(220,38,38,.15);border-radius:10px;padding:1rem"><div style="font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Marks You Missed</div>' +
+    '<div style="font-size:13px;color:var(--i2);line-height:1.7">' + mdToHtml(missM ? missM[1].trim() : '') + '</div></div></div>' +
+
+    '<div style="background:var(--al);border:1px solid rgba(217,119,6,.15);border-radius:10px;padding:1rem;margin-bottom:.75rem">' +
+    '<div style="font-size:11px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.4rem">Examiner Comment</div>' +
+    '<div style="font-size:13px;color:var(--i2);line-height:1.75;font-style:italic">' + (exM ? exM[1].trim() : '') + '</div></div>' +
+
+    '<div style="background:var(--bdim);border:1px solid rgba(37,99,235,.15);border-radius:10px;padding:1rem">' +
+    '<div style="font-size:11px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem">Model Answer (how to improve)</div>' +
+    '<div style="font-size:13px;color:var(--ink);line-height:1.8">' + mdToHtml(impM ? impM[1].trim() : '') + '</div></div>' +
+    '<div class="rb-actions" style="margin-top:.75rem"><button class="btn btn-ink btn-sm" onclick="copyRes()">Copy feedback</button></div>';
+
+  window._lastResult = text;
+}
+
+// ===== SYLLABUS TRACKER =====
+var TRACKER_TOPICS = {
+  'Biology HL': [
+    {t:'Cell structure & function',hl:false},{t:'Cell division: mitosis & meiosis',hl:false},
+    {t:'Molecular biology: DNA structure & replication',hl:false},{t:'Transcription & translation',hl:false},
+    {t:'Enzymes & metabolism',hl:false},{t:'Enzyme kinetics & inhibition',hl:true},
+    {t:'Respiration (aerobic & anaerobic)',hl:false},{t:'Metabolic pathways & regulation',hl:true},
+    {t:'Genetics: inheritance patterns',hl:false},{t:'Biotechnology & gene technology',hl:false},
+    {t:'Natural selection & evolution',hl:false},{t:'Classification',hl:false},
+    {t:'Ecology: communities & ecosystems',hl:false},{t:'Conservation & biodiversity',hl:false},
+    {t:'Human physiology: digestion',hl:false},{t:'Human physiology: circulation',hl:false},
+    {t:'Human physiology: immunity',hl:false},{t:'Human physiology: gas exchange',hl:false},
+    {t:'Osmoregulation & excretion',hl:true},{t:'Endocrine system & hormones',hl:true},
+    {t:'Neurobiology & behaviour',hl:true},{t:'Plant biology & transport',hl:true}
+  ],
+  'Chemistry HL': [
+    {t:'Stoichiometry & moles',hl:false},{t:'Atomic structure & periodicity',hl:false},
+    {t:'Chemical bonding & structure',hl:false},{t:'VSEPR & molecular geometry',hl:false},
+    {t:'Energetics: enthalpy & Hess\'s law',hl:false},{t:'Born-Haber cycles',hl:true},
+    {t:'Kinetics: rate equations',hl:false},{t:'Activation energy & Arrhenius equation',hl:true},
+    {t:'Equilibrium: Le Chatelier\'s principle',hl:false},{t:'Acids & bases: pH calculations',hl:false},
+    {t:'Buffer solutions & titration curves',hl:true},{t:'Redox & electrochemistry',hl:false},
+    {t:'Electrochemical cells (HL depth)',hl:true},{t:'Organic: functional groups & reactions',hl:false},
+    {t:'Organic mechanisms: SN1/SN2/elimination',hl:true},{t:'Stereoisomerism',hl:true},
+    {t:'Spectroscopy: IR & mass spec',hl:false},{t:'NMR spectroscopy',hl:true},
+    {t:'Transition metals & d-block',hl:true},{t:'Crystal field theory',hl:true}
+  ],
+  'Physics HL': [
+    {t:'Kinematics: equations of motion',hl:false},{t:'Dynamics: Newton\'s laws',hl:false},
+    {t:'Work, energy & power',hl:false},{t:'Momentum & impulse',hl:false},
+    {t:'Circular motion & gravitation',hl:false},{t:'Gravitational fields (HL)',hl:true},
+    {t:'Thermal physics & gas laws',hl:false},{t:'Waves: properties & superposition',hl:false},
+    {t:'Wave phenomena: diffraction & interference',hl:true},{t:'Optics: lenses & mirrors',hl:false},
+    {t:'Electric fields & Coulomb\'s law',hl:true},{t:'Electric circuits',hl:false},
+    {t:'Magnetic fields & forces',hl:false},{t:'Electromagnetic induction',hl:true},
+    {t:'Alternating current (HL)',hl:true},{t:'Atomic & nuclear physics',hl:false},
+    {t:'Radioactive decay',hl:false},{t:'Quantum physics',hl:true},
+    {t:'Special relativity',hl:true},{t:'Astrophysics (HL)',hl:true}
+  ],
+  'Mathematics AA HL': [
+    {t:'Sequences & series (arithmetic & geometric)',hl:false},{t:'Binomial theorem',hl:false},
+    {t:'Proof by induction',hl:true},{t:'Complex numbers (Cartesian & polar)',hl:true},
+    {t:'de Moivre\'s theorem',hl:true},{t:'Functions: domain, range, transformations',hl:false},
+    {t:'Inverse & composite functions',hl:false},{t:'Trigonometry: identities & equations',hl:false},
+    {t:'Vectors in 3D',hl:true},{t:'Differentiation: rules & applications',hl:false},
+    {t:'Implicit & parametric differentiation',hl:true},{t:'L\'Hôpital\'s rule',hl:true},
+    {t:'Integration techniques (by parts, substitution)',hl:false},{t:'Maclaurin series',hl:true},
+    {t:'Differential equations',hl:true},{t:'Statistics: distributions (normal, binomial, Poisson)',hl:false},
+    {t:'Hypothesis testing',hl:true},{t:'Probability: conditional & Bayes',hl:true}
+  ],
+  'Mathematics AA SL': [
+    {t:'Sequences & series',hl:false},{t:'Binomial theorem',hl:false},
+    {t:'Functions & transformations',hl:false},{t:'Trigonometry: identities & equations',hl:false},
+    {t:'Differentiation: rules & optimisation',hl:false},{t:'Integration basics',hl:false},
+    {t:'Kinematics with calculus',hl:false},{t:'Statistics: normal distribution',hl:false},
+    {t:'Probability basics',hl:false},{t:'Vectors in 2D',hl:false}
+  ],
+  'Mathematics AI HL': [
+    {t:'Modelling: linear & non-linear regression',hl:false},{t:'Statistics: Poisson & chi-squared',hl:true},
+    {t:'Hypothesis testing: t-tests',hl:true},{t:'Matrices & transformations',hl:true},
+    {t:'Graph theory & algorithms',hl:true},{t:'Voronoi diagrams',hl:true},
+    {t:'Differential equations (HL)',hl:true},{t:'Financial mathematics',hl:false},
+    {t:'Probability distributions',hl:false},{t:'Calculus: optimisation & rates',hl:false}
+  ],
+  'Mathematics AI SL': [
+    {t:'Statistics: regression & correlation',hl:false},{t:'Financial mathematics',hl:false},
+    {t:'Probability distributions (normal & binomial)',hl:false},{t:'Hypothesis testing basics',hl:false},
+    {t:'Functions & modelling',hl:false},{t:'Calculus: differentiation & integration (applied)',hl:false}
+  ],
+  'Economics HL': [
+    {t:'Supply & demand analysis',hl:false},{t:'Elasticity (PED, PES, YED, XED)',hl:false},
+    {t:'Market failure: externalities',hl:false},{t:'Market failure: public goods & information',hl:false},
+    {t:'National income: GDP & GNP',hl:false},{t:'Inflation: causes & consequences',hl:false},
+    {t:'Unemployment: types & policies',hl:false},{t:'Fiscal policy',hl:false},
+    {t:'Monetary policy',hl:false},{t:'International trade & comparative advantage',hl:false},
+    {t:'Exchange rates & balance of payments',hl:false},{t:'Development economics',hl:true},
+    {t:'Quantitative analysis: Lorenz curve & Gini',hl:true},{t:'Multiplier & accelerator',hl:true}
+  ],
+  'History HL': [
+    {t:'Prescribed subject (Paper 1) sources',hl:false},{t:'OPCVL framework',hl:false},
+    {t:'World History topic 1 (Paper 2)',hl:false},{t:'World History topic 2 (Paper 2)',hl:false},
+    {t:'HL prescribed subject depth (Paper 3)',hl:true},{t:'Historiography & historians',hl:true},
+    {t:'Essay structure & thesis writing',hl:false},{t:'Use of evidence & counter-arguments',hl:false}
+  ]
+};
+
+function renderTracker() {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  var subj = cu && cu.profile && cu.profile.subjects && cu.profile.subjects[0] ? cu.profile.subjects[0] : 'Biology HL';
+  var savedKey = 'tracker_' + (cu ? cu.email : 'guest') + '_' + subj;
+  var done = dbGet(savedKey) || {};
+  var topics = TRACKER_TOPICS[subj] || [];
+  var total = topics.length;
+  var completedCount = 0;
+  for (var k in done) { if (done[k]) completedCount++; }
+  var pct = total ? Math.round((completedCount / total) * 100) : 0;
+
+  var subjSelect = '<select id="tracker-subj" onchange="renderTracker()" style="margin-bottom:.9rem;background:var(--s2);border:1px solid var(--bd);border-radius:7px;padding:7px 11px;font-size:13px;outline:none;font-family:inherit">';
+  var allTrackerSubjects = Object.keys(TRACKER_TOPICS);
+  for (var s = 0; s < allTrackerSubjects.length; s++) {
+    subjSelect += '<option' + (allTrackerSubjects[s] === subj ? ' selected' : '') + '>' + allTrackerSubjects[s] + '</option>';
+  }
+  subjSelect += '</select>';
+
+  var coreTopics = topics.filter(function(t){ return !t.hl; });
+  var hlTopics = topics.filter(function(t){ return t.hl; });
+
+  function renderTopicList(list) {
+    return list.map(function(item, idx) {
+      var key = item.t.replace(/\s+/g,'_');
+      var isDone = !!done[key];
+      return '<div class="tracker-item' + (isDone ? ' done' : '') + '" onclick="toggleTracker(\'' + savedKey + '\',\'' + key + '\')">' +
+        '<div class="ti-box">' + (isDone ? '&#10003;' : '') + '</div>' +
+        '<span class="ti-label">' + htmlEnc(item.t) + '</span>' +
+        (item.hl ? '<span class="ti-hl">HL</span>' : '') +
+        '</div>';
+    }).join('');
+  }
+
+  tc.innerHTML =
+    '<div class="tool-hdr"><h1>&#128202; Syllabus Tracker</h1><p>Tick off topics as you revise. Progress saves automatically.</p></div>' +
+    subjSelect +
+    '<div class="tracker-hdr"><div><div style="font-size:13px;color:var(--i3)">' + completedCount + ' of ' + total + ' topics completed</div></div>' +
+    '<div class="tracker-pct">' + pct + '%</div></div>' +
+    '<div class="tracker-prog"><div class="tracker-fill" style="width:' + pct + '%"></div></div>' +
+    (coreTopics.length ? '<div class="tracker-section"><div class="ts-title">Core Topics (SL + HL)</div>' + renderTopicList(coreTopics) + '</div>' : '') +
+    (hlTopics.length ? '<div class="tracker-section"><div class="ts-title">HL Only Topics</div>' + renderTopicList(hlTopics) + '</div>' : '') +
+    (topics.length === 0 ? '<div class="empty-box"><div class="eb-icon">&#128202;</div><p>Select a subject above to start tracking.</p></div>' : '');
+
+  // Re-read subject from DOM after render
+  var sel = document.getElementById('tracker-subj');
+  if (sel) {
+    sel.onchange = function() {
+      if (cu) cu.profile = cu.profile || {};
+      if (cu) cu.profile.subjects = cu.profile.subjects || [];
+      curTool = 'tracker';
+      renderTracker.selectedSubj = sel.value;
+      var newKey = 'tracker_' + (cu ? cu.email : 'guest') + '_' + sel.value;
+      var newDone = dbGet(newKey) || {};
+      // Re-render with new subject
+      var savedProfile = cu && cu.profile;
+      var origSubjects = savedProfile && savedProfile.subjects ? savedProfile.subjects.slice() : [];
+      if (cu) { cu.profile = cu.profile || {}; cu.profile.subjects = [sel.value]; }
+      renderTracker();
+      if (cu) cu.profile.subjects = origSubjects;
+    };
+  }
+}
+
+function toggleTracker(savedKey, topicKey) {
+  var done = dbGet(savedKey) || {};
+  done[topicKey] = !done[topicKey];
+  dbSet(savedKey, done);
+  // Re-render by calling renderTracker — need to preserve current subject
+  var sel = document.getElementById('tracker-subj');
+  var subjVal = sel ? sel.value : null;
+  renderTracker();
+  if (sel && subjVal) {
+    var newSel = document.getElementById('tracker-subj');
+    if (newSel) newSel.value = subjVal;
+  }
+}
+
+// ===== IB PROFILE =====
+function renderProfile() {
+  var tc = document.getElementById('tool-content');
+  if (!tc) return;
+  var profile = (cu && cu.profile) || { subjects: [], session: 'May 2026' };
+  var mySubjects = profile.subjects || [];
+  var session = profile.session || 'May 2026';
+  var sessions = ['May 2025','November 2025','May 2026','November 2026','May 2027'];
+
+  var sessionOpts = sessions.map(function(s){
+    return '<option' + (s === session ? ' selected' : '') + '>' + s + '</option>';
+  }).join('');
+
+  var chipHTML = '';
+  for (var i = 0; i < mySubjects.length; i++) {
+    var isHL = mySubjects[i].indexOf(' HL') >= 0;
+    chipHTML += '<div class="subj-chip ' + (isHL ? 'hl' : 'sl') + '" style="margin:.2rem">' +
+      htmlEnc(mySubjects[i]) + ' <span onclick="removeSubject(' + i + ')" style="cursor:pointer;color:var(--i4);margin-left:3px">&#215;</span></div>';
+  }
+
+  tc.innerHTML =
+    '<div class="tool-hdr"><h1>&#128100; My IB Profile</h1><p>Set your subjects and session — every tool personalises to you.</p></div>' +
+    (cu ? '' : '<div style="background:var(--al);border:1px solid rgba(217,119,6,.2);border-radius:8px;padding:.65rem 1rem;font-size:13px;color:var(--amber);font-weight:600;margin-bottom:1rem">&#9888; Log in or sign up to save your profile across devices.</div>') +
+    '<div style="display:grid;grid-template-columns:320px 1fr;gap:1.25rem;align-items:start">' +
+    '<div class="fp">' +
+    '<div class="fp-title">&#128100; Set up profile</div>' +
+    '<div class="fl"><label>Exam session</label><select id="prof-session">' + sessionOpts + '</select></div>' +
+    '<div class="fl"><label>Add subject (up to 6)</label><select id="prof-subj-add">' + subOpts() + '</select></div>' +
+    '<button class="btn btn-out btn-sm" onclick="addProfileSubject()" style="margin-bottom:.85rem;width:100%">+ Add subject</button>' +
+    '<button class="btn btn-ink btn-full" onclick="saveProfile2()">Save my profile</button>' +
+    '</div>' +
+    '<div>' +
+    '<div style="font-size:13px;font-weight:700;margin-bottom:.6rem">Your subjects (' + mySubjects.length + '/6)</div>' +
+    (mySubjects.length ? '<div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1rem">' + chipHTML + '</div>' : '<div style="font-size:13px;color:var(--i4);margin-bottom:1rem">No subjects added yet.</div>') +
+    '<div style="background:var(--gl);border:1px solid rgba(5,150,105,.2);border-radius:8px;padding:.85rem 1rem;font-size:13px;color:var(--green);line-height:1.7">' +
+    '&#10003; Once set, every tool shows your subjects first in dropdowns.<br>' +
+    '&#10003; Study Notes and Flashcards auto-focus your topics.<br>' +
+    '&#10003; IA Reviewer knows your exact subject criteria.<br>' +
+    '&#10003; Past Paper Sim defaults to your papers.</div>' +
+    '</div></div>';
+}
+
+function addProfileSubject() {
+  var val = document.getElementById('prof-subj-add') ? document.getElementById('prof-subj-add').value : '';
+  if (!val) return;
+  var profile = (cu && cu.profile) || { subjects: [], session: 'May 2026' };
+  if (!profile.subjects) profile.subjects = [];
+  if (profile.subjects.length >= 6) { showToast('Maximum 6 subjects.', 'err'); return; }
+  if (profile.subjects.indexOf(val) >= 0) { showToast('Already added.', 'err'); return; }
+  profile.subjects.push(val);
+  if (cu) { cu.profile = profile; persistProfile(profile); }
+  else { dbSet('ibg_guest_profile', profile); }
+  renderProfile();
+}
+
+function removeSubject(idx) {
+  var profile = (cu && cu.profile) || dbGet('ibg_guest_profile') || { subjects: [] };
+  if (profile.subjects) profile.subjects.splice(idx, 1);
+  if (cu) { cu.profile = profile; persistProfile(profile); }
+  else dbSet('ibg_guest_profile', profile);
+  renderProfile();
+}
+
+function saveProfile2() {
+  var session = document.getElementById('prof-session') ? document.getElementById('prof-session').value : 'May 2026';
+  var profile = (cu && cu.profile) || dbGet('ibg_guest_profile') || { subjects: [] };
+  profile.session = session;
+  if (cu) { cu.profile = profile; persistProfile(profile); }
+  else dbSet('ibg_guest_profile', profile);
+  showToast('Profile saved!', 'ok');
+  renderSB();
+}
+
+function persistProfile(profile) {
+  if (!cu) return;
+  var u = dbGet('ibg_users') || {};
+  if (u[cu.email]) { u[cu.email].profile = profile; dbSet('ibg_users', u); }
 }
 
 function renderPaperOutput(text, out, subj) {
@@ -2478,6 +2926,16 @@ window.addEventListener('load', function() {
     }
   } catch(e) { cu = null; }
 
+  // Load guest profile if not logged in
+  if (!cu) {
+    var gp = dbGet('ibg_guest_profile');
+    if (gp) { /* guest profile stored separately, read in renderProfile */ }
+  }
+  // Attach profile to cu if available in stored user data
+  if (cu) {
+    var uStore = dbGet('ibg_users') || {};
+    if (uStore[cu.email] && uStore[cu.email].profile) cu.profile = uStore[cu.email].profile;
+  }
   // Render each component independently
   try { updateNav(); } catch(e) {}
   try { renderSB(); } catch(e) {}
