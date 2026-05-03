@@ -420,7 +420,7 @@ input,select,textarea,button{font-family:inherit}
       <div class="home-stats">
         <div class="hs"><div class="hs-n">13</div><div class="hs-l">AI tools</div></div>
         <div class="hs"><div class="hs-n">5</div><div class="hs-l">Free uses/day</div></div>
-        <div class="hs"><div class="hs-n">19</div><div class="hs-l">IB subjects</div></div>
+        <div class="hs"><div class="hs-n">16</div><div class="hs-l">IB subjects</div></div>
         <div class="hs"><div class="hs-n">&#8377;2k</div><div class="hs-l">Pro / month</div></div>
       </div>
       <!-- EXAMINER CREDIBILITY BAND -->
@@ -451,7 +451,7 @@ input,select,textarea,button{font-family:inherit}
             </tr>
           </thead>
           <tbody>
-            <tr><td>Covers all IB subjects</td><td><span class="vs-y">&#10003;</span> Yes — all subjects</td><td><span class="vs-p">Math, Sciences &amp; some Humanities</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — all 19 subjects</td></tr>
+            <tr><td>Covers all IB subjects</td><td><span class="vs-y">&#10003;</span> Yes — all subjects</td><td><span class="vs-p">Math, Sciences &amp; some Humanities</span></td><td class="ibg"><span class="vs-y">&#10003;</span> 16 subjects — Sciences, Maths, Economics, History, Psychology</td></tr>
             <tr><td>Human-authored study notes</td><td><span class="vs-y">&#10003;</span> Extensive, high quality</td><td><span class="vs-y">&#10003;</span> Key concepts only</td><td class="ibg"><span class="vs-y">&#10003;</span> AI-generated, examiner-aligned</td></tr>
             <tr><td>Past paper question bank</td><td><span class="vs-y">&#10003;</span> Large static bank</td><td><span class="vs-y">&#10003;</span> Large static bank + solutions</td><td class="ibg"><span class="vs-y">&#10003;</span> Unlimited AI-generated, dynamic</td></tr>
             <tr><td>Writes / reviews your IA or EE</td><td><span class="vs-n">&#10007; No</span></td><td><span class="vs-n">&#10007; No</span></td><td class="ibg"><span class="vs-y">&#10003;</span> Yes — IA Co-pilot + EE Reviewer</td></tr>
@@ -464,7 +464,7 @@ input,select,textarea,button{font-family:inherit}
         </table>
       </div>
       <div class="home-tools">
-        <h2 class="sec-h">15 examiner-designed tools to <em>ace the IB</em></h2>
+        <h2 class="sec-h">15 examiner-designed tools for <em>16 core IB subjects</em></h2>
         <div class="tool-cards" id="home-tools"></div>
       </div>
       <div class="home-testi">
@@ -639,10 +639,16 @@ var TOOLS = [
   {key:'grade-boundary',icon:'&#127919;',name:'Grade Booster',tier:'free', tag:'FREE', tc:'lt-free', hc:'tg-blue',  desc:'Enter your current grade — get the exact steps to move up one boundary, specific to your subject and criteria.'}
 ];
 
-var SUBJECTS = ['Biology HL','Biology SL','Chemistry HL','Chemistry SL','Physics HL','Physics SL',
-  'Mathematics AA HL','Mathematics AA SL','Mathematics AI HL','Mathematics AI SL',
-  'Economics HL','Economics SL','Business Management HL','History HL','Psychology HL',
-  'Geography HL','Computer Science HL','English A Literature','Philosophy'];
+var SUBJECTS = [
+  'Biology HL','Biology SL',
+  'Chemistry HL','Chemistry SL',
+  'Physics HL','Physics SL',
+  'Mathematics AA HL','Mathematics AA SL',
+  'Mathematics AI HL','Mathematics AI SL',
+  'Economics HL','Economics SL',
+  'History HL','History SL',
+  'Psychology HL','Psychology SL'
+];
 
 // ===== IB SUBJECT KNOWLEDGE BASE (2025 syllabus) =====
 var SUBJECT_META = {
@@ -932,74 +938,6 @@ var SUBJECT_META = {
     ia: { marks:22, weight:'25%' },
     keyTopics:['Three approaches','Research methodology','One option topic']
   },
-  'Business Management HL': {
-    papers: [
-      { id:'P1', name:'Paper 1', time:'1 hr 45 min', marks:35, calc:false, db:false,
-        sections:[{name:'All', type:'Pre-released Case Study', marks:35, desc:'Based on pre-released unseen case study organisation. Short-answer structured questions + one extended response essay. Tests application of BM tools to a real scenario. Pre-released case study issued before exam — study it thoroughly.'}]
-      },
-      { id:'P2', name:'Paper 2', time:'1 hr 45 min', marks:40, calc:true, db:false,
-        sections:[{name:'All', type:'Short Answer + Extended Response', marks:40, desc:'Section A: two compulsory structured questions. Section B: choose 1 of 2 extended response questions. Tests: quantitative tools (break-even, ratio analysis, cashflow), HR, marketing, operations, finance. HL extension: strategy, innovation, organizational change.'}]
-      }
-    ],
-    ia: { name:'HL Commentary or Research Project', marks:25, weight:'25%' },
-    commandTerms: { 'Define':2,'Outline':4,'Explain':6,'Analyse':6,'Discuss':10,'Evaluate':10,'Recommend':10 },
-    keyTopics:['Business organisation & environment','Human resource management','Finance & accounts','Marketing','Operations management','Strategy (HL extension)'],
-    quantTools:['Break-even analysis','Ratio analysis (liquidity, profitability)','Cashflow forecasting','Investment appraisal (NPV, payback)','Market share calculations']
-  },
-  'Business Management SL': {
-    papers: [
-      { id:'P1', name:'Paper 1', time:'1 hr 15 min', marks:25, calc:false, db:false,
-        sections:[{name:'All', type:'Pre-released Case Study', marks:25, desc:'Case study based. Structured questions.'}]
-      },
-      { id:'P2', name:'Paper 2', time:'1 hr 15 min', marks:30, calc:true, db:false,
-        sections:[{name:'All', type:'Short Answer + Extended Response', marks:30, desc:'Section A: structured. Section B: 1 of 2 extended response.'}]
-      }
-    ],
-    ia: { marks:25, weight:'25%' },
-    keyTopics:['Business environment','HRM basics','Finance basics','Marketing','Operations basics']
-  },
-  'Computer Science HL': {
-    papers: [
-      { id:'P1', name:'Paper 1', time:'2 hr 10 min', marks:100, calc:false, db:false,
-        sections:[{name:'All', type:'Short + Extended Response', marks:100, desc:'Section A: compulsory structured questions on core topics. Section B: one HL extension topic (choose 1 of 4 options: databases, modelling, web science, OOP theory). Tests theoretical understanding of algorithms, data structures, networks, programming concepts.'}]
-      },
-      { id:'P2', name:'Paper 2', time:'1 hr 20 min', marks:65, calc:false, db:false,
-        sections:[{name:'All', type:'Programming & Algorithms', marks:65, desc:'Pseudocode/programming analysis. Students trace algorithms, identify errors, write pseudocode. No actual coding IDE — all written. Tests: searching, sorting, recursion, arrays, OOP in pseudocode.'}]
-      }
-    ],
-    ia: { name:'Solution', marks:30, weight:'30%' },
-    commandTerms: { 'State':1,'Outline':2,'Describe':3,'Explain':4,'Construct':4,'Trace':4,'Analyse':6,'Evaluate':8 },
-    keyTopics:['System fundamentals','Computer organisation','Networks','Computational thinking (algorithms, pseudocode)','OOP','Databases (HL)','Modelling (HL)']
-  },
-  'English A Literature HL': {
-    papers: [
-      { id:'P1', name:'Paper 1', time:'2 hr 15 min', marks:20, calc:false, db:false,
-        sections:[{name:'All', type:'Guided Literary Analysis', marks:20, desc:'TWO unseen extracts (poem + prose). Write a guided literary analysis of ONE, responding to guiding question. 20 marks. Tests close reading, literary terminology, structured argument. Assessed on: Understanding & Interpretation, Analysis & Evaluation, Focus & Organisation, Language.'}]
-      },
-      { id:'P2', name:'Paper 2', time:'1 hr 45 min', marks:30, calc:false, db:false,
-        sections:[{name:'All', type:'Comparative Essay', marks:30, desc:'Comparative essay question from 4 choices. Must compare 2 works studied in class. 30 marks. Assessed on: Knowledge & Understanding (10), Analysis & Evaluation (10), Focus & Organisation (5), Language (5).'}]
-      }
-    ],
-    ia: { name:'Individual Oral', time:'15 min', marks:30, weight:'30%' },
-    commandTerms: { 'Discuss':12,'Compare':12,'Analyse':12,'Examine':12,'Explore':12,'Consider':12 },
-    literaryTerms:['Imagery','Metaphor & simile','Tone & mood','Narrative perspective','Structural choices','Characterisation','Symbolism','Irony','Voice','Diction'],
-    keyTopics:['Poetry analysis','Prose analysis','Drama analysis','Comparative literature','Context & authorial intent']
-  },
-  'Geography HL': {
-    papers: [
-      { id:'P1', name:'Paper 1', time:'1 hr 30 min', marks:35, calc:false, db:false,
-        sections:[{name:'All', type:'Core Theme Questions', marks:35, desc:'Compulsory questions on core syllabus themes: Drainage Basins, Oceans & Coastal Margins, Extreme Environments, Geophysical Hazards, Leisure Sport & Tourism, Food & Health. Short answer + structured response.'}]
-      },
-      { id:'P2', name:'Paper 2', time:'1 hr 15 min', marks:40, calc:false, db:false,
-        sections:[{name:'All', type:'Geographic Themes Extended Response', marks:40, desc:'Extended response from optional themes. 2 extended questions. Must include case studies, located examples, data reference.'}]
-      },
-      { id:'P3', name:'Paper 3 (HL only)', time:'1 hr', marks:25, calc:false, db:false,
-        sections:[{name:'All', type:'HL Extension Essay', marks:25, desc:'One extended question on HL extension topic. Requires evaluation, synthesis, case studies.'}]
-      }
-    ],
-    ia: { name:'Fieldwork Report', marks:20, weight:'20%' },
-    commandTerms: { 'State':1,'Describe':3,'Explain':4,'Examine':6,'Analyse':6,'Evaluate':8,'Discuss':8,'To what extent':8 }
-  }
 };
 
 // Helper: get subject meta (try exact match, then fuzzy)
@@ -1072,7 +1010,13 @@ var GRADE_BOUNDARIES = {
     movingUp:{'4to5':'Every paragraph: start with a topic sentence that directly answers the question. Never describe events without linking them to your thesis.','5to6':'Add a named historian for every major argument: "As Roberts argues...", "A revisionist interpretation (Taylor) suggests...".','6to7':'Integrate counter-arguments: "Despite the strength of argument X, a more convincing case is Y because..."'}},
   'Psychology HL': {g7:75,g6:63,g5:51,g4:39,g3:28, note:'P1=46mk, P2=22mk, P3=30mk.',
     descriptors:{7:'SAQs correctly describe the study, apply it precisely to the question. ERQs evaluate multiple studies from different angles — methodology, cultural considerations, ethical implications.',6:'SAQs accurate but application may be general. ERQs evaluate but from limited perspectives.',5:'SAQs describe studies but application to question is weak. ERQs summarise rather than evaluate.',4:'Studies are described but not applied. Limited evaluation.'},
-    movingUp:{'4to5':'For every SAQ: follow this formula exactly: (1) name the study + aim, (2) method + participants, (3) findings, (4) link to the question in 2 sentences.','5to6':'Evaluation in ERQs means: (a) methodology critique, (b) cultural/gender considerations, (c) ethical implications, (d) alternative explanation.','6to7':'Use the "however" test: every claim should have a counter-claim. If you wrote 3 paragraphs supporting X, you need at least 1 paragraph challenging X.'}}
+    movingUp:{'4to5':'For every SAQ: follow this formula exactly: (1) name the study + aim, (2) method + participants, (3) findings, (4) link to the question in 2 sentences.','5to6':'Evaluation in ERQs means: (a) methodology critique, (b) cultural/gender considerations, (c) ethical implications, (d) alternative explanation.','6to7':'Use the "however" test: every claim should have a counter-claim. If you wrote 3 paragraphs supporting X, you need at least 1 paragraph challenging X.'}},
+  'History SL':    {g7:74,g6:62,g5:50,g4:38,g3:27, note:'P1=30mk, P2=30mk (no P3).',
+    descriptors:{7:'Clear thesis, specific evidence, balanced argument throughout.',6:'Good argument with evidence but may lack balance or historiography.',5:'Argument present but tends to narrate rather than analyse.',4:'Mostly descriptive with little analytical engagement.'},
+    movingUp:{'4to5':'Start every paragraph with a topic sentence that directly answers the question — not a description of an event.','5to6':'Include specific evidence: exact dates, statistics, names of leaders. Vague evidence scores Grade 5 at best.','6to7':'Balance your argument: present the strongest counter-argument and then rebut it with evidence.'}},
+  'Psychology SL': {g7:74,g6:62,g5:50,g4:38,g3:27, note:'P1=46mk, P2=22mk (no P3).',
+    descriptors:{7:'SAQs apply studies precisely. ERQs evaluate from multiple angles.',6:'SAQs accurate; ERQ evaluation present but limited in scope.',5:'Studies described but not well applied to the specific question.',4:'Describes studies without linking them to the question asked.'},
+    movingUp:{'4to5':'For SAQs: always end with a sentence linking your study to the specific question asked.','5to6':'ERQ evaluation: for each study you cite, follow with one methodological critique.','6to7':'Use contrasting perspectives: after supporting a claim with study A, introduce study B that challenges or qualifies it.'}}
 };
 
 // ===== NIGHT BEFORE DATA (exam-focused intelligence per subject) =====
@@ -1142,6 +1086,18 @@ var NIGHT_BEFORE_DATA = {
     commandTerms:['Describe [4mk] — study + findings + link to question','Discuss [8mk] — evaluate from multiple angles: methodology, ethics, culture, replication','Evaluate [8mk] — assess strengths AND limitations with reference to specific studies'],
     confusedConcepts:['SAQ vs ERQ: SAQs describe and apply ONE study. ERQs evaluate MULTIPLE studies from different perspectives. Students write SAQ-style answers for ERQs.','P3 qualitative: "credibility" is not the same as "validity" — credibility = whether the findings reflect the participants\' reality.'],
     examTips:['SAQ formula: (1) Study name + researcher + year, (2) Aim, (3) Participants + method, (4) Results, (5) Link to the question. 8 lines = 4 marks.','ERQ: minimum 3 studies, from at least 2 different approaches where possible. Evaluate after presenting each study.']
+  },
+  'History SL': {
+    hotTopics:['P1 OPCVL source analysis — the prescribed subject sources require careful reading and methodical OPCVL application','P2 Essay — choose your strongest World History topic and essay question','Historiography: at least 2 named historians per major argument in P2 essays','Analytical essay structure: thesis → evidence → analysis → evaluation → conclusion'],
+    commandTerms:['Examine [6mk] — analyse from multiple perspectives','Evaluate/Discuss [8mk] — assess with evidence and reach a justified conclusion','Compare and contrast [8mk] — both similarities AND differences, not one after the other'],
+    confusedConcepts:['OPCVL VALUE: useful to a historian studying this topic (its perspective, its evidence, when it was created). Not just "it tells us that..."','Analytical vs narrative: every paragraph must answer the question directly. If you\'re just telling the story, you\'re losing marks.'],
+    examTips:['P1: 1 hour, 30 marks. Spend max 15 minutes per question. Do not over-write.','P2: write your thesis in the FIRST sentence of the introduction. Examiners want to see it immediately.','Quote specific evidence: exact dates, statistics, names. "In 1933, Hitler passed the Enabling Act allowing..." is worth more than "Hitler came to power and changed things".']
+  },
+  'Psychology SL': {
+    hotTopics:['Biological approach: neuroplasticity, neurotransmitters — Maguire taxi driver study, Caspi serotonin transporter','Cognitive approach: schema theory, reconstructive memory — Bartlett (1932), Loftus & Palmer (1974)','Sociocultural approach: social identity theory, conformity — Tajfel & Turner, Asch (1951)','Research methodology: random vs purposive sampling, ethical considerations'],
+    commandTerms:['Describe [4mk] — study aim + method + findings + link to question','Discuss [8mk] — multiple studies, multiple perspectives, evaluate methodology','Evaluate [8mk] — strengths AND limitations of research, cultural/gender considerations'],
+    confusedConcepts:['SAQ vs ERQ: SAQs apply ONE study to the question. ERQs require evaluating MULTIPLE studies critically. Many students write SAQ answers in ERQ questions — this caps you at Grade 4.','Reliability vs validity: reliability = consistent results on repetition; validity = measures what it claims to measure.'],
+    examTips:['SAQ 8-mark formula: aim + participants + procedure + findings + link to question. 8 structured lines.','ERQ: introduce the topic, present Study 1 with evaluation, Study 2 with evaluation, contrast them, conclude. Minimum 3 studies.','Options paper P2: you only answer questions from YOUR chosen option. Read the paper carefully — do not answer from the wrong option.']
   }
 };
 
@@ -1274,7 +1230,7 @@ function buildDynamicPaperForm(subj) {
   ];
   var isMath = subj && /Mathematics/.test(subj);
   var isSci  = subj && /Biology|Chemistry|Physics/.test(subj);
-  var isHum  = subj && /Economics|History|Psychology|Business|Geography|English/.test(subj);
+  var isHum  = subj && /Economics|History|Psychology/.test(subj);
   var firstPaper = papers[0];
 
   var paperOpts = papers.map(function(p) {
@@ -1791,7 +1747,7 @@ function buildPrompt(key) {
     var meta = getSubjMeta(subj);
     var isSci = /Biology|Chemistry|Physics/.test(subj);
     var isMath = /Mathematics/.test(subj);
-    var isHum = /Economics|Business|History|Psychology|Geography|English|Philosophy/.test(subj);
+    var isHum = /Economics|History|Psychology/.test(subj);
     var qstyle = fv('pp-qstyle');
     var pptype = fv('pp-type');
     var marks = fv('pp-marks');
@@ -2800,10 +2756,33 @@ var TRACKER_TOPICS = {
     {t:'Quantitative analysis: Lorenz curve & Gini',hl:true},{t:'Multiplier & accelerator',hl:true}
   ],
   'History HL': [
-    {t:'Prescribed subject (Paper 1) sources',hl:false},{t:'OPCVL framework',hl:false},
-    {t:'World History topic 1 (Paper 2)',hl:false},{t:'World History topic 2 (Paper 2)',hl:false},
-    {t:'HL prescribed subject depth (Paper 3)',hl:true},{t:'Historiography & historians',hl:true},
-    {t:'Essay structure & thesis writing',hl:false},{t:'Use of evidence & counter-arguments',hl:false}
+    {t:'Prescribed subject (Paper 1) — source reading',hl:false},{t:'OPCVL framework',hl:false},
+    {t:'Source comparison questions',hl:false},{t:'Mini-essay using sources (P1 Q4)',hl:false},
+    {t:'World History topic 1 essay structure',hl:false},{t:'World History topic 2 essay structure',hl:false},
+    {t:'Specific evidence: dates, names, statistics',hl:false},{t:'Thesis writing & analytical paragraphs',hl:false},
+    {t:'HL prescribed subject (Paper 3) depth',hl:true},{t:'Historiography — named historians per argument',hl:true},
+    {t:'Historiographical debates (revisionist vs orthodox)',hl:true},{t:'Counter-argument integration',hl:true}
+  ],
+  'History SL': [
+    {t:'Prescribed subject (Paper 1) — source reading',hl:false},{t:'OPCVL framework',hl:false},
+    {t:'Source comparison questions',hl:false},{t:'Mini-essay using sources (P1 Q4)',hl:false},
+    {t:'World History topic 1 essay structure',hl:false},{t:'World History topic 2 essay structure',hl:false},
+    {t:'Specific evidence: dates, names, statistics',hl:false},{t:'Thesis writing & analytical paragraphs',hl:false}
+  ],
+  'Psychology HL': [
+    {t:'Biological approach: neuroplasticity & Maguire (2000)',hl:false},{t:'Biological approach: genetics & Caspi (2003)',hl:false},
+    {t:'Cognitive approach: schema theory & Bartlett (1932)',hl:false},{t:'Cognitive approach: reconstructive memory & Loftus & Palmer (1974)',hl:false},
+    {t:'Sociocultural approach: social identity theory & Tajfel',hl:false},{t:'Sociocultural approach: conformity & Asch (1951)',hl:false},
+    {t:'SAQ formula — aim, method, findings, link',hl:false},{t:'ERQ structure — multiple studies, evaluation',hl:false},
+    {t:'Options paper — Abnormal/Health/Relationships/Sport',hl:false},{t:'Research methodology basics',hl:false},
+    {t:'P3 qualitative methods — credibility, triangulation',hl:true},{t:'P3 — reflexivity & purposive sampling',hl:true}
+  ],
+  'Psychology SL': [
+    {t:'Biological approach: neuroplasticity & Maguire (2000)',hl:false},{t:'Biological approach: genetics & Caspi (2003)',hl:false},
+    {t:'Cognitive approach: schema theory & Bartlett (1932)',hl:false},{t:'Cognitive approach: Loftus & Palmer (1974)',hl:false},
+    {t:'Sociocultural approach: social identity theory',hl:false},{t:'Sociocultural approach: Asch conformity study',hl:false},
+    {t:'SAQ formula — 8-mark structure',hl:false},{t:'ERQ — 3+ studies, multiple perspectives',hl:false},
+    {t:'Options paper — your chosen option',hl:false},{t:'Research methodology basics',hl:false}
   ]
 };
 
